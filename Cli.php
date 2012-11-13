@@ -3,13 +3,19 @@
 	 * @author		Jan Pecha, <janpecha@email.cz>
 	 * @license		New BSD License
 	 * @link		http://janpecha.iunas.cz/
-	 * @version		2012-10-27-1
+	 * @version		2012-11-13-1
 	 */
 	
 	namespace Cz;
 	
 	class Cli
 	{
+		const COLOR_ERROR = '31',
+			COLOR_SUCCESS = '32',
+			COLOR_WARNING = '33',
+			COLOR_INFO = '34';
+		
+		
 		/** @var  bool|NULL */
 		protected static $isWindows = NULL;
 		
@@ -39,10 +45,73 @@
 			
 			if(!self::$isWindows)
 			{
-				$str = "\033[31m" . $str . "\033[37m\r\n";
+				$str = self::coloredString($str, self::COLOR_ERROR);
 			}
 			
 			fwrite(STDERR, $str);
+		}
+		
+		
+		
+		/**
+		 * @param	string
+		 * @return	void
+		 */
+		public static function success($str)
+		{
+			if(self::$isWindows === NULL)
+			{
+				self::detectOs();
+			}
+			
+			if(!self::$isWindows)
+			{
+				$str = self::coloredString($str, self::COLOR_SUCCESS);
+			}
+			
+			echo $str;
+		}
+		
+		
+		
+		/**
+		 * @param	string
+		 * @return	void
+		 */
+		public static function warn($str)
+		{
+			if(self::$isWindows === NULL)
+			{
+				self::detectOs();
+			}
+			
+			if(!self::$isWindows)
+			{
+				$str = self::coloredString($str, self::COLOR_WARNING);
+			}
+			
+			fwrite(STDERR, $str);	// TODO: zmenit vystupni proud, ??echo
+		}
+		
+		
+		
+		/**
+		 * @param	string
+		 * @return	void
+		 */
+		public static function info($str)
+		{
+			if(self::$isWindows === NULL)
+			{
+				self::detectOs();
+			}
+			
+			if(!self::$isWindows)
+			{
+				$str = self::coloredString($str, self::COLOR_INFO);
+			}
+			
+			echo $str;
 		}
 		
 		
@@ -143,6 +212,18 @@
 			{
 				self::$isWindows = FALSE;
 			}
+		}
+		
+		
+		
+		/**
+		 * @param	string
+		 * @param	string
+		 * @return	string
+		 */
+		protected static function coloredString($str, $color)
+		{
+			return "\033[" . $color . "m" . $str . "\033[37m\r\n";
 		}
 	}
 
