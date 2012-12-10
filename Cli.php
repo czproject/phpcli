@@ -1,19 +1,21 @@
 <?php
 	/**
+	 * Colors list: http://www.if-not-true-then-false.com/2010/php-class-for-coloring-php-command-line-cli-scripts-output-php-output-colorizing-using-bash-shell-colors/
+	 * 
 	 * @author		Jan Pecha, <janpecha@email.cz>
 	 * @license		New BSD License
 	 * @link		http://janpecha.iunas.cz/
-	 * @version		2012-11-13-1
+	 * @version		2012-12-10-1
 	 */
 	
 	namespace Cz;
 	
 	class Cli
 	{
-		const COLOR_ERROR = '31',
-			COLOR_SUCCESS = '32',
-			COLOR_WARNING = '33',
-			COLOR_INFO = '34';
+		const COLOR_ERROR = '0;31',
+			COLOR_SUCCESS = '0;32',
+			COLOR_WARNING = '0;33',
+			COLOR_INFO = '0;34';
 		
 		
 		/** @var  bool|NULL */
@@ -45,7 +47,7 @@
 			
 			if(!self::$isWindows)
 			{
-				$str = self::coloredString($str, self::COLOR_ERROR);
+				$str = self::coloredString($str, static::COLOR_ERROR);
 			}
 			
 			fwrite(STDERR, $str);
@@ -66,7 +68,7 @@
 			
 			if(!self::$isWindows)
 			{
-				$str = self::coloredString($str, self::COLOR_SUCCESS);
+				$str = self::coloredString($str, static::COLOR_SUCCESS);
 			}
 			
 			echo $str;
@@ -87,7 +89,7 @@
 			
 			if(!self::$isWindows)
 			{
-				$str = self::coloredString($str, self::COLOR_WARNING);
+				$str = self::coloredString($str, static::COLOR_WARNING);
 			}
 			
 			fwrite(STDERR, $str);	// TODO: zmenit vystupni proud, ??echo
@@ -108,7 +110,7 @@
 			
 			if(!self::$isWindows)
 			{
-				$str = self::coloredString($str, self::COLOR_INFO);
+				$str = self::coloredString($str, static::COLOR_INFO);
 			}
 			
 			echo $str;
@@ -223,7 +225,8 @@
 		 */
 		protected static function coloredString($str, $color)
 		{
-			return "\033[" . $color . "m" . $str . "\033[37m\r\n";
+			return "\033[" . $color . "m" . $str . "\033[0m\r\n";
+			#return "\033[" . $color . "m" . $str . "\033[37m\r\n";
 		}
 	}
 
