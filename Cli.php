@@ -5,7 +5,7 @@
 	 * @author		Jan Pecha, <janpecha@email.cz>
 	 * @license		New BSD License
 	 * @link		http://janpecha.iunas.cz/
-	 * @version		2012-12-10-1
+	 * @version		2013-01-22-1
 	 */
 	
 	namespace Cz;
@@ -16,6 +16,15 @@
 			COLOR_SUCCESS = '0;32',
 			COLOR_WARNING = '0;33',
 			COLOR_INFO = '0;34';
+		
+		const C_BLACK = 30,
+			C_RED = 31,
+			C_GREEN = 32,
+			C_YELLOW = 33,
+			C_BLUE = 34,
+			C_PURPLE = 35,
+			C_CYAN = 36,
+			C_WHITE = 37;
 		
 		
 		/** @var  bool|NULL */
@@ -114,6 +123,29 @@
 			}
 			
 			echo $str;
+		}
+		
+		
+		
+		/**
+		 * @param	string
+		 * @param	bool
+		 * @return	void
+		 */
+		public static function format($str, $bold = FALSE, $color = NULL)
+		{
+			if($color === NULL)
+			{
+				$color = static::C_WHITE;
+			}
+			
+			echo "\033[", // start
+				((int)(bool)$bold), // style
+				';',
+				$color, // color
+				'm',
+				$str, // message
+				"\033[0m"; // reset
 		}
 		
 		
