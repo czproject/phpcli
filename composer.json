@@ -1,0 +1,14 @@
+{
+    "name": "czproject/phpcli",
+    "description": "Helper class for PHP CLI apps.",
+    "license": "New BSD License",
+    "authors": [
+        {
+            "name": "Jan Pecha",
+            "email": "janpecha@email.cz"
+        }
+    ],
+    "require": {
+
+    }
+}
