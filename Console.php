@@ -200,7 +200,9 @@
 		 */
 		public function readInput($msg = NULL)
 		{
-			if(is_string($msg))
+			$msg = $msg !== NULL ? (string) $msg : $msg;
+			
+			if(!$this->inputProvider->isPrintingPrompt())
 			{
 				$this->outputFormatter->nl(FALSE) // disable new lines after output()
 					->output($msg) // print message
@@ -208,7 +210,7 @@
 					->nl(TRUE); // enable new lines
 			}
 			
-			return $this->inputProvider->readInput();
+			return $this->inputProvider->readInput($msg);
 		}
 		
 		

@@ -9,11 +9,28 @@
 	
 	class ReadlineInputProvider implements IInputProvider
 	{
-		public function readInput()
+		public function readInput($prompt = NULL)
 		{
-			$input = readline();
+			$input = '';
+			
+			if($prompt === NULL)
+			{
+				$input = readline();
+			}
+			else
+			{
+				$input = readline("$prompt ");
+			}
+			
 			readline_add_history($input);
 			return trim($input);
+		}
+		
+		
+		
+		public static function isPrintingPrompt()
+		{
+			return TRUE;
 		}
 	}
 

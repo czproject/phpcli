@@ -9,6 +9,8 @@
 	interface IInputProvider
 	{
 		function readInput();
+		
+		static function isPrintingPrompt();
 	}
 	
 	

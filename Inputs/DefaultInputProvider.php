@@ -15,5 +15,12 @@
 			// see http://wiki.uniformserver.com/index.php/PHP_CLI:_User_Input#fgets.28.29_-_Problem
 			return trim(fgets(STDIN));
 		}
+		
+		
+		
+		public static function isPrintingPrompt()
+		{
+			return FALSE;
+		}
 	}
 
