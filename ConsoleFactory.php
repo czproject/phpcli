@@ -11,8 +11,10 @@
 	
 	class ConsoleFactory
 	{
+		/** @var  bool|NULL */
 		protected static $useColoredOutput;
 		
+		/** @var  bool|NULL */
 		protected static $useReadlineProvider;
 		
 		
@@ -82,7 +84,7 @@
 		
 		
 		/**
-		 * @return	void
+		 * @return	bool
 		 */
 		public static function detectColoredOutput()
 		{
