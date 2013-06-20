@@ -4,6 +4,7 @@
 	require __DIR__ . '/IParametersParser.php';
 	
 	require __DIR__ . '/Inputs/DefaultInputProvider.php';
+	require __DIR__ . '/Inputs/ReadlineInputProvider.php';
 	
 	require __DIR__ . '/Outputs/BaseOutput.php';
 	require __DIR__ . '/Outputs/TextOutput.php';
