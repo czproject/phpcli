@@ -210,6 +210,26 @@
 			
 			return $this->inputProvider->readInput();
 		}
+		
+		
+		
+		/**
+		 * @return	IOutputFormatter
+		 */
+		public function enableNl()
+		{
+			return $this->nl(TRUE);
+		}
+		
+		
+		
+		/**
+		 * @return	IOutputFormatter
+		 */
+		public function disableNl()
+		{
+			return $this->nl(FALSE);
+		}
 	}
 	
 	
