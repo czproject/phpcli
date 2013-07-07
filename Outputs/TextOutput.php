@@ -10,7 +10,7 @@
 	{
 		/**
 		 * @param	string|NULL
-		 * @return	IOutputFormatter  fluent interface
+		 * @return	self
 		 */
 		public function success($str = NULL)
 		{
@@ -21,7 +21,7 @@
 		
 		/**
 		 * @param	string|NULL
-		 * @return	IOutputFormatter  fluent interface
+		 * @return	self
 		 */
 		public function error($str = NULL)
 		{
@@ -32,7 +32,7 @@
 		
 		/**
 		 * @param	string|NULL
-		 * @return	IOutputFormatter  fluent interface
+		 * @return	self
 		 */
 		public function warning($str = NULL)
 		{
@@ -43,7 +43,7 @@
 		
 		/**
 		 * @param	string|NULL
-		 * @return	IOutputFormatter  fluent interface
+		 * @return	self
 		 */
 		public function info($str = NULL)
 		{

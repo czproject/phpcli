@@ -30,7 +30,7 @@
 		
 		/**
 		 * @param	string|NULL
-		 * @return	IOutputFormatter  fluent interface
+		 * @return	self
 		 */
 		public function output($str = NULL)
 		{

@@ -9,7 +9,7 @@
 	interface IParametersParser
 	{
 		/**
-		 * @return	IParametersParser  fluent interface
+		 * @return	self
 		 */
 		function setDefaultParameters(array $defaultParameters = NULL);
 		

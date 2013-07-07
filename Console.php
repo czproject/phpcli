@@ -57,7 +57,7 @@
 		
 		/**
 		 * @param	string
-		 * @return	Console  fluent interface
+		 * @return	self
 		 */
 		public function setCurrentDir($directory)
 		{
@@ -79,7 +79,7 @@
 		
 		/**
 		 * @param	array|NULL
-		 * @return	Console  fluent interface
+		 * @return	self
 		 */
 		public function setDefaultParameters(array $defaultParameters = NULL)
 		{
@@ -114,7 +114,7 @@
 		
 		/**
 		 * @param	string|NULL
-		 * @return	Console
+		 * @return	self
 		 */
 		public function output($str = NULL)
 		{
@@ -130,7 +130,7 @@
 		
 		/**
 		 * @param	string|NULL
-		 * @return	Console
+		 * @return	self
 		 */
 		public function success($str = NULL)
 		{
@@ -141,7 +141,7 @@
 		
 		/**
 		 * @param	string|NULL
-		 * @return	Console
+		 * @return	self
 		 */
 		public function error($str = NULL)
 		{
@@ -152,7 +152,7 @@
 		
 		/**
 		 * @param	string|NULL
-		 * @return	Console
+		 * @return	self
 		 */
 		public function warning($str = NULL)
 		{
@@ -163,7 +163,7 @@
 		
 		/**
 		 * @param	string|NULL
-		 * @return	Console
+		 * @return	self
 		 */
 		public function info($str = NULL)
 		{

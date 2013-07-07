@@ -65,7 +65,7 @@
 		
 		/**
 		 * @param	array|NULL
-		 * @return	BaseParser  fluent interface
+		 * @return	self
 		 */
 		protected function setParameters(array $parameters = NULL)
 		{

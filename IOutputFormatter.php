@@ -10,37 +10,37 @@
 	{
 		/**
 		 * @param	string|NULL
-		 * @return	IOutputFormatter  fluent interface
+		 * @return	self
 		 */
 		function output($str = NULL);
 		
 		/**
 		 * @param	string|NULL
-		 * @return	IOutputFormatter  fluent interface
+		 @return	self
 		 */
 		function success($str = NULL);
 		
 		/**
 		 * @param	string|NULL
-		 * @return	IOutputFormatter  fluent interface
+		 @return	self
 		 */
 		function error($str = NULL);
 		
 		/**
 		 * @param	string|NULL
-		 * @return	IOutputFormatter  fluent interface
+		 @return	self
 		 */
 		function warning($str = NULL);
 		
 		/**
 		 * @param	string|NULL
-		 * @return	IOutputFormatter  fluent interface
+		 @return	self
 		 */
 		function info($str = NULL);
 		
 		/**
 		 * @param	bool|NULL  NULL => direct print NL, TRUE => enable NL printing, FALSE => disable NL printing
-		 * @return	IOutputFormatter  fluent interface
+		 @return	self
 		 */
 		function nl($state = NULL);
 	}
