@@ -69,17 +69,17 @@
 		public function color($colorId)
 		{
 			$newLineEnabled = $this->newLineEnabled;
-			$this->nl(FALSE); // disable new lines
+			$this->setAutoNewLine(FALSE); // disable new lines
 			
 			if($colorId === NULL) // reset color
 			{
 				return $this->output("\033[0m")
-					->nl($newLineEnabled);
+					->setAutoNewLine($newLineEnabled);
 			}
 			elseif(isset(self::$colors[$colorId = (string) $colorId]))
 			{
 				return $this->output("\033[0;" . self::$colors[$colorId] . 'm')
-					->nl($newLineEnabled);
+					->setAutoNewLine($newLineEnabled);
 			}
 			
 			throw new OutputException("Unknow color: $colorId");

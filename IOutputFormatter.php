@@ -39,10 +39,15 @@
 		function info($str = NULL);
 		
 		/**
-		 * @param	bool|NULL  NULL => direct print NL, TRUE => enable NL printing, FALSE => disable NL printing
 		 * @return	self
 		 */
-		function nl($state = NULL);
+		function nl();
+		
+		/**
+		 * @param	bool
+		 * @return	self
+		 */
+		function setAutoNewLine($state);
 	}
 	
 	

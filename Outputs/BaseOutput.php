@@ -40,20 +40,21 @@
 		
 		
 		
-		public function nl($state = NULL)
+		public function nl()
 		{
-			if(!is_bool($state))
+			if($this->newLineEnabled)
 			{
-				if($this->newLineEnabled)
-				{
-					$this->printNL();
-				}
-			}
-			else
-			{
-				$this->newLineEnabled = (bool) $state;
+				$this->printNL();
 			}
 			
+			return $this;
+		}
+		
+		
+		
+		public function setAutoNewLine($state)
+		{
+			$this->newLineEnabled = (bool) $state;
 			return $this;
 		}
 		

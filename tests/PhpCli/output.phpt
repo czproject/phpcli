@@ -20,11 +20,11 @@ Assert::same("CzProject CLI Simple Console\n"
 
 
 ob_start();
-$console->nl(FALSE)
+$console->setAutoNewLine(FALSE)
 	->info('Hello! ')
 	->success('super')
 	->warning(' [user]')
-	->nl(TRUE)
+	->setAutoNewLine(TRUE)
 	->nl()
 	->error('I am dead...');
 

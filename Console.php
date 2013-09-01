@@ -173,12 +173,22 @@
 		
 		
 		/**
-		 * @param	bool|NULL NULL => print NL, bool => disable/enable printing
 		 * @return	IOutputFormatter
 		 */
-		public function nl($state = NULL)
+		public function nl()
 		{
-			return $this->outputFormatter->nl($state);
+			return $this->outputFormatter->nl();
+		}
+		
+		
+		
+		/**
+		 * @param	bool
+		 * @return	IOutputFormatter
+		 */
+		public function setAutoNewLine($state)
+		{
+			return $this->outputFormatter->setAutoNewLine($state);
 		}
 		
 		
