@@ -224,10 +224,10 @@
 			
 			if(!$this->inputProvider->isPrintingPrompt())
 			{
-				$this->outputFormatter->nl(FALSE) // disable new lines after output()
+				$this->outputFormatter->setAutoNewLine(FALSE) // disable new lines after output()
 					->output($msg) // print message
 					->output($msg !== '' ? ' ' : '') // print one space for not empty message
-					->nl(TRUE); // enable new lines
+					->setAutoNewLine(TRUE); // enable new lines
 			}
 			
 			return $this->inputProvider->readInput($msg);
@@ -238,9 +238,9 @@
 		/**
 		 * @return	IOutputFormatter
 		 */
-		public function enableNl()
+		public function enableNewLine()
 		{
-			return $this->nl(TRUE);
+			return $this->setAutoNewLine(TRUE);
 		}
 		
 		
@@ -248,9 +248,9 @@
 		/**
 		 * @return	IOutputFormatter
 		 */
-		public function disableNl()
+		public function disableNewLine()
 		{
-			return $this->nl(FALSE);
+			return $this->setAutoNewLine(FALSE);
 		}
 	}
 	
