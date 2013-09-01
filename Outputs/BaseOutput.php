@@ -60,6 +60,13 @@
 		
 		
 		
+		public function getAutoNewLine()
+		{
+			return $this->newLineEnabled;
+		}
+		
+		
+		
 		protected function printNL()
 		{
 			echo $this->newLineChar;

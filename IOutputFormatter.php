@@ -48,6 +48,11 @@
 		 * @return	self
 		 */
 		function setAutoNewLine($state);
+		
+		/**
+		 * @return	bool
+		 */
+		function getAutoNewLine();
 	}
 	
 	

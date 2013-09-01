@@ -194,6 +194,16 @@
 		
 		
 		/**
+		 * @return	bool
+		 */
+		public function getAutoNewLine()
+		{
+			return $this->outputFormatter->getAutoNewLine();
+		}
+		
+		
+		
+		/**
 		 * @param	string|NULL  optional
 		 * @return	string
 		 */
