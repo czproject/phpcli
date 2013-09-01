@@ -11,7 +11,7 @@
 	{
 		protected function parse()
 		{
-			$raw = self::getRawParams();
+			$raw = self::getRawParameters();
 			$parameters = NULL;
 			
 			// parsing

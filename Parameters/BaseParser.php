@@ -79,7 +79,7 @@
 		
 		
 		
-		protected static function getRawParams()
+		protected static function getRawParameters()
 		{
 			return $_SERVER['argv'];
 		}
