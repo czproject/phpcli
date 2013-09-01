@@ -13,7 +13,7 @@
 		protected $newLineEnabled = TRUE;
 		
 		/** @var  string */
-		protected $newLineChar = "\n";
+		protected $newLineCharacter = "\n";
 		
 		
 		
@@ -22,7 +22,7 @@
 			// set default NL character, for WIN platform is used \r\n
 			if(strtoupper(substr(PHP_OS, 0, 3)) === 'WIN')
 			{
-				$this->newLineChar = "\r\n";
+				$this->newLineCharacter = "\r\n";
 			}
 		}
 		
@@ -69,7 +69,7 @@
 		
 		protected function printNL()
 		{
-			echo $this->newLineChar;
+			echo $this->newLineCharacter;
 		}
 	}
 
