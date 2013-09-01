@@ -60,7 +60,7 @@
 		
 		
 		
-		public function printNL()
+		protected function printNL()
 		{
 			echo $this->newLineChar;
 		}
