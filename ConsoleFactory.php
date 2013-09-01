@@ -89,8 +89,10 @@
 		public static function detectColoredOutput()
 		{
 			// Code from Tracy (from Nette Framework)
-			// see https://github.com/nette/tracy/blob/master/src/Tracy/Dumper.php#L58
-			return preg_match('#^xterm|^screen#', getenv('TERM')) && (defined('STDOUT') && function_exists('posix_isatty') ? posix_isatty(STDOUT) : TRUE);
+			// see https://github.com/nette/tracy/blob/master/src/Tracy/Dumper.php#L315-L317
+			return (getenv('ConEmuANSI') === 'ON'
+				|| getenv('ANSICON') !== FALSE
+				|| (defined('STDOUT') && function_exists('posix_isatty') && posix_isatty(STDOUT)));
 		}
 		
 		
