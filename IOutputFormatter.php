@@ -16,31 +16,31 @@
 		
 		/**
 		 * @param	string|NULL
-		 @return	self
+		 * @return	self
 		 */
 		function success($str = NULL);
 		
 		/**
 		 * @param	string|NULL
-		 @return	self
+		 * @return	self
 		 */
 		function error($str = NULL);
 		
 		/**
 		 * @param	string|NULL
-		 @return	self
+		 * @return	self
 		 */
 		function warning($str = NULL);
 		
 		/**
 		 * @param	string|NULL
-		 @return	self
+		 * @return	self
 		 */
 		function info($str = NULL);
 		
 		/**
 		 * @param	bool|NULL  NULL => direct print NL, TRUE => enable NL printing, FALSE => disable NL printing
-		 @return	self
+		 * @return	self
 		 */
 		function nl($state = NULL);
 	}
