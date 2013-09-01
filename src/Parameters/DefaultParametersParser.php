@@ -9,9 +9,8 @@
 	
 	class DefaultParametersParser extends BaseParser
 	{
-		protected function parse()
+		protected function parse(array $raw = NULL)
 		{
-			$raw = self::getRawParameters();
 			$parameters = NULL;
 			
 			// parsing

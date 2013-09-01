@@ -78,6 +78,17 @@
 		
 		
 		/**
+		 * @return	self
+		 */
+		public function setRawParameters(array $parameters = NULL)
+		{
+			$this->parametersParser->setRawParameters($parameters);
+			return $this;
+		}
+		
+		
+		
+		/**
 		 * @param	array|NULL
 		 * @return	self
 		 */

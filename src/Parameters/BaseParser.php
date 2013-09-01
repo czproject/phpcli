@@ -19,6 +19,17 @@
 		/** @var  bool */
 		protected $parsed = FALSE;
 		
+		/** @var  array|NULL */
+		protected $rawParameters;
+		
+		
+		
+		public function setRawParameters(array $parameters = NULL)
+		{
+			$this->rawParameters = $parameters;
+			return $this;
+		}
+		
 		
 		
 		public function setDefaultParameters(array $defaultParameters = NULL)
@@ -33,7 +44,7 @@
 		{
 			if(!$this->parsed)
 			{
-				$this->parameters = $this->parse();
+				$this->parameters = $this->parse($this->rawParameters);
 			}
 			
 			return $this->parameters;
@@ -45,7 +56,7 @@
 		{
 			if(!$this->parsed)
 			{
-				$this->parameters = $this->parse();
+				$this->parameters = $this->parse($this->rawParameters);
 			}
 			
 			if(!isset($this->parameters[$name]))
@@ -75,14 +86,7 @@
 		
 		
 		
-		protected abstract function parse();
-		
-		
-		
-		protected static function getRawParameters()
-		{
-			return $_SERVER['argv'];
-		}
+		protected abstract function parse(array $rawParameters = NULL);
 		
 		
 		

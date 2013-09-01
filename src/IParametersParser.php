@@ -11,6 +11,11 @@
 		/**
 		 * @return	self
 		 */
+		function setRawParameters(array $parameters = NULL);
+		
+		/**
+		 * @return	self
+		 */
 		function setDefaultParameters(array $defaultParameters = NULL);
 		
 		/**
