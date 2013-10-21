@@ -2,6 +2,9 @@
     "name": "czproject/phpcli",
     "description": "Helper class for PHP CLI apps.",
     "license": "BSD-3-Clause",
+    "autoload": {
+        "classmap": ["src/"]
+    },
     "authors": [
         {
             "name": "Jan Pecha",
