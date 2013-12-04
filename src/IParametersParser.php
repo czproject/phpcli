@@ -1,28 +1,28 @@
 <?php
 	/** Cz CLI Console
-	 * 
+	 *
 	 * @author		Jan Pecha, <janpecha@email.cz>
 	 */
-	
+
 	namespace Cz\Cli;
-	
+
 	interface IParametersParser
 	{
 		/**
 		 * @return	self
 		 */
 		function setRawParameters(array $parameters = NULL);
-		
+
 		/**
 		 * @return	self
 		 */
 		function setDefaultParameters(array $defaultParameters = NULL);
-		
+
 		/**
 		 * @return	array|NULL
 		 */
 		function getParameters();
-		
+
 		/**
 		 * @param	string
 		 * @param	mixed
@@ -32,15 +32,15 @@
 		 */
 		function getParameter($name, $defaultValue = NULL, $required = FALSE);
 	}
-	
-	
-	
+
+
+
 	class ParametersException extends \RuntimeException
 	{
 	}
-	
-	
-	
+
+
+
 	class ParametersParseException extends \RuntimeException
 	{
 	}

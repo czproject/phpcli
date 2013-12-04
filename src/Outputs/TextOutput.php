@@ -1,11 +1,11 @@
 <?php
 	/** Cz CLI Console
-	 * 
+	 *
 	 * @author		Jan Pecha, <janpecha@email.cz>
 	 */
-	
+
 	namespace Cz\Cli\Outputs;
-	
+
 	class TextOutput extends BaseOutput
 	{
 		/**
@@ -16,9 +16,9 @@
 		{
 			return $this->output($str);
 		}
-		
-		
-		
+
+
+
 		/**
 		 * @param	string|NULL
 		 * @return	self
@@ -27,9 +27,9 @@
 		{
 			return $this->output($str);
 		}
-		
-		
-		
+
+
+
 		/**
 		 * @param	string|NULL
 		 * @return	self
@@ -38,9 +38,9 @@
 		{
 			return $this->output($str);
 		}
-		
-		
-		
+
+
+
 		/**
 		 * @param	string|NULL
 		 * @return	self

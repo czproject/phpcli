@@ -1,12 +1,12 @@
 <?php
 	/** Cz CLI Console
-	 * 
+	 *
 	 * @author		Jan Pecha, <janpecha@email.cz>
 	 */
-	
+
 	namespace Cz\Cli\Outputs;
 	use Cz\Cli\OutputException;
-	
+
 	class ColoredOutput extends BaseOutput
 	{
 		protected static $colors = array(
@@ -15,9 +15,9 @@
 			'warning' => 33,
 			'info' => 34,
 		);
-		
-		
-		
+
+
+
 		/**
 		 * @param	string|NULL
 		 * @return	self
@@ -27,9 +27,9 @@
 			return $this->color('success')
 				->printString($str);
 		}
-		
-		
-		
+
+
+
 		/**
 		 * @param	string|NULL
 		 * @return	self
@@ -39,9 +39,9 @@
 			return $this->color('error')
 				->printString($str);
 		}
-		
-		
-		
+
+
+
 		/**
 		 * @param	string|NULL
 		 * @return	self
@@ -51,9 +51,9 @@
 			return $this->color('warning')
 				->printString($str);
 		}
-		
-		
-		
+
+
+
 		/**
 		 * @param	string|NULL
 		 * @return	self
@@ -63,14 +63,14 @@
 			return $this->color('info')
 				->printString($str);
 		}
-		
-		
-		
+
+
+
 		protected function color($colorId)
 		{
 			$newLineEnabled = $this->newLineEnabled;
 			$this->setAutoNewLine(FALSE); // disable new lines
-			
+
 			if($colorId === NULL) // reset color
 			{
 				return $this->output("\033[0m")
@@ -81,12 +81,12 @@
 				return $this->output("\033[0;" . self::$colors[$colorId] . 'm')
 					->setAutoNewLine($newLineEnabled);
 			}
-			
+
 			throw new OutputException("Unknow color: $colorId");
 		}
-		
-		
-		
+
+
+
 		protected function printString($str = NULL)
 		{
 			return $this->output($str)

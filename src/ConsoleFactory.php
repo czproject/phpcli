@@ -1,24 +1,24 @@
 <?php
 	/** Cz CLI Console
-	 * 
+	 *
 	 * @author		Jan Pecha, <janpecha@email.cz>
 	 */
-	
+
 	namespace Cz\Cli;
 	use Cz\Cli\Inputs,
 		Cz\Cli\Outputs,
 		Cz\Cli\Parameters;
-	
+
 	class ConsoleFactory
 	{
 		/** @var  bool|NULL */
 		protected static $useColoredOutput;
-		
+
 		/** @var  bool|NULL */
 		protected static $useReadlineProvider;
-		
-		
-		
+
+
+
 		/**
 		 * @return	Console
 		 */
@@ -27,12 +27,12 @@
 			$outputFormatter = $outputFormatter === NULL ? self::createOutputFormatter() : $outputFormatter;
 			$inputProvider = $inputProvider === NULL ? self::createInputProvider() : $inputProvider;
 			$parser = $parser === NULL ? self::createParamatersParser() : $parser;
-			
+
 			return new Console($outputFormatter, $inputProvider, $parser);
 		}
-		
-		
-		
+
+
+
 		/**
 		 * @return	IOutputFormatter
 		 */
@@ -42,12 +42,12 @@
 			{
 				self::$useColoredOutput = self::detectColoredOutput();
 			}
-			
+
 			if(self::$useColoredOutput)
 			{
 				return new Outputs\ColoredOutput;
 			}
-			
+
 			return new Outputs\TextOutput;
 		}
 
@@ -60,9 +60,9 @@
 		{
 			return new Outputs\NullOutput;
 		}
-		
-		
-		
+
+
+
 		/**
 		 * @return	IInputProvider
 		 */
@@ -72,17 +72,17 @@
 			{
 				self::$useReadlineProvider = self::detectReadline();
 			}
-			
+
 			if(self::$useReadlineProvider)
 			{
 				return new Inputs\ReadlineInputProvider;
 			}
-			
+
 			return new Inputs\DefaultInputProvider;
 		}
-		
-		
-		
+
+
+
 		/**
 		 * @return	IParametersParser
 		 */
@@ -90,9 +90,9 @@
 		{
 			return new Parameters\DefaultParametersParser;
 		}
-		
-		
-		
+
+
+
 		/**
 		 * @return	bool
 		 */
@@ -104,9 +104,9 @@
 				|| getenv('ANSICON') !== FALSE
 				|| (defined('STDOUT') && function_exists('posix_isatty') && posix_isatty(STDOUT)));
 		}
-		
-		
-		
+
+
+
 		/**
 		 * @return	bool
 		 */
@@ -116,7 +116,7 @@
 			{
 				return TRUE;
 			}
-			
+
 			return function_exists('readline') && function_exists('readline_add_history');
 		}
 	}

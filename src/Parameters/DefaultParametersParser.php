@@ -1,26 +1,26 @@
 <?php
 	/** Cz CLI Console
-	 * 
+	 *
 	 * @author		Jan Pecha, <janpecha@email.cz>
 	 */
-	
+
 	namespace Cz\Cli\Parameters;
 	use Cz\Cli\ParametersParseException;
-	
+
 	class DefaultParametersParser extends BaseParser
 	{
 		protected function parse(array $raw = NULL)
 		{
 			$parameters = NULL;
-			
+
 			// parsing
 			$lastName = NULL;
-			
+
 			if(isset($raw[1]))		// count($raw) > 1
 			{
 				// remove argv[0]
 				array_shift($raw);
-				
+
 				// parsing
 				foreach($raw as $argument)
 				{
@@ -28,7 +28,7 @@
 					{
 						$name = trim($argument, '-');
 						$lastName = $name;
-					
+
 						if(!isset($parameters[$name]))
 						{
 							$parameters[$name] = TRUE;
@@ -58,13 +58,13 @@
 							{
 								$parameters[$lastName][] = $argument;
 							}
-						
+
 							$lastName = NULL;
 						}
 					}
 				}
 			}
-			
+
 			// after parsing
 			$this->setParameters($parameters);
 		}

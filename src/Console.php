@@ -1,36 +1,36 @@
 <?php
 	/** Cz CLI Console
-	 * 
+	 *
 	 * @author		Jan Pecha, <janpecha@email.cz>
 	 */
-	
+
 	namespace Cz\Cli;
-	
+
 	class Console
 	{
 		/** @var  IOutputFormatter */
 		protected $outputFormatter;
-		
+
 		/** @var  IInputProvider */
 		protected $inputProvider;
-		
+
 		/** @var  IParametersParser */
 		protected $parametersParser;
-		
+
 		/** @var  string|NULL */
 		protected $currentDirectory;
-		
-		
-		
+
+
+
 		public function __construct(IOutputFormatter $outputFormatter, IInputProvider $inputProvider, IParametersParser $parametersParser)
 		{
 			$this->outputFormatter = $outputFormatter;
 			$this->inputProvider = $inputProvider;
 			$this->parametersParser = $parametersParser;
 		}
-		
-		
-		
+
+
+
 		/**
 		 * @param	bool
 		 * @return	string
@@ -41,20 +41,20 @@
 			if($forceRefresh || $this->currentDirectory === NULL)
 			{
 				$cwd = getcwd();
-				
+
 				if($cwd === FALSE)
 				{
 					throw ConsoleException('CWD error');
 				}
-				
+
 				$this->currentDirectory = $cwd;
 			}
-			
+
 			return $this->currentDirectory;
 		}
-		
-		
-		
+
+
+
 		/**
 		 * @param	string
 		 * @return	self
@@ -65,18 +65,18 @@
 			{
 				$directory = $this->getCurrentDirectory() . "/$directory";
 			}
-			
+
 			if(!chdir($directory))
 			{
 				throw new ConsoleException('CWD set error');
 			}
-			
+
 			$this->getCurrentDirectory(TRUE); // force refresh of CWD
 			return $this;
 		}
-		
-		
-		
+
+
+
 		/**
 		 * @return	self
 		 */
@@ -85,9 +85,9 @@
 			$this->parametersParser->setRawParameters($parameters);
 			return $this;
 		}
-		
-		
-		
+
+
+
 		/**
 		 * @param	array|NULL
 		 * @return	self
@@ -97,9 +97,9 @@
 			$this->parametersParser->setDefaultParameters($defaultParameters);
 			return $this;
 		}
-		
-		
-		
+
+
+
 		/**
 		 * @return	array|NULL
 		 */
@@ -107,9 +107,9 @@
 		{
 			return $this->parametersParser->getParameters();
 		}
-		
-		
-		
+
+
+
 		/**
 		 * @param	string
 		 * @param	mixed
@@ -120,9 +120,9 @@
 		{
 			return $this->parametersParser->getParameter($name, $defaultValue, $required);
 		}
-		
-		
-		
+
+
+
 		/**
 		 * @param	string|NULL
 		 * @return	self
@@ -133,12 +133,12 @@
 			{
 				return $this->outputFormatter->output($str);
 			}
-			
+
 			return $this->outputFormatter;
 		}
-		
-		
-		
+
+
+
 		/**
 		 * @param	string|NULL
 		 * @return	self
@@ -147,9 +147,9 @@
 		{
 			return $this->outputFormatter->success($str);
 		}
-		
-		
-		
+
+
+
 		/**
 		 * @param	string|NULL
 		 * @return	self
@@ -158,9 +158,9 @@
 		{
 			return $this->outputFormatter->error($str);
 		}
-		
-		
-		
+
+
+
 		/**
 		 * @param	string|NULL
 		 * @return	self
@@ -169,9 +169,9 @@
 		{
 			return $this->outputFormatter->warning($str);
 		}
-		
-		
-		
+
+
+
 		/**
 		 * @param	string|NULL
 		 * @return	self
@@ -180,9 +180,9 @@
 		{
 			return $this->outputFormatter->info($str);
 		}
-		
-		
-		
+
+
+
 		/**
 		 * @return	IOutputFormatter
 		 */
@@ -190,9 +190,9 @@
 		{
 			return $this->outputFormatter->nl();
 		}
-		
-		
-		
+
+
+
 		/**
 		 * @param	bool
 		 * @return	IOutputFormatter
@@ -201,9 +201,9 @@
 		{
 			return $this->outputFormatter->setAutoNewLine($state);
 		}
-		
-		
-		
+
+
+
 		/**
 		 * @return	bool
 		 */
@@ -211,9 +211,9 @@
 		{
 			return $this->outputFormatter->getAutoNewLine();
 		}
-		
-		
-		
+
+
+
 		/**
 		 * @param	string|NULL  optional
 		 * @return	string
@@ -222,9 +222,9 @@
 		{
 			return $this->readInput($msg);
 		}
-		
-		
-		
+
+
+
 		/**
 		 * @param	string|NULL  optional
 		 * @return	string
@@ -232,7 +232,7 @@
 		public function readInput($msg = NULL)
 		{
 			$msg = $msg !== NULL ? (string) $msg : $msg;
-			
+
 			if(!$this->inputProvider->isPrintingPrompt())
 			{
 				$currentAutoNewLine = $this->outputFormatter->getAutoNewLine();
@@ -241,12 +241,12 @@
 					->output($msg !== '' ? ' ' : '') // print one space for not empty message
 					->setAutoNewLine($currentAutoNewLine); // restore settings
 			}
-			
+
 			return $this->inputProvider->readInput($msg);
 		}
-		
-		
-		
+
+
+
 		/**
 		 * @return	IOutputFormatter
 		 */
@@ -254,9 +254,9 @@
 		{
 			return $this->setAutoNewLine(TRUE);
 		}
-		
-		
-		
+
+
+
 		/**
 		 * @return	IOutputFormatter
 		 */
@@ -265,9 +265,9 @@
 			return $this->setAutoNewLine(FALSE);
 		}
 	}
-	
-	
-	
+
+
+
 	class ConsoleException extends \RuntimeException
 	{
 	}
