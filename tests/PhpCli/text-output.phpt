@@ -20,16 +20,24 @@ Assert::same("CzProject CLI Simple Console\n"
 
 
 ob_start();
-$console->setAutoNewLine(FALSE)
-	->info('Hello! ')
+$console->setAutoNewLine(FALSE);
+$falseAutoNewLine = $console->getAutoNewLine();
+
+$console->info('Hello! ')
 	->success('super')
-	->warning(' [user]')
-	->setAutoNewLine(TRUE)
-	->nl()
+	->warning(' [user]');
+
+$console->setAutoNewLine(TRUE);
+$trueAutoNewLine = $console->getAutoNewLine();
+
+$console->nl()
 	->error('I am dead...');
 
 $content = ob_get_contents();
 ob_end_clean();
 Assert::same("Hello! super [user]\n"
 	. "I am dead...\n", str_replace("\r", '', $content));
+
+Assert::false($falseAutoNewLine);
+Assert::true($trueAutoNewLine);
 
