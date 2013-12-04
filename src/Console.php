@@ -59,7 +59,7 @@
 		 * @param	string
 		 * @return	self
 		 */
-		public function setCurrentDir($directory)
+		public function setCurrentDirectory($directory)
 		{
 			if($directory[0] !== '/')
 			{
