@@ -50,6 +50,16 @@
 			
 			return new Outputs\TextOutput;
 		}
+
+
+
+		/**
+		 * @return	IOutputFormatter
+		 */
+		public static function createNullOutputFormatter()
+		{
+			return new Outputs\NullOutput;
+		}
 		
 		
 		

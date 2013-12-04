@@ -9,6 +9,7 @@
 	require __DIR__ . '/src/Outputs/BaseOutput.php';
 	require __DIR__ . '/src/Outputs/TextOutput.php';
 	require __DIR__ . '/src/Outputs/ColoredOutput.php';
+	require __DIR__ . '/src/Outputs/NullOutput.php';
 	
 	require __DIR__ . '/src/Parameters/BaseParser.php';
 	require __DIR__ . '/src/Parameters/DefaultParametersParser.php';
