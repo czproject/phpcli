@@ -18,13 +18,20 @@ $console->setRawParameters(array(
 	'--flag',
 ));
 
+$console->setDefaultParameters(array(
+	'm' => 'default message',
+	'flag' => FALSE,
+	'flag2' => FALSE,
+));
+
 Assert::same(array(
-	0 => 'file.txt',
 	'm' => 'message',
+	'flag' => TRUE,
+	'flag2' => FALSE,
+	0 => 'file.txt',
 	'b' => TRUE,
 	'p' => array('parameter1', 'parameter2', 'parameter3'),
 	1 => 'text',
-	'flag' => TRUE,
 ), $console->getParameters());
 
 Assert::same('file.txt', $console->getParameter(0));
