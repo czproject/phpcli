@@ -235,10 +235,11 @@
 			
 			if(!$this->inputProvider->isPrintingPrompt())
 			{
+				$currentAutoNewLine = $this->outputFormatter->getAutoNewLine();
 				$this->outputFormatter->setAutoNewLine(FALSE) // disable new lines after output()
 					->output($msg) // print message
 					->output($msg !== '' ? ' ' : '') // print one space for not empty message
-					->setAutoNewLine(TRUE); // enable new lines
+					->setAutoNewLine($currentAutoNewLine); // restore settings
 			}
 			
 			return $this->inputProvider->readInput($msg);
