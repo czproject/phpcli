@@ -32,7 +32,7 @@
 		
 		/**
 		 * @param	string|NULL
-		 @return	self
+		 * @return	self
 		 */
 		public function error($str = NULL)
 		{
