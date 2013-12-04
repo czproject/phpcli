@@ -63,7 +63,7 @@
 			{
 				if($required)
 				{
-					throw new ParametersException('Required parameters not found.');
+					throw new ParametersException("Required parameter '$name' not found.");
 				}
 				
 				return $defaultValue;
