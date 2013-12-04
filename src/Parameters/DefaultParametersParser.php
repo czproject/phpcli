@@ -36,7 +36,8 @@
 					}
 					elseif($lastName === NULL)
 					{
-						throw new ParametersParseException("Bad argument '$argument'");
+						$parameters[] = $argument;
+						#throw new ParametersParseException("Bad argument '$argument'");
 					}
 					else
 					{
