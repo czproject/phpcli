@@ -66,7 +66,7 @@
 		
 		
 		
-		public function color($colorId)
+		protected function color($colorId)
 		{
 			$newLineEnabled = $this->newLineEnabled;
 			$this->setAutoNewLine(FALSE); // disable new lines
