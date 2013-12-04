@@ -27,6 +27,7 @@
 		public function setRawParameters(array $parameters = NULL)
 		{
 			$this->rawParameters = $parameters;
+			$this->parsed = FALSE;
 			return $this;
 		}
 		
@@ -35,6 +36,7 @@
 		public function setDefaultParameters(array $defaultParameters = NULL)
 		{
 			$this->defaultParameters = $defaultParameters;
+			$this->parsed = FALSE;
 			return $this;
 		}
 		
@@ -44,7 +46,8 @@
 		{
 			if(!$this->parsed)
 			{
-				$this->parameters = $this->parse($this->rawParameters);
+				$this->parse($this->rawParameters);
+				$this->parsed = TRUE;
 			}
 			
 			return $this->parameters;
@@ -56,7 +59,8 @@
 		{
 			if(!$this->parsed)
 			{
-				$this->parameters = $this->parse($this->rawParameters);
+				$this->parse($this->rawParameters);
+				$this->parsed = TRUE;
 			}
 			
 			if(!isset($this->parameters[$name]))
