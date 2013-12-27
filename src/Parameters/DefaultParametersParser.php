@@ -58,9 +58,9 @@
 							{
 								$parameters[$lastName][] = $argument;
 							}
-
-							$lastName = NULL;
 						}
+
+						$lastName = NULL;
 					}
 				}
 			}
