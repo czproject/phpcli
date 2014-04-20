@@ -10,7 +10,7 @@
 	{
 		function readInput();
 
-		static function isPrintingPrompt();
+		function isPrintingPrompt();
 	}
 
 

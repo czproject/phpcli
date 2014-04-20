@@ -18,7 +18,7 @@
 
 
 
-		public static function isPrintingPrompt()
+		public function isPrintingPrompt()
 		{
 			return FALSE;
 		}
