@@ -15,10 +15,10 @@
 
 
 		/**
-		 * @param	string|NULL
+		 * @param	string|string[]
 		 * @return	self
 		 */
-		public function output($str = NULL)
+		public function output($str)
 		{
 			return $this;
 		}
@@ -26,10 +26,10 @@
 
 
 		/**
-		 * @param	string|NULL
+		 * @param	string|string[]
 		 * @return	self
 		 */
-		public function success($str = NULL)
+		public function success($str)
 		{
 			return $this;
 		}
@@ -37,10 +37,10 @@
 
 
 		/**
-		 * @param	string|NULL
+		 * @param	string|string[]
 		 * @return	self
 		 */
-		public function error($str = NULL)
+		public function error($str)
 		{
 			return $this;
 		}
@@ -48,10 +48,10 @@
 
 
 		/**
-		 * @param	string|NULL
+		 * @param	string|string[]
 		 * @return	self
 		 */
-		public function warning($str = NULL)
+		public function warning($str)
 		{
 			return $this;
 		}
@@ -59,10 +59,10 @@
 
 
 		/**
-		 * @param	string|NULL
+		 * @param	string|string[]
 		 * @return	self
 		 */
-		public function info($str = NULL)
+		public function info($str)
 		{
 			return $this;
 		}
@@ -70,10 +70,10 @@
 
 
 		/**
-		 * @param	string|NULL
+		 * @param	string|string[]
 		 * @return	self
 		 */
-		public function muted($str = NULL)
+		public function muted($str)
 		{
 			return $this;
 		}

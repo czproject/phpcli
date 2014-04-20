@@ -124,13 +124,17 @@
 
 
 		/**
-		 * @param	string|NULL
+		 * @param	string|string[]|NULL
 		 * @return	self
 		 */
 		public function output($str = NULL)
 		{
 			if($str !== NULL)
 			{
+				if (!is_array($str))
+				{
+					$str = func_get_args();
+				}
 				return $this->outputFormatter->output($str);
 			}
 
@@ -140,55 +144,75 @@
 
 
 		/**
-		 * @param	string|NULL
+		 * @param	string|string[]
 		 * @return	self
 		 */
-		public function success($str = NULL)
+		public function success($str)
 		{
+			if (!is_array($str))
+			{
+				$str = func_get_args();
+			}
 			return $this->outputFormatter->success($str);
 		}
 
 
 
 		/**
-		 * @param	string|NULL
+		 * @param	string|string[]
 		 * @return	self
 		 */
-		public function error($str = NULL)
+		public function error($str)
 		{
+			if (!is_array($str))
+			{
+				$str = func_get_args();
+			}
 			return $this->outputFormatter->error($str);
 		}
 
 
 
 		/**
-		 * @param	string|NULL
+		 * @param	string|string[]
 		 * @return	self
 		 */
-		public function warning($str = NULL)
+		public function warning($str)
 		{
+			if (!is_array($str))
+			{
+				$str = func_get_args();
+			}
 			return $this->outputFormatter->warning($str);
 		}
 
 
 
 		/**
-		 * @param	string|NULL
+		 * @param	string|string[]
 		 * @return	self
 		 */
-		public function info($str = NULL)
+		public function info($str)
 		{
+			if (!is_array($str))
+			{
+				$str = func_get_args();
+			}
 			return $this->outputFormatter->info($str);
 		}
 
 
 
 		/**
-		 * @param	string|NULL
+		 * @param	string|string[]
 		 * @return	self
 		 */
-		public function muted($str = NULL)
+		public function muted($str)
 		{
+			if (!is_array($str))
+			{
+				$str = func_get_args();
+			}
 			return $this->outputFormatter->muted($str);
 		}
 

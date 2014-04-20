@@ -20,11 +20,16 @@
 
 
 		/**
-		 * @param	string|NULL
+		 * @param	string|string[]
 		 * @return	self
 		 */
-		public function success($str = NULL)
+		public function success($str)
 		{
+			if (!is_array($str))
+			{
+				$str = func_get_args();
+			}
+
 			return $this->color('success')
 				->printString($str);
 		}
@@ -32,11 +37,16 @@
 
 
 		/**
-		 * @param	string|NULL
+		 * @param	string|string[]
 		 * @return	self
 		 */
-		public function error($str = NULL)
+		public function error($str)
 		{
+			if (!is_array($str))
+			{
+				$str = func_get_args();
+			}
+
 			return $this->color('error')
 				->printString($str);
 		}
@@ -44,11 +54,16 @@
 
 
 		/**
-		 * @param	string|NULL
+		 * @param	string|string[]
 		 * @return	self
 		 */
-		public function warning($str = NULL)
+		public function warning($str)
 		{
+			if (!is_array($str))
+			{
+				$str = func_get_args();
+			}
+
 			return $this->color('warning')
 				->printString($str);
 		}
@@ -56,11 +71,16 @@
 
 
 		/**
-		 * @param	string|NULL
+		 * @param	string|string[]
 		 * @return	self
 		 */
-		public function info($str = NULL)
+		public function info($str)
 		{
+			if (!is_array($str))
+			{
+				$str = func_get_args();
+			}
+
 			return $this->color('info')
 				->printString($str);
 		}
@@ -68,11 +88,16 @@
 
 
 		/**
-		 * @param	string|NULL
+		 * @param	string|string[]
 		 * @return	self
 		 */
-		public function muted($str = NULL)
+		public function muted($str)
 		{
+			if (!is_array($str))
+			{
+				$str = func_get_args();
+			}
+
 			return $this->color('muted')
 				->printString($str);
 		}

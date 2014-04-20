@@ -29,12 +29,17 @@
 
 
 		/**
-		 * @param	string|NULL
+		 * @param	string|string[]
 		 * @return	self
 		 */
-		public function output($str = NULL)
+		public function output($str)
 		{
-			echo $str;
+			if (!is_array($str))
+			{
+				$str = func_get_args();
+			}
+
+			echo implode('', $str);
 			return $this->nl();
 		}
 

@@ -9,40 +9,40 @@
 	interface IOutputFormatter
 	{
 		/**
-		 * @param	string|NULL
+		 * @param	string|string[]
 		 * @return	self
 		 */
-		function output($str = NULL);
+		function output($str/*,... */);
 
 		/**
-		 * @param	string|NULL
+		 * @param	string|string[]
 		 * @return	self
 		 */
-		function success($str = NULL);
+		function success($str/*,... */);
 
 		/**
-		 * @param	string|NULL
+		 * @param	string|string[]
 		 * @return	self
 		 */
-		function error($str = NULL);
+		function error($str/*,... */);
 
 		/**
-		 * @param	string|NULL
+		 * @param	string|string[]
 		 * @return	self
 		 */
-		function warning($str = NULL);
+		function warning($str/*,... */);
 
 		/**
-		 * @param	string|NULL
+		 * @param	string|string[]
 		 * @return	self
 		 */
-		function info($str = NULL);
+		function info($str/*,... */);
 
 		/**
-		 * @param	string|NULL
+		 * @param	string|string[]
 		 * @return	self
 		 */
-		function muted($str = NULL);
+		function muted($str/*,... */);
 
 		/**
 		 * @return	self
