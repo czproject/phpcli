@@ -11,6 +11,7 @@ $console->success('CzProject CLI Simple Console')
 	->warning('Hey!')
 	->info('Fred!')
 	->error('Fred is dead!')
+	->muted('nooooo...!')
 	->output('The end.')
 	->output(':D');
 $content = ob_get_contents();
@@ -19,6 +20,7 @@ Assert::same("\033[0;32mCzProject CLI Simple Console\n\033[0m"
 	. "\033[0;33mHey!\n\033[0m"
 	. "\033[0;34mFred!\n\033[0m"
 	. "\033[0;31mFred is dead!\n\033[0m"
+	. "\033[1;30mnooooo...!\n\033[0m"
 	. "The end.\n:D\n", str_replace("\r", '', $content));
 
 

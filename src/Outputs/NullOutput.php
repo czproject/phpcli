@@ -69,6 +69,17 @@
 
 
 
+		/**
+		 * @param	string|NULL
+		 * @return	self
+		 */
+		public function muted($str = NULL)
+		{
+			return $this;
+		}
+
+
+
 		public function nl()
 		{
 			return $this;

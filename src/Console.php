@@ -184,6 +184,17 @@
 
 
 		/**
+		 * @param	string|NULL
+		 * @return	self
+		 */
+		public function muted($str = NULL)
+		{
+			return $this->outputFormatter->muted($str);
+		}
+
+
+
+		/**
 		 * @return	IOutputFormatter
 		 */
 		public function nl()

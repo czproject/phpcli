@@ -10,10 +10,11 @@
 	class ColoredOutput extends BaseOutput
 	{
 		protected static $colors = array(
-			'success' => 32,
-			'error' => 31,
-			'warning' => 33,
-			'info' => 34,
+			'success' => '0;32',
+			'error' => '0;31',
+			'warning' => '0;33',
+			'info' => '0;34',
+			'muted' => '1;30',
 		);
 
 
@@ -66,6 +67,18 @@
 
 
 
+		/**
+		 * @param	string|NULL
+		 * @return	self
+		 */
+		public function muted($str = NULL)
+		{
+			return $this->color('muted')
+				->printString($str);
+		}
+
+
+
 		protected function color($colorId)
 		{
 			$newLineEnabled = $this->newLineEnabled;
@@ -78,7 +91,7 @@
 			}
 			elseif(isset(self::$colors[$colorId = (string) $colorId]))
 			{
-				return $this->output("\033[0;" . self::$colors[$colorId] . 'm')
+				return $this->output("\033[" . self::$colors[$colorId] . 'm')
 					->setAutoNewLine($newLineEnabled);
 			}
 

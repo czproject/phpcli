@@ -49,5 +49,16 @@
 		{
 			return $this->output($str);
 		}
+
+
+
+		/**
+		 * @param	string|NULL
+		 * @return	self
+		 */
+		public function muted($str = NULL)
+		{
+			return $this->output($str);
+		}
 	}
 

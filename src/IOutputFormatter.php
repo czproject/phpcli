@@ -39,6 +39,12 @@
 		function info($str = NULL);
 
 		/**
+		 * @param	string|NULL
+		 * @return	self
+		 */
+		function muted($str = NULL);
+
+		/**
 		 * @return	self
 		 */
 		function nl();

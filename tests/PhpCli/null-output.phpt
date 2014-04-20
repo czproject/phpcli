@@ -11,6 +11,7 @@ $console->success('CzProject CLI Simple Console')
 	->warning('Hey!')
 	->info('Fred!')
 	->error('Fred is dead!')
+	->muted('nooooo...!')
 	->output('The end.')
 	->output(':D');
 $content = ob_get_contents();
