@@ -122,6 +122,15 @@
 		}
 
 
+		/**
+		 * @return IOutputFormatter
+		 */
+		public function getOutputFormatter()
+		{
+			return $this->outputFormatter;
+		}
+
+
 
 		/**
 		 * @param	string|string[]|NULL
