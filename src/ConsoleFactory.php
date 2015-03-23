@@ -22,21 +22,21 @@
 		/**
 		 * @return	Console
 		 */
-		public static function createConsole(IOutputFormatter $outputFormatter = NULL, IInputProvider $inputProvider = NULL, IParametersParser $parser = NULL)
+		public static function createConsole(IOutputProvider $outputProvider = NULL, IInputProvider $inputProvider = NULL, IParametersParser $parser = NULL)
 		{
-			$outputFormatter = $outputFormatter === NULL ? self::createOutputFormatter() : $outputFormatter;
+			$outputProvider = $outputProvider === NULL ? self::createOutputProvider() : $outputProvider;
 			$inputProvider = $inputProvider === NULL ? self::createInputProvider() : $inputProvider;
 			$parser = $parser === NULL ? self::createParamatersParser() : $parser;
 
-			return new Console($outputFormatter, $inputProvider, $parser);
+			return new Console($outputProvider, $inputProvider, $parser);
 		}
 
 
 
 		/**
-		 * @return	IOutputFormatter
+		 * @return	IOutputProvider
 		 */
-		public static function createOutputFormatter()
+		public static function createOutputProvider()
 		{
 			if(self::$useColoredOutput === NULL)
 			{
@@ -54,9 +54,9 @@
 
 
 		/**
-		 * @return	IOutputFormatter
+		 * @return	IOutputProvider
 		 */
-		public static function createNullOutputFormatter()
+		public static function createNullOutputProvider()
 		{
 			return new Outputs\NullOutput;
 		}

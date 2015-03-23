@@ -5,7 +5,7 @@
 	 */
 
 	namespace Cz\Cli\Outputs;
-	use Cz\Cli\IOutputFormatter;
+	use Cz\Cli\IOutputProvider;
 
 	abstract class BaseOutput implements IOutputProvider
 	{

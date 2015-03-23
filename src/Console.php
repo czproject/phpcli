@@ -8,8 +8,8 @@
 
 	class Console
 	{
-		/** @var  IOutputFormatter */
-		protected $outputFormatter;
+		/** @var  IOutputProvider */
+		protected $outputProvider;
 
 		/** @var  IInputProvider */
 		protected $inputProvider;
@@ -22,9 +22,9 @@
 
 
 
-		public function __construct(IOutputFormatter $outputFormatter, IInputProvider $inputProvider, IParametersParser $parametersParser)
+		public function __construct(IOutputProvider $outputProvider, IInputProvider $inputProvider, IParametersParser $parametersParser)
 		{
-			$this->outputFormatter = $outputFormatter;
+			$this->outputProvider = $outputProvider;
 			$this->inputProvider = $inputProvider;
 			$this->parametersParser = $parametersParser;
 		}
@@ -123,11 +123,11 @@
 
 
 		/**
-		 * @return IOutputFormatter
+		 * @return IOutputProvider
 		 */
-		public function getOutputFormatter()
+		public function getOutputProvider()
 		{
-			return $this->outputFormatter;
+			return $this->outputProvider;
 		}
 
 
@@ -144,10 +144,10 @@
 				{
 					$str = func_get_args();
 				}
-				return $this->outputFormatter->output($str);
+				return $this->outputProvider->output($str);
 			}
 
-			return $this->outputFormatter;
+			return $this->outputProvider;
 		}
 
 
@@ -162,7 +162,7 @@
 			{
 				$str = func_get_args();
 			}
-			return $this->outputFormatter->success($str);
+			return $this->outputProvider->success($str);
 		}
 
 
@@ -177,7 +177,7 @@
 			{
 				$str = func_get_args();
 			}
-			return $this->outputFormatter->error($str);
+			return $this->outputProvider->error($str);
 		}
 
 
@@ -192,7 +192,7 @@
 			{
 				$str = func_get_args();
 			}
-			return $this->outputFormatter->warning($str);
+			return $this->outputProvider->warning($str);
 		}
 
 
@@ -207,7 +207,7 @@
 			{
 				$str = func_get_args();
 			}
-			return $this->outputFormatter->info($str);
+			return $this->outputProvider->info($str);
 		}
 
 
@@ -222,28 +222,28 @@
 			{
 				$str = func_get_args();
 			}
-			return $this->outputFormatter->muted($str);
+			return $this->outputProvider->muted($str);
 		}
 
 
 
 		/**
-		 * @return	IOutputFormatter
+		 * @return	IOutputProvider
 		 */
 		public function nl()
 		{
-			return $this->outputFormatter->nl();
+			return $this->outputProvider->nl();
 		}
 
 
 
 		/**
 		 * @param	bool
-		 * @return	IOutputFormatter
+		 * @return	IOutputProvider
 		 */
 		public function setAutoNewLine($state)
 		{
-			return $this->outputFormatter->setAutoNewLine($state);
+			return $this->outputProvider->setAutoNewLine($state);
 		}
 
 
@@ -253,7 +253,7 @@
 		 */
 		public function getAutoNewLine()
 		{
-			return $this->outputFormatter->getAutoNewLine();
+			return $this->outputProvider->getAutoNewLine();
 		}
 
 
@@ -279,8 +279,8 @@
 
 			if(!$this->inputProvider->isPrintingPrompt())
 			{
-				$currentAutoNewLine = $this->outputFormatter->getAutoNewLine();
-				$this->outputFormatter->setAutoNewLine(FALSE) // disable new lines after output()
+				$currentAutoNewLine = $this->outputProvider->getAutoNewLine();
+				$this->outputProvider->setAutoNewLine(FALSE) // disable new lines after output()
 					->output($msg) // print message
 					->output($msg !== '' ? ' ' : '') // print one space for not empty message
 					->setAutoNewLine($currentAutoNewLine); // restore settings
@@ -292,7 +292,7 @@
 
 
 		/**
-		 * @return	IOutputFormatter
+		 * @return	IOutputProvider
 		 */
 		public function enableNewLine()
 		{
@@ -302,7 +302,7 @@
 
 
 		/**
-		 * @return	IOutputFormatter
+		 * @return	IOutputProvider
 		 */
 		public function disableNewLine()
 		{

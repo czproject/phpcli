@@ -1,6 +1,6 @@
 <?php
 	require __DIR__ . '/src/IInputProvider.php';
-	require __DIR__ . '/src/IOutputFormatter.php';
+	require __DIR__ . '/src/IOutputProvider.php';
 	require __DIR__ . '/src/IParametersParser.php';
 
 	require __DIR__ . '/src/Inputs/DefaultInputProvider.php';

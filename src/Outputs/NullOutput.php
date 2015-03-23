@@ -5,9 +5,9 @@
 	 */
 
 	namespace Cz\Cli\Outputs;
-	use Cz\Cli\IOutputFormatter;
+	use Cz\Cli\IOutputProvider;
 
-	class NullOutput implements IOutputFormatter
+	class NullOutput implements IOutputProvider
 	{
 		/** @var  bool */
 		protected $newLineEnabled = TRUE;
