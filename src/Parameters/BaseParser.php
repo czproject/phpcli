@@ -1,7 +1,7 @@
 <?php
-	/** Cz CLI Console
-	 *
-	 * @author		Jan Pecha, <janpecha@email.cz>
+	/**
+	 * Cz CLI Console
+	 * @author Jan Pecha, <janpecha@email.cz>
 	 */
 
 	namespace Cz\Cli\Parameters;

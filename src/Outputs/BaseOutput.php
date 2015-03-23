@@ -1,13 +1,13 @@
 <?php
-	/** Cz CLI Console
-	 *
-	 * @author		Jan Pecha, <janpecha@email.cz>
+	/**
+	 * Cz CLI Console
+	 * @author Jan Pecha, <janpecha@email.cz>
 	 */
 
 	namespace Cz\Cli\Outputs;
 	use Cz\Cli\IOutputFormatter;
 
-	abstract class BaseOutput implements IOutputFormatter
+	abstract class BaseOutput implements IOutputProvider
 	{
 		/** @var  bool */
 		protected $newLineEnabled = TRUE;
