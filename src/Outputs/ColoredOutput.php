@@ -26,8 +26,7 @@
 				$str = func_get_args();
 			}
 
-			return $this->color('success')
-				->printString($str);
+			return $this->printString('success', $str);
 		}
 
 
@@ -41,8 +40,7 @@
 				$str = func_get_args();
 			}
 
-			return $this->color('error')
-				->printString($str);
+			return $this->printString('error', $str);
 		}
 
 
@@ -56,8 +54,7 @@
 				$str = func_get_args();
 			}
 
-			return $this->color('warning')
-				->printString($str);
+			return $this->printString('warning', $str);
 		}
 
 
@@ -71,8 +68,7 @@
 				$str = func_get_args();
 			}
 
-			return $this->color('info')
-				->printString($str);
+			return $this->printString('info', $str);
 		}
 
 
@@ -86,17 +82,13 @@
 				$str = func_get_args();
 			}
 
-			return $this->color('muted')
-				->printString($str);
+			return $this->printString('muted', $str);
 		}
 
 
-		protected function color($colorId)
+		protected function setColor($colorId)
 		{
-			if ($colorId === NULL) { // reset color
-				return $this->output("\033[0m");
-
-			} elseif (isset(self::$colors[$colorId = (string) $colorId])) {
+			if (isset(self::$colors[$colorId = (string) $colorId])) {
 				return $this->output("\033[" . self::$colors[$colorId] . 'm');
 			}
 
@@ -104,9 +96,16 @@
 		}
 
 
-		protected function printString($str = NULL)
+		protected function resetColor()
 		{
-			return $this->output($str)
-				->color(NULL);
+			return $this->output("\033[0m");
+		}
+
+
+		protected function printString($colorId, $str = NULL)
+		{
+			return $this->setColor($colorId)
+				->output($str)
+				->resetColor();
 		}
 	}
