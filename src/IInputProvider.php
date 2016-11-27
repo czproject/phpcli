@@ -11,6 +11,6 @@
 	}
 
 
-	class InputException extends \RuntimeException
+	class InputException extends Exception
 	{
 	}

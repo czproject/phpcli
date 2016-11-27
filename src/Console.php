@@ -275,6 +275,6 @@
 	}
 
 
-	class ConsoleException extends \RuntimeException
+	class ConsoleException extends Exception
 	{
 	}

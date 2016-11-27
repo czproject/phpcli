@@ -59,6 +59,6 @@
 	}
 
 
-	class OutputException extends \RuntimeException
+	class OutputException extends Exception
 	{
 	}

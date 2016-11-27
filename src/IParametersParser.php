@@ -31,11 +31,11 @@
 	}
 
 
-	class ParametersException extends \RuntimeException
+	class ParametersException extends Exception
 	{
 	}
 
 
-	class ParametersParseException extends \RuntimeException
+	class ParametersParseException extends Exception
 	{
 	}
