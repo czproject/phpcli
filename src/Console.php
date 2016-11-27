@@ -14,9 +14,6 @@
 		/** @var  IParametersParser */
 		protected $parametersParser;
 
-		/** @var  string|NULL */
-		protected $currentDirectory;
-
 
 		public function __construct(IOutputProvider $outputProvider, IInputProvider $inputProvider, IParametersParser $parametersParser)
 		{
@@ -27,23 +24,18 @@
 
 
 		/**
-		 * @param  bool
 		 * @return string
 		 * @throws ConsoleException
 		 */
-		public function getCurrentDirectory($forceRefresh = FALSE)
+		public function getCurrentDirectory()
 		{
-			if ($forceRefresh || $this->currentDirectory === NULL) {
-				$cwd = getcwd();
+			$cwd = getcwd();
 
-				if ($cwd === FALSE) {
-					throw new ConsoleException('CWD error');
-				}
-
-				$this->currentDirectory = $cwd;
+			if ($cwd === FALSE) {
+				throw new ConsoleException('CWD error');
 			}
 
-			return $this->currentDirectory;
+			return $cwd;
 		}
 
 
@@ -61,7 +53,6 @@
 				throw new ConsoleException('CWD set error');
 			}
 
-			$this->getCurrentDirectory(TRUE); // force refresh of CWD
 			return $this;
 		}
 

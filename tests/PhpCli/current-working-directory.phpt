@@ -18,5 +18,4 @@ Assert::same(__DIR__, $console->getCurrentDirectory());
 
 // cache
 chdir('..');
-Assert::same(__DIR__, $console->getCurrentDirectory());
-Assert::same(realpath(__DIR__ . '/../'), $console->getCurrentDirectory(TRUE));
+Assert::same(realpath(__DIR__ . '/../'), $console->getCurrentDirectory());
