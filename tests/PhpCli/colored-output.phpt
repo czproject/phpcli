@@ -3,7 +3,6 @@
 use Tester\Assert;
 
 require __DIR__ . '/bootstrap.php';
-require __DIR__ . '/../../loader.php';
 
 $console = CzProject\PhpCli\ConsoleFactory::createConsole(new CzProject\PhpCli\Outputs\ColoredOutput);
 
