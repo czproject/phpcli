@@ -108,19 +108,15 @@
 
 
 		/**
-		 * @param  string|string[]|NULL
+		 * @param  string|string[]
 		 * @return self
 		 */
-		public function output($str = NULL)
+		public function output($str)
 		{
-			if ($str !== NULL) {
-				if (!is_array($str)) {
-					$str = func_get_args();
-				}
-				return $this->outputProvider->output($str);
+			if (!is_array($str)) {
+				$str = func_get_args();
 			}
-
-			return $this->outputProvider;
+			return $this->outputProvider->output($str);
 		}
 
 
