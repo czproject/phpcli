@@ -44,7 +44,7 @@
 
 				if($cwd === FALSE)
 				{
-					throw ConsoleException('CWD error');
+					throw new ConsoleException('CWD error');
 				}
 
 				$this->currentDirectory = $cwd;
