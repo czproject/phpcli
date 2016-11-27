@@ -34,8 +34,3 @@
 	class ParametersException extends Exception
 	{
 	}
-
-
-	class ParametersParseException extends Exception
-	{
-	}

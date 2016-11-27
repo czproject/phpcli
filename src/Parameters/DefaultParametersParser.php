@@ -2,8 +2,6 @@
 
 	namespace CzProject\PhpCli\Parameters;
 
-	use CzProject\PhpCli\ParametersParseException;
-
 
 	class DefaultParametersParser extends BaseParser
 	{
@@ -30,7 +28,6 @@
 
 					} elseif ($lastName === NULL) {
 						$parameters[] = $argument;
-						#throw new ParametersParseException("Bad argument '$argument'");
 
 					} else {
 						if ($parameters[$lastName] === TRUE) {
