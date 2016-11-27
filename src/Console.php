@@ -116,7 +116,8 @@
 			if (!is_array($str)) {
 				$str = func_get_args();
 			}
-			return $this->outputProvider->output($str);
+			$this->outputProvider->output($str);
+			return $this;
 		}
 
 
@@ -129,7 +130,8 @@
 			if (!is_array($str)) {
 				$str = func_get_args();
 			}
-			return $this->outputProvider->success($str);
+			$this->outputProvider->success($str);
+			return $this;
 		}
 
 
@@ -142,7 +144,8 @@
 			if (!is_array($str)) {
 				$str = func_get_args();
 			}
-			return $this->outputProvider->error($str);
+			$this->outputProvider->error($str);
+			return $this;
 		}
 
 
@@ -155,7 +158,8 @@
 			if (!is_array($str)) {
 				$str = func_get_args();
 			}
-			return $this->outputProvider->warning($str);
+			$this->outputProvider->warning($str);
+			return $this;
 		}
 
 
@@ -168,7 +172,8 @@
 			if (!is_array($str)) {
 				$str = func_get_args();
 			}
-			return $this->outputProvider->info($str);
+			$this->outputProvider->info($str);
+			return $this;
 		}
 
 
@@ -181,16 +186,18 @@
 			if (!is_array($str)) {
 				$str = func_get_args();
 			}
-			return $this->outputProvider->muted($str);
+			$this->outputProvider->muted($str);
+			return $this;
 		}
 
 
 		/**
-		 * @return IOutputProvider
+		 * @return self
 		 */
 		public function nl()
 		{
-			return $this->outputProvider->nl();
+			$this->outputProvider->nl();
+			return $this;
 		}
 
 
