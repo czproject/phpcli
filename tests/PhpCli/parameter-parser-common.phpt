@@ -4,7 +4,7 @@ use Tester\Assert;
 require __DIR__ . '/bootstrap.php';
 require __DIR__ . '/../../loader.php';
 
-$console = Cz\Cli\ConsoleFactory::createConsole(NULL, NULL, new Cz\Cli\Parameters\DefaultParametersParser);
+$console = CzProject\PhpCli\ConsoleFactory::createConsole(NULL, NULL, new CzProject\PhpCli\Parameters\DefaultParametersParser);
 
 $console->setRawParameters(array(
 	'programName',
@@ -48,5 +48,5 @@ Assert::null($console->getParameter('unexists'));
 
 Assert::exception(function () use ($console) {
 	$console->getParameter('unexists', 'my-default-value', TRUE);
-}, 'Cz\Cli\ParametersException', 'Required parameter \'unexists\' not found.');
+}, 'CzProject\PhpCli\ParametersException', 'Required parameter \'unexists\' not found.');
 

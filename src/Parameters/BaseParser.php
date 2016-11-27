@@ -4,9 +4,9 @@
 	 * @author Jan Pecha, <janpecha@email.cz>
 	 */
 
-	namespace Cz\Cli\Parameters;
-	use Cz\Cli\IParametersParser,
-		Cz\Cli\ParametersException;
+	namespace CzProject\PhpCli\Parameters;
+	use CzProject\PhpCli\IParametersParser,
+		CzProject\PhpCli\ParametersException;
 
 	abstract class BaseParser implements IParametersParser
 	{

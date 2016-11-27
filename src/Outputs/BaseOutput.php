@@ -4,8 +4,8 @@
 	 * @author Jan Pecha, <janpecha@email.cz>
 	 */
 
-	namespace Cz\Cli\Outputs;
-	use Cz\Cli\IOutputProvider;
+	namespace CzProject\PhpCli\Outputs;
+	use CzProject\PhpCli\IOutputProvider;
 
 	abstract class BaseOutput implements IOutputProvider
 	{

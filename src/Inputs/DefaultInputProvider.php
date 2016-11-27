@@ -4,8 +4,8 @@
 	 * @author Jan Pecha, <janpecha@email.cz>
 	 */
 
-	namespace Cz\Cli\Inputs;
-	use Cz\Cli\IInputProvider;
+	namespace CzProject\PhpCli\Inputs;
+	use CzProject\PhpCli\IInputProvider;
 
 	class DefaultInputProvider implements IInputProvider
 	{

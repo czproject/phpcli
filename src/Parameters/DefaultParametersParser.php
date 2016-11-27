@@ -4,8 +4,8 @@
 	 * @author Jan Pecha, <janpecha@email.cz>
 	 */
 
-	namespace Cz\Cli\Parameters;
-	use Cz\Cli\ParametersParseException;
+	namespace CzProject\PhpCli\Parameters;
+	use CzProject\PhpCli\ParametersParseException;
 
 	class DefaultParametersParser extends BaseParser
 	{

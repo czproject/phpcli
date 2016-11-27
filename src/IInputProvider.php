@@ -4,7 +4,7 @@
 	 * @author Jan Pecha, <janpecha@email.cz>
 	 */
 
-	namespace Cz\Cli;
+	namespace CzProject\PhpCli;
 
 	interface IInputProvider
 	{

@@ -4,10 +4,10 @@
 	 * @author Jan Pecha, <janpecha@email.cz>
 	 */
 
-	namespace Cz\Cli;
-	use Cz\Cli\Inputs,
-		Cz\Cli\Outputs,
-		Cz\Cli\Parameters;
+	namespace CzProject\PhpCli;
+	use CzProject\PhpCli\Inputs,
+		CzProject\PhpCli\Outputs,
+		CzProject\PhpCli\Parameters;
 
 	class ConsoleFactory
 	{

@@ -6,7 +6,7 @@ Usage
 
 ``` php
 <?php
-use Cz\Cli\ConsoleFactory;
+use CzProject\PhpCli\ConsoleFactory;
 require __DIR__ . '/loader.php';
 
 $console = ConsoleFactory::createConsole();

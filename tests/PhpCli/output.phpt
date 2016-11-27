@@ -4,7 +4,7 @@ use Tester\Assert;
 require __DIR__ . '/bootstrap.php';
 require __DIR__ . '/../../loader.php';
 
-$console = Cz\Cli\ConsoleFactory::createConsole(new Cz\Cli\Outputs\TextOutput);
+$console = CzProject\PhpCli\ConsoleFactory::createConsole(new CzProject\PhpCli\Outputs\TextOutput);
 
 Assert::same("CzProject CLI Simple Console\n"
 	. "Hey!\nFred!\nFred is dead!\nnooooo...!\nThe end.\n:D\n", str_replace("\r", '', printOutputStory($console)));

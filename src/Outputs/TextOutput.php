@@ -4,7 +4,7 @@
 	 * @author Jan Pecha, <janpecha@email.cz>
 	 */
 
-	namespace Cz\Cli\Outputs;
+	namespace CzProject\PhpCli\Outputs;
 
 	class TextOutput extends BaseOutput
 	{

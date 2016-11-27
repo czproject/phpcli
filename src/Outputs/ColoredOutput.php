@@ -4,8 +4,8 @@
 	 * @author Jan Pecha, <janpecha@email.cz>
 	 */
 
-	namespace Cz\Cli\Outputs;
-	use Cz\Cli\OutputException;
+	namespace CzProject\PhpCli\Outputs;
+	use CzProject\PhpCli\OutputException;
 
 	class ColoredOutput extends BaseOutput
 	{

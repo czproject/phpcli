@@ -4,7 +4,7 @@ use Tester\Assert;
 require __DIR__ . '/bootstrap.php';
 require __DIR__ . '/../../loader.php';
 
-$console = Cz\Cli\ConsoleFactory::createConsole(new Cz\Cli\Outputs\ColoredOutput);
+$console = CzProject\PhpCli\ConsoleFactory::createConsole(new CzProject\PhpCli\Outputs\ColoredOutput);
 
 Assert::same("\033[0;32mCzProject CLI Simple Console\n\033[0m"
 	. "\033[0;33mHey!\n\033[0m"
