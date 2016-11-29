@@ -27,3 +27,9 @@ function printOutputStory($console)
 
 	return $content;
 }
+
+
+function test($cb)
+{
+	$cb();
+}

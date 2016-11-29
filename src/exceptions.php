@@ -6,3 +6,8 @@
 	class Exception extends \Exception
 	{
 	}
+
+
+	class ParametersParserException extends Exception
+	{
+	}

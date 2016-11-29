@@ -2,6 +2,8 @@
 
 	namespace CzProject\PhpCli\Parameters;
 
+	use CzProject\PhpCli\ParametersParserException;
+
 
 	class DefaultParametersParser extends BaseParser
 	{
@@ -17,8 +19,16 @@
 				array_shift($raw);
 
 				// parsing
-				foreach ($raw as $argument) {
-					if ($argument{0} === '-') {
+				foreach ($raw as $index => $argument) {
+					if (!is_scalar($argument) && !is_null($argument)) {
+						throw new DefaultParametersParserException('Parameter must be scalar or NULL, ' . gettype($argument) . " given at index ($index).");
+					}
+
+					if ($argument === '') {
+						continue;
+					}
+
+					if ($argument[0] === '-') {
 						$name = trim($argument, '-');
 						$lastName = $name;
 
@@ -58,4 +68,9 @@
 			// after parsing
 			$this->setParameters($parameters);
 		}
+	}
+
+
+	class DefaultParametersParserException extends ParametersParserException
+	{
 	}
