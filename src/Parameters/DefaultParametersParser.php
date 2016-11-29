@@ -22,6 +22,11 @@
 						$name = trim($argument, '-');
 						$lastName = $name;
 
+						if ($name === '') { // --
+							$lastName = NULL;
+							continue;
+						}
+
 						if (!isset($parameters[$name])) {
 							$parameters[$name] = TRUE;
 						}

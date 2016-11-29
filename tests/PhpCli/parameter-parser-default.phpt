@@ -16,6 +16,8 @@ $parser->setRawParameters(array(
 	'text',
 	'-p', 'parameter3',
 	'--flag',
+	'--',
+	'argument',
 ));
 
 Assert::same(array(
@@ -26,6 +28,7 @@ Assert::same(array(
 	1 => 'newparam',
 	2 => 'text',
 	'flag' => TRUE,
+	3 => 'argument',
 ), $parser->getParameters());
 
 Assert::same('file.txt', $parser->getParameter(0));
