@@ -19,6 +19,8 @@
 				array_shift($raw);
 
 				// parsing
+				$overwrite = FALSE;
+
 				foreach ($raw as $index => $argument) {
 					if (!is_scalar($argument) && !is_null($argument)) {
 						throw new DefaultParametersParserException('Parameter must be scalar or NULL, ' . gettype($argument) . " given at index ($index).");
@@ -29,6 +31,7 @@
 					}
 
 					if ($argument[0] === '-') {
+						$overwrite = FALSE;
 						$name = ltrim($argument, '-');
 						$lastName = $name;
 
@@ -38,28 +41,13 @@
 						}
 
 						if (!isset($parameters[$name])) {
-							$parameters[$name] = TRUE;
+							Helpers::assignParameter($parameters, $name, TRUE, FALSE);
+							$overwrite = TRUE;
 						}
-
-					} elseif ($lastName === NULL) {
-						$parameters[] = $argument;
 
 					} else {
-						if ($parameters[$lastName] === TRUE) {
-							$parameters[$lastName] = $argument;
-
-						} else { // string || array
-							if (is_string($parameters[$lastName])) {
-								$parameters[$lastName] = array(
-									$parameters[$lastName],
-									$argument,
-								);
-
-							} else {
-								$parameters[$lastName][] = $argument;
-							}
-						}
-
+						Helpers::assignParameter($parameters, $lastName, $argument, $overwrite);
+						$overwrite = FALSE;
 						$lastName = NULL;
 					}
 				}

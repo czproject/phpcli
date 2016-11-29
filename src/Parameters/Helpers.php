@@ -14,6 +14,37 @@
 
 
 		/**
+		 * @param  array|NULL
+		 * @param  string|NULL
+		 * @param  string|scalar
+		 * @param  bool
+		 * @return void
+		 */
+		public static function assignParameter(&$parameters, $name, $value, $overwrite = FALSE)
+		{
+			if ($name === NULL) {
+				$parameters[] = $value;
+				return;
+			}
+
+			if (!isset($parameters[$name]) || $overwrite) {
+				$parameters[$name] = $value;
+				return;
+			}
+
+			if (!is_array($parameters[$name])) { // string|scalar
+				$parameters[$name] = array(
+					$parameters[$name],
+					$value,
+				);
+
+			} else {
+				$parameters[$name][] = $value;
+			}
+		}
+
+
+		/**
 		 * Left side has pririoty. Helper method.
 		 * @param  array
 		 * @param  array
