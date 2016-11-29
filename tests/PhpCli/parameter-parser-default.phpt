@@ -16,6 +16,7 @@ $parser->setRawParameters(array(
 	'text',
 	'-p', 'parameter3',
 	'--flag',
+	'--trim--',
 	'--',
 	'argument',
 ));
@@ -28,6 +29,7 @@ Assert::same(array(
 	1 => 'newparam',
 	2 => 'text',
 	'flag' => TRUE,
+	'trim--' => TRUE,
 	3 => 'argument',
 ), $parser->getParameters());
 

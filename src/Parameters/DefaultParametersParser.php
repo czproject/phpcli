@@ -29,7 +29,7 @@
 					}
 
 					if ($argument[0] === '-') {
-						$name = trim($argument, '-');
+						$name = ltrim($argument, '-');
 						$lastName = $name;
 
 						if ($name === '') { // --
