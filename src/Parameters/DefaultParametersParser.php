@@ -40,6 +40,13 @@
 							continue;
 						}
 
+						if (strpos($name, '=')) { // --option=value
+							$parts = explode('=', $name, 2);
+							$lastName = NULL;
+							Helpers::assignParameter($parameters, $parts[0], $parts[1], FALSE);
+							continue;
+						}
+
 						if (!isset($parameters[$name])) {
 							Helpers::assignParameter($parameters, $name, TRUE, FALSE);
 							$overwrite = TRUE;
