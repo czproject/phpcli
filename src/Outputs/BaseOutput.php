@@ -7,9 +7,6 @@
 
 	abstract class BaseOutput implements IOutputProvider
 	{
-		/** @var  bool */
-		protected $newLineEnabled = TRUE;
-
 		/** @var  string */
 		protected $newLineCharacter = "\n";
 
@@ -34,35 +31,13 @@
 			}
 
 			echo implode('', $str);
-			return $this->nl();
+			return $this;
 		}
 
 
 		public function nl()
 		{
-			if ($this->newLineEnabled) {
-				$this->printNL();
-			}
-
-			return $this;
-		}
-
-
-		public function setAutoNewLine($state)
-		{
-			$this->newLineEnabled = (bool) $state;
-			return $this;
-		}
-
-
-		public function getAutoNewLine()
-		{
-			return $this->newLineEnabled;
-		}
-
-
-		protected function printNL()
-		{
 			echo $this->newLineCharacter;
+			return $this;
 		}
 	}

@@ -7,10 +7,6 @@
 
 	class NullOutput implements IOutputProvider
 	{
-		/** @var  bool */
-		protected $newLineEnabled = TRUE;
-
-
 		/**
 		 * @param  string|string[]
 		 * @return self
@@ -74,18 +70,5 @@
 		public function nl()
 		{
 			return $this;
-		}
-
-
-		public function setAutoNewLine($state)
-		{
-			$this->newLineEnabled = (bool) $state;
-			return $this;
-		}
-
-
-		public function getAutoNewLine()
-		{
-			return $this->newLineEnabled;
 		}
 	}

@@ -208,25 +208,6 @@
 
 
 		/**
-		 * @param  bool
-		 * @return IOutputProvider
-		 */
-		public function setAutoNewLine($state)
-		{
-			return $this->outputProvider->setAutoNewLine($state);
-		}
-
-
-		/**
-		 * @return bool
-		 */
-		public function getAutoNewLine()
-		{
-			return $this->outputProvider->getAutoNewLine();
-		}
-
-
-		/**
 		 * @param  string|NULL  optional
 		 * @return string
 		 */
@@ -245,32 +226,11 @@
 			$msg = $msg !== NULL ? (string) $msg : $msg;
 
 			if (!$this->inputProvider->isPrintingPrompt()) {
-				$currentAutoNewLine = $this->outputProvider->getAutoNewLine();
-				$this->outputProvider->setAutoNewLine(FALSE) // disable new lines after output()
-					->output($msg) // print message
-					->output($msg !== '' ? ' ' : '') // print one space for not empty message
-					->setAutoNewLine($currentAutoNewLine); // restore settings
+				$this->outputProvider->output($msg) // print message
+					->output($msg !== '' ? ' ' : ''); // print one space for not empty message
 			}
 
 			return $this->inputProvider->readInput($msg);
-		}
-
-
-		/**
-		 * @return IOutputProvider
-		 */
-		public function enableNewLine()
-		{
-			return $this->setAutoNewLine(TRUE);
-		}
-
-
-		/**
-		 * @return IOutputProvider
-		 */
-		public function disableNewLine()
-		{
-			return $this->setAutoNewLine(FALSE);
 		}
 	}
 

@@ -93,16 +93,11 @@
 
 		protected function color($colorId)
 		{
-			$newLineEnabled = $this->newLineEnabled;
-			$this->setAutoNewLine(FALSE); // disable new lines
-
 			if ($colorId === NULL) { // reset color
-				return $this->output("\033[0m")
-					->setAutoNewLine($newLineEnabled);
+				return $this->output("\033[0m");
 
 			} elseif (isset(self::$colors[$colorId = (string) $colorId])) {
-				return $this->output("\033[" . self::$colors[$colorId] . 'm')
-					->setAutoNewLine($newLineEnabled);
+				return $this->output("\033[" . self::$colors[$colorId] . 'm');
 			}
 
 			throw new OutputException("Unknow color: $colorId");

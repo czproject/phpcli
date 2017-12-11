@@ -6,29 +6,38 @@ Usage
 
 ``` php
 <?php
+
 use CzProject\PhpCli\ConsoleFactory;
-require __DIR__ . '/loader.php';
+
+require __DIR__ . '/vendor/autoload.php';
 
 $console = ConsoleFactory::createConsole();
 
 // output
 $console->success('CzProject CLI Simple Console')
+	->nl() // new line
 	->warning('Hey!')
+	->nl()
 	->info('Fred!')
+	->nl()
 	->error('Fred is dead!')
-	->output('The end.');
+	->nl()
+	->muted('nooooooo...!', ' ', 'But, no problem!')
+	->nl()
+	->output('The end.')
+	->nl();
 
 // input
 $username = $console->input('Enter your name:');
 
 // disabled auto new line
-$console->setAutoNewLine(FALSE) // disable auto new line
-	->info('Hello! ')
+$console->info('Hello! ')
 	->success($username)
 	->warning(' [user]')
-	->setAutoNewLine(TRUE) // enable auto new line
 	->nl() // print new line
-	->info('Bye!');
+	->info('Bye!')
+	->nl();
+
 ```
 
 

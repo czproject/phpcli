@@ -9,37 +9,21 @@ function printOutputStory($console)
 {
 	ob_start();
 	$console->success('CzProject', ' ', 'CLI Simple Console')
+		->nl()
 		->warning('Hey', '!')
+		->nl()
 		->info('Fred', '!')
+		->nl()
 		->error('Fred is', ' ', 'dead!')
+		->nl()
 		->muted('nooooo...', '!')
+		->nl()
 		->output('The', ' ', 'end.')
-		->output(':D');
+		->nl()
+		->output(':D')
+		->nl();
 	$content = ob_get_contents();
 	ob_end_clean();
 
 	return $content;
-}
-
-
-function printOutputNewLines($console)
-{
-	ob_start();
-	$console->setAutoNewLine(FALSE);
-	$falseAutoNewLine = $console->getAutoNewLine();
-
-	$console->info('Hello! ')
-		->success('super')
-		->warning(' [user]');
-
-	$console->setAutoNewLine(TRUE);
-	$trueAutoNewLine = $console->getAutoNewLine();
-
-	$console->nl()
-		->error('I am dead...');
-
-	$content = ob_get_contents();
-	ob_end_clean();
-
-	return array($content, $falseAutoNewLine, $trueAutoNewLine);
 }
