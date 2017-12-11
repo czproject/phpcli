@@ -4,9 +4,15 @@ use Tester\Assert;
 
 require __DIR__ . '/bootstrap.php';
 
-$console = CzProject\PhpCli\ConsoleFactory::createConsole(NULL, NULL, new CzProject\PhpCli\Parameters\DefaultParametersParser);
+$console = CzProject\PhpCli\ConsoleFactory::createConsole(NULL, NULL, new CzProject\PhpCli\Parameters\DefaultParameterParser);
 
-$console->setRawParameters(array(
+$console->addParameters(array(
+	'm' => 'default message',
+	'flag' => FALSE,
+	'flag2' => FALSE,
+));
+
+$console->addRawParameters(array(
 	'programName',
 	'file.txt',
 	'-m', 'message',
@@ -16,12 +22,6 @@ $console->setRawParameters(array(
 	'text',
 	'-p', 'parameter3',
 	'--flag',
-));
-
-$console->setDefaultParameters(array(
-	'm' => 'default message',
-	'flag' => FALSE,
-	'flag2' => FALSE,
 ));
 
 Assert::same(array(
@@ -48,4 +48,4 @@ Assert::null($console->getParameter('unexists'));
 
 Assert::exception(function () use ($console) {
 	$console->getParameter('unexists', 'my-default-value', TRUE);
-}, 'CzProject\PhpCli\ParametersException', 'Required parameter \'unexists\' not found.');
+}, 'CzProject\PhpCli\MissingParameterException', 'Required parameter \'unexists\' not found.');

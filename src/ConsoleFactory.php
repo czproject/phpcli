@@ -19,7 +19,7 @@
 		/**
 		 * @return Console
 		 */
-		public static function createConsole(IOutputProvider $outputProvider = NULL, IInputProvider $inputProvider = NULL, IParametersParser $parser = NULL)
+		public static function createConsole(IOutputProvider $outputProvider = NULL, IInputProvider $inputProvider = NULL, IParameterParser $parser = NULL)
 		{
 			$outputProvider = $outputProvider === NULL ? self::createOutputProvider() : $outputProvider;
 			$inputProvider = $inputProvider === NULL ? self::createInputProvider() : $inputProvider;
@@ -77,11 +77,11 @@
 
 
 		/**
-		 * @return IParametersParser
+		 * @return IParameterParser
 		 */
 		public static function createParamatersParser()
 		{
-			return new Parameters\DefaultParametersParser;
+			return new Parameters\DefaultParameterParser;
 		}
 
 

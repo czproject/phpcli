@@ -5,12 +5,14 @@
 
 	interface IInputProvider
 	{
+		/**
+		 * @return string
+		 */
 		function readInput();
 
+
+		/**
+		 * @return bool
+		 */
 		function isPrintingPrompt();
-	}
-
-
-	class InputException extends Exception
-	{
 	}

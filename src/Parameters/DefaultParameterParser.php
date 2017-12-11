@@ -2,12 +2,15 @@
 
 	namespace CzProject\PhpCli\Parameters;
 
-	use CzProject\PhpCli\ParametersParserException;
+	use CzProject\PhpCli\IParameterParser;
 
 
-	class DefaultParametersParser extends BaseParser
+	class DefaultParameterParser implements IParameterParser
 	{
-		protected function parse(array $raw = NULL)
+		/**
+		 * {@inheritDoc}
+		 */
+		public function parse(array $raw = NULL)
 		{
 			$parameters = NULL;
 
@@ -23,7 +26,7 @@
 
 				foreach ($raw as $index => $argument) {
 					if (!is_scalar($argument) && !is_null($argument)) {
-						throw new DefaultParametersParserException('Parameter must be scalar or NULL, ' . gettype($argument) . " given at index ($index).");
+						throw new \CzProject\PhpCli\ParameterParserException('Parameter must be scalar or NULL, ' . gettype($argument) . " given at index ($index).");
 					}
 
 					if ($argument === '') {
@@ -60,12 +63,6 @@
 				}
 			}
 
-			// after parsing
-			$this->setParameters($parameters);
+			return $parameters;
 		}
-	}
-
-
-	class DefaultParametersParserException extends ParametersParserException
-	{
 	}

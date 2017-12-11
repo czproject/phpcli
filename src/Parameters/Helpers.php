@@ -2,14 +2,12 @@
 
 	namespace CzProject\PhpCli\Parameters;
 
-	use CzProject\PhpCli\Exception;
-
 
 	class Helpers
 	{
 		public function __construct()
 		{
-			throw new Exception('This is static class.');
+			throw new \CzProject\PhpCli\StaticClassException('This is static class.');
 		}
 
 

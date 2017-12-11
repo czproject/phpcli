@@ -11,15 +11,18 @@
 		/** @var  IInputProvider */
 		protected $inputProvider;
 
-		/** @var  IParametersParser */
-		protected $parametersParser;
+		/** @var  IParameterParser */
+		protected $parameterParser;
+
+		/** @var  array|NULL */
+		protected $parameters;
 
 
-		public function __construct(IOutputProvider $outputProvider, IInputProvider $inputProvider, IParametersParser $parametersParser)
+		public function __construct(IOutputProvider $outputProvider, IInputProvider $inputProvider, IParameterParser $parameterParser)
 		{
 			$this->outputProvider = $outputProvider;
 			$this->inputProvider = $inputProvider;
-			$this->parametersParser = $parametersParser;
+			$this->parameterParser = $parameterParser;
 		}
 
 
@@ -60,10 +63,20 @@
 		/**
 		 * @return static
 		 */
-		public function setRawParameters(array $parameters = NULL)
+		public function addRawParameters(array $rawParameters = NULL)
 		{
-			$this->parametersParser->setRawParameters($parameters);
+			$parameters = $this->processRawParameters($rawParameters);
+			$this->addParameters($parameters);
 			return $this;
+		}
+
+
+		/**
+		 * @return static
+		 */
+		public function processRawParameters(array $rawParameters = NULL)
+		{
+			return $this->parameterParser->parse($rawParameters);
 		}
 
 
@@ -71,9 +84,9 @@
 		 * @param  array|NULL
 		 * @return static
 		 */
-		public function setDefaultParameters(array $defaultParameters = NULL)
+		public function addParameters(array $parameters = NULL)
 		{
-			$this->parametersParser->setDefaultParameters($defaultParameters);
+			$this->parameters = Parameters\Helpers::merge($parameters, $this->parameters);
 			return $this;
 		}
 
@@ -83,7 +96,7 @@
 		 */
 		public function getParameters()
 		{
-			return $this->parametersParser->getParameters();
+			return $this->parameters;
 		}
 
 
@@ -95,8 +108,17 @@
 		 */
 		public function getParameter($name, $defaultValue = NULL, $required = FALSE)
 		{
-			return $this->parametersParser->getParameter($name, $defaultValue, $required);
+			if (!isset($this->parameters[$name])) {
+				if ($required) {
+					throw new MissingParameterException("Required parameter '$name' not found.");
+				}
+
+				return $defaultValue;
+			}
+
+			return $this->parameters[$name];
 		}
+
 
 		/**
 		 * @return IOutputProvider
@@ -226,9 +248,4 @@
 
 			return $this->inputProvider->readInput($msg);
 		}
-	}
-
-
-	class ConsoleException extends Exception
-	{
 	}

@@ -52,8 +52,3 @@
 		 */
 		function nl();
 	}
-
-
-	class OutputException extends Exception
-	{
-	}
