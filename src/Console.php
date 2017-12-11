@@ -41,7 +41,7 @@
 
 		/**
 		 * @param  string
-		 * @return self
+		 * @return static
 		 */
 		public function setCurrentDirectory($directory)
 		{
@@ -58,7 +58,7 @@
 
 
 		/**
-		 * @return self
+		 * @return static
 		 */
 		public function setRawParameters(array $parameters = NULL)
 		{
@@ -69,7 +69,7 @@
 
 		/**
 		 * @param  array|NULL
-		 * @return self
+		 * @return static
 		 */
 		public function setDefaultParameters(array $defaultParameters = NULL)
 		{
@@ -109,7 +109,7 @@
 
 		/**
 		 * @param  string|string[]
-		 * @return self
+		 * @return static
 		 */
 		public function output($str)
 		{
@@ -123,7 +123,7 @@
 
 		/**
 		 * @param  string|string[]
-		 * @return self
+		 * @return static
 		 */
 		public function success($str)
 		{
@@ -137,7 +137,7 @@
 
 		/**
 		 * @param  string|string[]
-		 * @return self
+		 * @return static
 		 */
 		public function error($str)
 		{
@@ -151,7 +151,7 @@
 
 		/**
 		 * @param  string|string[]
-		 * @return self
+		 * @return static
 		 */
 		public function warning($str)
 		{
@@ -165,7 +165,7 @@
 
 		/**
 		 * @param  string|string[]
-		 * @return self
+		 * @return static
 		 */
 		public function info($str)
 		{
@@ -179,7 +179,7 @@
 
 		/**
 		 * @param  string|string[]
-		 * @return self
+		 * @return static
 		 */
 		public function muted($str)
 		{
@@ -192,7 +192,7 @@
 
 
 		/**
-		 * @return self
+		 * @return static
 		 */
 		public function nl()
 		{

@@ -22,7 +22,7 @@
 
 		/**
 		 * @param  string|string[]
-		 * @return self
+		 * @return static
 		 */
 		public function output($str)
 		{

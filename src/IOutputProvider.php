@@ -7,42 +7,48 @@
 	{
 		/**
 		 * @param  string|string[]
-		 * @return self
+		 * @return static
 		 */
 		function output($str/*,... */);
 
+
 		/**
 		 * @param  string|string[]
-		 * @return self
+		 * @return static
 		 */
 		function success($str/*,... */);
 
+
 		/**
 		 * @param  string|string[]
-		 * @return self
+		 * @return static
 		 */
 		function error($str/*,... */);
 
+
 		/**
 		 * @param  string|string[]
-		 * @return self
+		 * @return static
 		 */
 		function warning($str/*,... */);
 
+
 		/**
 		 * @param  string|string[]
-		 * @return self
+		 * @return static
 		 */
 		function info($str/*,... */);
 
+
 		/**
 		 * @param  string|string[]
-		 * @return self
+		 * @return static
 		 */
 		function muted($str/*,... */);
 
+
 		/**
-		 * @return self
+		 * @return static
 		 */
 		function nl();
 	}

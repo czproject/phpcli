@@ -18,7 +18,7 @@
 
 		/**
 		 * @param  string|string[]
-		 * @return self
+		 * @return static
 		 */
 		public function success($str)
 		{
@@ -32,7 +32,7 @@
 
 		/**
 		 * @param  string|string[]
-		 * @return self
+		 * @return static
 		 */
 		public function error($str)
 		{
@@ -46,7 +46,7 @@
 
 		/**
 		 * @param  string|string[]
-		 * @return self
+		 * @return static
 		 */
 		public function warning($str)
 		{
@@ -60,7 +60,7 @@
 
 		/**
 		 * @param  string|string[]
-		 * @return self
+		 * @return static
 		 */
 		public function info($str)
 		{
@@ -74,7 +74,7 @@
 
 		/**
 		 * @param  string|string[]
-		 * @return self
+		 * @return static
 		 */
 		public function muted($str)
 		{
