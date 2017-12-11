@@ -1,4 +1,5 @@
 <?php
+
 use Tester\Assert;
 
 require __DIR__ . '/bootstrap.php';
@@ -20,4 +21,3 @@ Assert::same(__DIR__, $console->getCurrentDirectory());
 chdir('..');
 Assert::same(__DIR__, $console->getCurrentDirectory());
 Assert::same(realpath(__DIR__ . '/../'), $console->getCurrentDirectory(TRUE));
-

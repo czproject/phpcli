@@ -1,10 +1,7 @@
 <?php
-	/**
-	 * Cz CLI Console
-	 * @author Jan Pecha, <janpecha@email.cz>
-	 */
 
 	namespace CzProject\PhpCli;
+
 
 	class Console
 	{
@@ -21,7 +18,6 @@
 		protected $currentDirectory;
 
 
-
 		public function __construct(IOutputProvider $outputProvider, IInputProvider $inputProvider, IParametersParser $parametersParser)
 		{
 			$this->outputProvider = $outputProvider;
@@ -30,20 +26,17 @@
 		}
 
 
-
 		/**
-		 * @param	bool
-		 * @return	string
-		 * @throws	ConsoleException
+		 * @param  bool
+		 * @return string
+		 * @throws ConsoleException
 		 */
 		public function getCurrentDirectory($forceRefresh = FALSE)
 		{
-			if($forceRefresh || $this->currentDirectory === NULL)
-			{
+			if ($forceRefresh || $this->currentDirectory === NULL) {
 				$cwd = getcwd();
 
-				if($cwd === FALSE)
-				{
+				if ($cwd === FALSE) {
 					throw new ConsoleException('CWD error');
 				}
 
@@ -54,20 +47,17 @@
 		}
 
 
-
 		/**
-		 * @param	string
-		 * @return	self
+		 * @param  string
+		 * @return self
 		 */
 		public function setCurrentDirectory($directory)
 		{
-			if($directory[0] !== '/')
-			{
+			if ($directory[0] !== '/') {
 				$directory = $this->getCurrentDirectory() . "/$directory";
 			}
 
-			if(!chdir($directory))
-			{
+			if (!chdir($directory)) {
 				throw new ConsoleException('CWD set error');
 			}
 
@@ -76,9 +66,8 @@
 		}
 
 
-
 		/**
-		 * @return	self
+		 * @return self
 		 */
 		public function setRawParameters(array $parameters = NULL)
 		{
@@ -87,10 +76,9 @@
 		}
 
 
-
 		/**
-		 * @param	array|NULL
-		 * @return	self
+		 * @param  array|NULL
+		 * @return self
 		 */
 		public function setDefaultParameters(array $defaultParameters = NULL)
 		{
@@ -99,9 +87,8 @@
 		}
 
 
-
 		/**
-		 * @return	array|NULL
+		 * @return array|NULL
 		 */
 		public function getParameters()
 		{
@@ -109,18 +96,16 @@
 		}
 
 
-
 		/**
-		 * @param	string
-		 * @param	mixed
-		 * @param	bool
-		 * @return	mixed
+		 * @param  string
+		 * @param  mixed
+		 * @param  bool
+		 * @return mixed
 		 */
 		public function getParameter($name, $defaultValue = NULL, $required = FALSE)
 		{
 			return $this->parametersParser->getParameter($name, $defaultValue, $required);
 		}
-
 
 		/**
 		 * @return IOutputProvider
@@ -131,17 +116,14 @@
 		}
 
 
-
 		/**
-		 * @param	string|string[]|NULL
-		 * @return	self
+		 * @param  string|string[]|NULL
+		 * @return self
 		 */
 		public function output($str = NULL)
 		{
-			if($str !== NULL)
-			{
-				if (!is_array($str))
-				{
+			if ($str !== NULL) {
+				if (!is_array($str)) {
 					$str = func_get_args();
 				}
 				return $this->outputProvider->output($str);
@@ -151,84 +133,73 @@
 		}
 
 
-
 		/**
-		 * @param	string|string[]
-		 * @return	self
+		 * @param  string|string[]
+		 * @return self
 		 */
 		public function success($str)
 		{
-			if (!is_array($str))
-			{
+			if (!is_array($str)) {
 				$str = func_get_args();
 			}
 			return $this->outputProvider->success($str);
 		}
 
 
-
 		/**
-		 * @param	string|string[]
-		 * @return	self
+		 * @param  string|string[]
+		 * @return self
 		 */
 		public function error($str)
 		{
-			if (!is_array($str))
-			{
+			if (!is_array($str)) {
 				$str = func_get_args();
 			}
 			return $this->outputProvider->error($str);
 		}
 
 
-
 		/**
-		 * @param	string|string[]
-		 * @return	self
+		 * @param  string|string[]
+		 * @return self
 		 */
 		public function warning($str)
 		{
-			if (!is_array($str))
-			{
+			if (!is_array($str)) {
 				$str = func_get_args();
 			}
 			return $this->outputProvider->warning($str);
 		}
 
 
-
 		/**
-		 * @param	string|string[]
-		 * @return	self
+		 * @param  string|string[]
+		 * @return self
 		 */
 		public function info($str)
 		{
-			if (!is_array($str))
-			{
+			if (!is_array($str)) {
 				$str = func_get_args();
 			}
 			return $this->outputProvider->info($str);
 		}
 
 
-
 		/**
-		 * @param	string|string[]
-		 * @return	self
+		 * @param  string|string[]
+		 * @return self
 		 */
 		public function muted($str)
 		{
-			if (!is_array($str))
-			{
+			if (!is_array($str)) {
 				$str = func_get_args();
 			}
 			return $this->outputProvider->muted($str);
 		}
 
 
-
 		/**
-		 * @return	IOutputProvider
+		 * @return IOutputProvider
 		 */
 		public function nl()
 		{
@@ -236,10 +207,9 @@
 		}
 
 
-
 		/**
-		 * @param	bool
-		 * @return	IOutputProvider
+		 * @param  bool
+		 * @return IOutputProvider
 		 */
 		public function setAutoNewLine($state)
 		{
@@ -247,9 +217,8 @@
 		}
 
 
-
 		/**
-		 * @return	bool
+		 * @return bool
 		 */
 		public function getAutoNewLine()
 		{
@@ -257,10 +226,9 @@
 		}
 
 
-
 		/**
-		 * @param	string|NULL  optional
-		 * @return	string
+		 * @param  string|NULL  optional
+		 * @return string
 		 */
 		public function input($msg = NULL)
 		{
@@ -268,17 +236,15 @@
 		}
 
 
-
 		/**
-		 * @param	string|NULL  optional
-		 * @return	string
+		 * @param  string|NULL  optional
+		 * @return string
 		 */
 		public function readInput($msg = NULL)
 		{
 			$msg = $msg !== NULL ? (string) $msg : $msg;
 
-			if(!$this->inputProvider->isPrintingPrompt())
-			{
+			if (!$this->inputProvider->isPrintingPrompt()) {
 				$currentAutoNewLine = $this->outputProvider->getAutoNewLine();
 				$this->outputProvider->setAutoNewLine(FALSE) // disable new lines after output()
 					->output($msg) // print message
@@ -290,9 +256,8 @@
 		}
 
 
-
 		/**
-		 * @return	IOutputProvider
+		 * @return IOutputProvider
 		 */
 		public function enableNewLine()
 		{
@@ -300,9 +265,8 @@
 		}
 
 
-
 		/**
-		 * @return	IOutputProvider
+		 * @return IOutputProvider
 		 */
 		public function disableNewLine()
 		{
@@ -311,8 +275,6 @@
 	}
 
 
-
 	class ConsoleException extends \RuntimeException
 	{
 	}
-

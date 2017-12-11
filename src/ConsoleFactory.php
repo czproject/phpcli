@@ -1,13 +1,11 @@
 <?php
-	/**
-	 * Cz CLI Console
-	 * @author Jan Pecha, <janpecha@email.cz>
-	 */
 
 	namespace CzProject\PhpCli;
-	use CzProject\PhpCli\Inputs,
-		CzProject\PhpCli\Outputs,
-		CzProject\PhpCli\Parameters;
+
+	use CzProject\PhpCli\Inputs;
+	use CzProject\PhpCli\Outputs;
+	use CzProject\PhpCli\Parameters;
+
 
 	class ConsoleFactory
 	{
@@ -18,9 +16,8 @@
 		protected static $useReadlineProvider;
 
 
-
 		/**
-		 * @return	Console
+		 * @return Console
 		 */
 		public static function createConsole(IOutputProvider $outputProvider = NULL, IInputProvider $inputProvider = NULL, IParametersParser $parser = NULL)
 		{
@@ -32,9 +29,8 @@
 		}
 
 
-
 		/**
-		 * @return	IOutputProvider
+		 * @return IOutputProvider
 		 */
 		public static function createOutputProvider()
 		{
@@ -52,9 +48,8 @@
 		}
 
 
-
 		/**
-		 * @return	IOutputProvider
+		 * @return IOutputProvider
 		 */
 		public static function createNullOutputProvider()
 		{
@@ -62,9 +57,8 @@
 		}
 
 
-
 		/**
-		 * @return	IInputProvider
+		 * @return IInputProvider
 		 */
 		public static function createInputProvider()
 		{
@@ -82,9 +76,8 @@
 		}
 
 
-
 		/**
-		 * @return	IParametersParser
+		 * @return IParametersParser
 		 */
 		public static function createParamatersParser()
 		{
@@ -92,9 +85,8 @@
 		}
 
 
-
 		/**
-		 * @return	bool
+		 * @return bool
 		 */
 		public static function detectColoredOutput()
 		{
@@ -106,9 +98,8 @@
 		}
 
 
-
 		/**
-		 * @return	bool
+		 * @return bool
 		 */
 		public static function detectReadline()
 		{
@@ -120,4 +111,3 @@
 			return function_exists('readline') && function_exists('readline_add_history');
 		}
 	}
-

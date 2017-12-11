@@ -1,11 +1,9 @@
 <?php
-	/**
-	 * Cz CLI Console
-	 * @author Jan Pecha, <janpecha@email.cz>
-	 */
 
 	namespace CzProject\PhpCli\Parameters;
+
 	use CzProject\PhpCli\ParametersParseException;
+
 
 	class DefaultParametersParser extends BaseParser
 	{
@@ -16,46 +14,36 @@
 			// parsing
 			$lastName = NULL;
 
-			if(isset($raw[1]))		// count($raw) > 1
-			{
+			if (isset($raw[1])) { // count($raw) > 1
 				// remove argv[0]
 				array_shift($raw);
 
 				// parsing
-				foreach($raw as $argument)
-				{
-					if($argument{0} === '-')
-					{
+				foreach ($raw as $argument) {
+					if ($argument{0} === '-') {
 						$name = trim($argument, '-');
 						$lastName = $name;
 
-						if(!isset($parameters[$name]))
-						{
+						if (!isset($parameters[$name])) {
 							$parameters[$name] = TRUE;
 						}
-					}
-					elseif($lastName === NULL)
-					{
+
+					} elseif ($lastName === NULL) {
 						$parameters[] = $argument;
 						#throw new ParametersParseException("Bad argument '$argument'");
-					}
-					else
-					{
-						if($parameters[$lastName] === TRUE)
-						{
+
+					} else {
+						if ($parameters[$lastName] === TRUE) {
 							$parameters[$lastName] = $argument;
-						}
-						else	// string || array
-						{
-							if(is_string($parameters[$lastName]))
-							{
+
+						} else { // string || array
+							if (is_string($parameters[$lastName])) {
 								$parameters[$lastName] = array(
 									$parameters[$lastName],
 									$argument,
 								);
-							}
-							else
-							{
+
+							} else {
 								$parameters[$lastName][] = $argument;
 							}
 						}
@@ -69,4 +57,3 @@
 			$this->setParameters($parameters);
 		}
 	}
-

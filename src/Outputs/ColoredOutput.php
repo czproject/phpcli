@@ -1,11 +1,9 @@
 <?php
-	/**
-	 * Cz CLI Console
-	 * @author Jan Pecha, <janpecha@email.cz>
-	 */
 
 	namespace CzProject\PhpCli\Outputs;
+
 	use CzProject\PhpCli\OutputException;
+
 
 	class ColoredOutput extends BaseOutput
 	{
@@ -18,15 +16,13 @@
 		);
 
 
-
 		/**
-		 * @param	string|string[]
-		 * @return	self
+		 * @param  string|string[]
+		 * @return self
 		 */
 		public function success($str)
 		{
-			if (!is_array($str))
-			{
+			if (!is_array($str)) {
 				$str = func_get_args();
 			}
 
@@ -35,15 +31,13 @@
 		}
 
 
-
 		/**
-		 * @param	string|string[]
-		 * @return	self
+		 * @param  string|string[]
+		 * @return self
 		 */
 		public function error($str)
 		{
-			if (!is_array($str))
-			{
+			if (!is_array($str)) {
 				$str = func_get_args();
 			}
 
@@ -52,15 +46,13 @@
 		}
 
 
-
 		/**
-		 * @param	string|string[]
-		 * @return	self
+		 * @param  string|string[]
+		 * @return self
 		 */
 		public function warning($str)
 		{
-			if (!is_array($str))
-			{
+			if (!is_array($str)) {
 				$str = func_get_args();
 			}
 
@@ -69,15 +61,13 @@
 		}
 
 
-
 		/**
-		 * @param	string|string[]
-		 * @return	self
+		 * @param  string|string[]
+		 * @return self
 		 */
 		public function info($str)
 		{
-			if (!is_array($str))
-			{
+			if (!is_array($str)) {
 				$str = func_get_args();
 			}
 
@@ -86,15 +76,13 @@
 		}
 
 
-
 		/**
-		 * @param	string|string[]
-		 * @return	self
+		 * @param  string|string[]
+		 * @return self
 		 */
 		public function muted($str)
 		{
-			if (!is_array($str))
-			{
+			if (!is_array($str)) {
 				$str = func_get_args();
 			}
 
@@ -103,19 +91,16 @@
 		}
 
 
-
 		protected function color($colorId)
 		{
 			$newLineEnabled = $this->newLineEnabled;
 			$this->setAutoNewLine(FALSE); // disable new lines
 
-			if($colorId === NULL) // reset color
-			{
+			if ($colorId === NULL) { // reset color
 				return $this->output("\033[0m")
 					->setAutoNewLine($newLineEnabled);
-			}
-			elseif(isset(self::$colors[$colorId = (string) $colorId]))
-			{
+
+			} elseif (isset(self::$colors[$colorId = (string) $colorId])) {
 				return $this->output("\033[" . self::$colors[$colorId] . 'm')
 					->setAutoNewLine($newLineEnabled);
 			}
@@ -124,11 +109,9 @@
 		}
 
 
-
 		protected function printString($str = NULL)
 		{
 			return $this->output($str)
 				->color(NULL);
 		}
 	}
-

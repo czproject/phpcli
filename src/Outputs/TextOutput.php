@@ -1,16 +1,13 @@
 <?php
-	/**
-	 * Cz CLI Console
-	 * @author Jan Pecha, <janpecha@email.cz>
-	 */
 
 	namespace CzProject\PhpCli\Outputs;
+
 
 	class TextOutput extends BaseOutput
 	{
 		/**
-		 * @param	string|string[]
-		 * @return	self
+		 * @param  string|string[]
+		 * @return self
 		 */
 		public function success($str)
 		{
@@ -22,10 +19,9 @@
 		}
 
 
-
 		/**
-		 * @param	string|string[]
-		 * @return	self
+		 * @param  string|string[]
+		 * @return self
 		 */
 		public function error($str)
 		{
@@ -37,10 +33,9 @@
 		}
 
 
-
 		/**
-		 * @param	string|string[]
-		 * @return	self
+		 * @param  string|string[]
+		 * @return self
 		 */
 		public function warning($str)
 		{
@@ -52,10 +47,9 @@
 		}
 
 
-
 		/**
-		 * @param	string|string[]
-		 * @return	self
+		 * @param  string|string[]
+		 * @return self
 		 */
 		public function info($str)
 		{
@@ -67,10 +61,9 @@
 		}
 
 
-
 		/**
-		 * @param	string|string[]
-		 * @return	self
+		 * @param  string|string[]
+		 * @return self
 		 */
 		public function muted($str)
 		{
@@ -81,4 +74,3 @@
 			return $this->output($str);
 		}
 	}
-

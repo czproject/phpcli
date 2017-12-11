@@ -1,4 +1,5 @@
 <?php
+
 use Tester\Assert;
 
 require __DIR__ . '/bootstrap.php';
@@ -23,4 +24,3 @@ $content = ob_get_contents();
 ob_end_clean();
 Assert::same("Hello! super [user]\n"
 	. "I am dead...\n", str_replace("\r", '', $content));
-

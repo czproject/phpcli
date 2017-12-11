@@ -1,4 +1,5 @@
 <?php
+
 use Tester\Assert;
 
 require __DIR__ . '/bootstrap.php';
@@ -49,4 +50,3 @@ Assert::null($console->getParameter('unexists'));
 Assert::exception(function () use ($console) {
 	$console->getParameter('unexists', 'my-default-value', TRUE);
 }, 'CzProject\PhpCli\ParametersException', 'Required parameter \'unexists\' not found.');
-

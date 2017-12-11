@@ -1,11 +1,9 @@
 <?php
-	/**
-	 * Cz CLI Console
-	 * @author Jan Pecha, <janpecha@email.cz>
-	 */
 
 	namespace CzProject\PhpCli\Outputs;
+
 	use CzProject\PhpCli\IOutputProvider;
+
 
 	class NullOutput implements IOutputProvider
 	{
@@ -13,10 +11,9 @@
 		protected $newLineEnabled = TRUE;
 
 
-
 		/**
-		 * @param	string|string[]
-		 * @return	self
+		 * @param  string|string[]
+		 * @return self
 		 */
 		public function output($str)
 		{
@@ -24,10 +21,9 @@
 		}
 
 
-
 		/**
-		 * @param	string|string[]
-		 * @return	self
+		 * @param  string|string[]
+		 * @return self
 		 */
 		public function success($str)
 		{
@@ -35,10 +31,9 @@
 		}
 
 
-
 		/**
-		 * @param	string|string[]
-		 * @return	self
+		 * @param  string|string[]
+		 * @return self
 		 */
 		public function error($str)
 		{
@@ -46,10 +41,9 @@
 		}
 
 
-
 		/**
-		 * @param	string|string[]
-		 * @return	self
+		 * @param  string|string[]
+		 * @return self
 		 */
 		public function warning($str)
 		{
@@ -57,10 +51,9 @@
 		}
 
 
-
 		/**
-		 * @param	string|string[]
-		 * @return	self
+		 * @param  string|string[]
+		 * @return self
 		 */
 		public function info($str)
 		{
@@ -68,10 +61,9 @@
 		}
 
 
-
 		/**
-		 * @param	string|string[]
-		 * @return	self
+		 * @param  string|string[]
+		 * @return self
 		 */
 		public function muted($str)
 		{
@@ -79,12 +71,10 @@
 		}
 
 
-
 		public function nl()
 		{
 			return $this;
 		}
-
 
 
 		public function setAutoNewLine($state)
@@ -94,10 +84,8 @@
 		}
 
 
-
 		public function getAutoNewLine()
 		{
 			return $this->newLineEnabled;
 		}
 	}
-

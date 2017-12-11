@@ -48,4 +48,3 @@ PhpCli requires PHP 5.3.0 or later, optionaly [Readline extension](http://www.ph
 
 License: [New BSD License](license.md)
 <br>Author: Jan Pecha, http://janpecha.iunas.cz/
-

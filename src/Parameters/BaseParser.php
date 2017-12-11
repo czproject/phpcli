@@ -1,12 +1,10 @@
 <?php
-	/**
-	 * Cz CLI Console
-	 * @author Jan Pecha, <janpecha@email.cz>
-	 */
 
 	namespace CzProject\PhpCli\Parameters;
-	use CzProject\PhpCli\IParametersParser,
-		CzProject\PhpCli\ParametersException;
+
+	use CzProject\PhpCli\IParametersParser;
+	use CzProject\PhpCli\ParametersException;
+
 
 	abstract class BaseParser implements IParametersParser
 	{
@@ -23,14 +21,12 @@
 		protected $rawParameters;
 
 
-
 		public function setRawParameters(array $parameters = NULL)
 		{
 			$this->rawParameters = $parameters;
 			$this->parsed = FALSE;
 			return $this;
 		}
-
 
 
 		public function setDefaultParameters(array $defaultParameters = NULL)
@@ -41,11 +37,9 @@
 		}
 
 
-
 		public function getParameters()
 		{
-			if(!$this->parsed)
-			{
+			if (!$this->parsed) {
 				$this->parse($this->rawParameters);
 				$this->parsed = TRUE;
 			}
@@ -54,19 +48,15 @@
 		}
 
 
-
 		public function getParameter($name, $defaultValue = NULL, $required = FALSE)
 		{
-			if(!$this->parsed)
-			{
+			if (!$this->parsed) {
 				$this->parse($this->rawParameters);
 				$this->parsed = TRUE;
 			}
 
-			if(!isset($this->parameters[$name]))
-			{
-				if($required)
-				{
+			if (!isset($this->parameters[$name])) {
+				if ($required) {
 					throw new ParametersException("Required parameter '$name' not found.");
 				}
 
@@ -77,10 +67,9 @@
 		}
 
 
-
 		/**
-		 * @param	array|NULL
-		 * @return	self
+		 * @param  array|NULL
+		 * @return self
 		 */
 		protected function setParameters(array $parameters = NULL)
 		{
@@ -89,31 +78,24 @@
 		}
 
 
-
 		protected abstract function parse(array $rawParameters = NULL);
-
 
 
 		/**
 		 * Left side has pririoty. Helper method.
-		 * @param	array
-		 * @param	array
-		 * @return	array|NULL
+		 * @param  array
+		 * @param  array
+		 * @return array|NULL
 		 */
 		protected static function merge($left, $right)
 		{
-			if(is_array($left) && is_array($right))
-			{
-				foreach($left as $key => $val)
-				{
-					if(is_int($key))
-					{
+			if (is_array($left) && is_array($right)) {
+				foreach ($left as $key => $val) {
+					if (is_int($key)) {
 						$right[] = $val;
-					}
-					else
-					{
-						if(isset($right[$key]))
-						{
+
+					} else {
+						if (isset($right[$key])) {
 							$val = self::merge($val, $right[$key]);
 						}
 
@@ -122,13 +104,11 @@
 				}
 
 				return $right;
-			}
-			elseif($left === NULL && is_array($right))
-			{
+
+			} elseif ($left === NULL && is_array($right)) {
 				return $right;
 			}
 
 			return $left;
 		}
 	}
-

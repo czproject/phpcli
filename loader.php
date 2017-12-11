@@ -16,4 +16,3 @@
 
 	require __DIR__ . '/src/Console.php';
 	require __DIR__ . '/src/ConsoleFactory.php';
-

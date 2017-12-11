@@ -1,10 +1,7 @@
 <?php
-	/**
-	 * Cz CLI Console
-	 * @author Jan Pecha, <janpecha@email.cz>
-	 */
 
 	namespace CzProject\PhpCli;
+
 
 	interface IInputProvider
 	{
@@ -14,8 +11,6 @@
 	}
 
 
-
 	class InputException extends \RuntimeException
 	{
 	}
-

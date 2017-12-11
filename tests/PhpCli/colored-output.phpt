@@ -1,4 +1,5 @@
 <?php
+
 use Tester\Assert;
 
 require __DIR__ . '/bootstrap.php';
@@ -24,4 +25,3 @@ Assert::same("\033[0;34mHello! \033[0m"
 
 Assert::false($falseAutoNewLine);
 Assert::true($trueAutoNewLine);
-

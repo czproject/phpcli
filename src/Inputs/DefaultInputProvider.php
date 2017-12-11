@@ -1,11 +1,9 @@
 <?php
-	/**
-	 * Cz CLI Console
-	 * @author Jan Pecha, <janpecha@email.cz>
-	 */
 
 	namespace CzProject\PhpCli\Inputs;
+
 	use CzProject\PhpCli\IInputProvider;
+
 
 	class DefaultInputProvider implements IInputProvider
 	{
@@ -17,10 +15,8 @@
 		}
 
 
-
 		public function isPrintingPrompt()
 		{
 			return FALSE;
 		}
 	}
-

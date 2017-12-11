@@ -1,11 +1,9 @@
 <?php
-	/**
-	 * Cz CLI Console
-	 * @author Jan Pecha, <janpecha@email.cz>
-	 */
 
 	namespace CzProject\PhpCli\Inputs;
+
 	use CzProject\PhpCli\IInputProvider;
+
 
 	class ReadlineInputProvider implements IInputProvider
 	{
@@ -13,12 +11,10 @@
 		{
 			$input = '';
 
-			if($prompt === NULL)
-			{
+			if ($prompt === NULL) {
 				$input = readline();
-			}
-			else
-			{
+
+			} else {
 				$input = readline("$prompt ");
 			}
 
@@ -27,10 +23,8 @@
 		}
 
 
-
 		public function isPrintingPrompt()
 		{
 			return TRUE;
 		}
 	}
-

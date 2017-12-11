@@ -1,4 +1,5 @@
 <?php
+
 use Tester\Assert;
 
 require __DIR__ . '/bootstrap.php';
@@ -15,4 +16,3 @@ Assert::same('', $content);
 
 Assert::false($falseAutoNewLine);
 Assert::true($trueAutoNewLine);
-
