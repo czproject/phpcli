@@ -1,6 +1,19 @@
 PHP CLI Console
 ===============
 
+
+Installation
+------------
+
+[Download a latest package](https://github.com/czproject/phpcli/releases) or use [Composer](http://getcomposer.org/):
+
+```
+composer require czproject/phpcli
+```
+
+PhpCli requires PHP 5.3.0 or later, optionaly [Readline extension](http://www.php.net/manual/en/book.readline.php).
+
+
 Usage
 -----
 
@@ -39,19 +52,6 @@ $console->info('Hello! ')
 	->nl();
 
 ```
-
-
-Installation
-------------
-
-[Download a latest package](https://github.com/czproject/phpcli/releases) or use [Composer](http://getcomposer.org/):
-
-```
-composer require [--dev] czproject/phpcli
-```
-
-PhpCli requires PHP 5.3.0 or later, optionaly [Readline extension](http://www.php.net/manual/en/book.readline.php).
-
 
 --------------------------------------------------------------------------------
 
