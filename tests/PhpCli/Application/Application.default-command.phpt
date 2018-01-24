@@ -16,7 +16,7 @@ test(function () {
 	$console = CzProject\PhpCli\ConsoleFactory::createConsole(new CzProject\PhpCli\Outputs\MemoryOutput);
 	$application = new Application($console);
 	$application->setDefaultCommand('default');
-	$application->addCommand('default', Tests\TestCommand::create()
+	$application->setCommand('default', Tests\TestCommand::create()
 		->setOptions(array(
 			'run' => array(
 				'type' => 'bool',
@@ -43,12 +43,12 @@ test(function () {
 	$console = CzProject\PhpCli\ConsoleFactory::createConsole(new CzProject\PhpCli\Outputs\TextOutput);
 	$application = new Application($console);
 	$application->setDefaultCommand('default');
-	$application->addCommand('default', Tests\TestCommand::create()
+	$application->setCommand('default', Tests\TestCommand::create()
 		->setCallback(function () {
 			throw new \RuntimeException('COMMAND: default');
 		})
 	);
-	$application->addCommand('test', Tests\TestCommand::create()
+	$application->setCommand('test', Tests\TestCommand::create()
 		->setCallback(function () {
 			throw new \RuntimeException('COMMAND: test');
 		})

@@ -13,9 +13,9 @@ test(function () {
 
 	$application = new Application($console);
 	$application->setApplicationName('APP NAME');
-	$application->addCommand('help', Tests\TestCommand::create()->setDescription('prints help'));
-	$application->addCommand('generate', Tests\TestCommand::create()->setDescription('generates output'));
-	$application->addCommand('test', Tests\TestCommand::create());
+	$application->setCommand('help', Tests\TestCommand::create()->setDescription('prints help'));
+	$application->setCommand('generate', Tests\TestCommand::create()->setDescription('generates output'));
+	$application->setCommand('test', Tests\TestCommand::create());
 	$application->run(array('programName'));
 
 	Assert::same(implode("\n", array(

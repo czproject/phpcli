@@ -14,7 +14,7 @@ require __DIR__ . '/../bootstrap.php';
 test(function () {
 	$console = CzProject\PhpCli\ConsoleFactory::createConsole(new CzProject\PhpCli\Outputs\MemoryOutput);
 	$application = new Application($console);
-	$application->addCommand('command', Tests\TestCommand::create()
+	$application->setCommand('command', Tests\TestCommand::create()
 		->setOptions(array(
 			'flag-with-default' => array(
 				'type' => 'string',

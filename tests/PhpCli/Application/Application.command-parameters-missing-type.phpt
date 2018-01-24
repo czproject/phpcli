@@ -15,7 +15,7 @@ test(function () {
 	$console = CzProject\PhpCli\ConsoleFactory::createConsole(new CzProject\PhpCli\Outputs\MemoryOutput);
 
 	$application = new Application($console);
-	$application->addCommand('command', Tests\TestCommand::create()
+	$application->setCommand('command', Tests\TestCommand::create()
 		->setOptions(array(
 			'required' => array(
 				'required' => TRUE,

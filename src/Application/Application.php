@@ -40,11 +40,22 @@
 
 
 		/**
+		 * @param  ICommand
+		 * @return static
+		 */
+		public function addCommand(ICommand $command)
+		{
+			$this->setCommand($command->getName(), $command);
+			return $this;
+		}
+
+
+		/**
 		 * @param  string
 		 * @param  ICommand
 		 * @return static
 		 */
-		public function addCommand($name, ICommand $command)
+		public function setCommand($name, ICommand $command)
 		{
 			$this->commands[$name] = $command;
 			return $this;
