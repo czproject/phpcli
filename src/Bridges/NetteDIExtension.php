@@ -1,0 +1,35 @@
+<?php
+
+	namespace CzProject\PhpCli\Bridges;
+
+	use Nette;
+
+
+	class NetteDIExtension extends Nette\DI\CompilerExtension
+	{
+		private $defaults = array(
+			'applicationName' => NULL,
+		);
+
+
+		public function loadConfiguration()
+		{
+			$this->validateConfig($this->defaults);
+
+			$builder = $this->getContainerBuilder();
+			$builder->addDefinition($this->prefix('application'))
+				->setFactory('CzProject\PhpCli\Application\Application')
+				->addSetup('setApplicationName', array($this->config['applicationName']));
+		}
+
+
+		public function beforeCompile()
+		{
+			$builder = $this->getContainerBuilder();
+			$application = $builder->getDefinition($this->prefix('application'));
+
+			foreach ($builder->findByType('CzProject\PhpCli\Application\ICommand') as $definition) {
+				$application->addSetup('addCommand', array($definition));
+			}
+		}
+	}
