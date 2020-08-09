@@ -33,7 +33,7 @@
 						continue;
 					}
 
-					if ($argument[0] === '-') {
+					if (is_string($argument) && $argument[0] === '-') {
 						$overwrite = FALSE;
 						$name = ltrim($argument, '-');
 						$lastName = $name;
