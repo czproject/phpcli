@@ -14,7 +14,7 @@ Installation
 composer require czproject/phpcli
 ```
 
-PhpCli requires PHP 5.3.0 or later, optionaly [Readline extension](http://www.php.net/manual/en/book.readline.php).
+PhpCli requires PHP 5.6 or later, optionaly [Readline extension](http://www.php.net/manual/en/book.readline.php).
 
 
 Usage
