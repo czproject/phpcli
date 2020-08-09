@@ -6,13 +6,13 @@ require __DIR__ . '/bootstrap.php';
 
 $console = CzProject\PhpCli\ConsoleFactory::createConsole(NULL, NULL, new CzProject\PhpCli\Parameters\DefaultParameterParser);
 
-$console->addParameters(array(
+$console->addParameters([
 	'm' => 'default message',
 	'flag' => FALSE,
 	'flag2' => FALSE,
-));
+]);
 
-$console->addRawParameters(array(
+$console->addRawParameters([
 	'programName',
 	'file.txt',
 	'-m', 'message',
@@ -22,22 +22,22 @@ $console->addRawParameters(array(
 	'text',
 	'-p', 'parameter3',
 	'--flag',
-));
+]);
 
-Assert::same(array(
+Assert::same([
 	'm' => 'message',
 	'flag' => TRUE,
 	'flag2' => FALSE,
 	0 => 'file.txt',
 	'b' => TRUE,
-	'p' => array('parameter1', 'parameter2', 'parameter3'),
+	'p' => ['parameter1', 'parameter2', 'parameter3'],
 	1 => 'text',
-), $console->getParameters());
+], $console->getParameters());
 
 Assert::same('file.txt', $console->getParameter(0));
 Assert::same('message', $console->getParameter('m'));
 Assert::true($console->getParameter('b'));
-Assert::same(array('parameter1', 'parameter2', 'parameter3'), $console->getParameter('p'));
+Assert::same(['parameter1', 'parameter2', 'parameter3'], $console->getParameter('p'));
 Assert::true($console->getParameter('flag'));
 
 

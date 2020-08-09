@@ -13,10 +13,10 @@ test(function () {
 
 	Assert::exception(function () use ($application) {
 
-		$application->run(array(
+		$application->run([
 			'programName',
 			'unknow',
-		));
+		]);
 
 	}, 'CzProject\PhpCli\ApplicationException', "Unknow command 'unknow'.");
 });

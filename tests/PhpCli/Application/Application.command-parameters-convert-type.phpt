@@ -15,61 +15,61 @@ test(function () {
 	$console = CzProject\PhpCli\ConsoleFactory::createConsole(new CzProject\PhpCli\Outputs\MemoryOutput);
 	$application = new Application($console);
 	$application->setCommand('command', Tests\TestCommand::create()
-		->setOptions(array(
-			'bool-flag' => array(
+		->setOptions([
+			'bool-flag' => [
 				'type' => 'bool',
-			),
+			],
 
-			'bool-yes' => array(
+			'bool-yes' => [
 				'type' => 'bool',
-			),
+			],
 
-			'bool-y' => array(
+			'bool-y' => [
 				'type' => 'bool',
-			),
+			],
 
-			'bool-on' => array(
+			'bool-on' => [
 				'type' => 'bool',
-			),
+			],
 
-			'bool-true' => array(
+			'bool-true' => [
 				'type' => 'bool',
-			),
+			],
 
-			'bool-no' => array(
+			'bool-no' => [
 				'type' => 'bool',
-			),
+			],
 
-			'bool-n' => array(
+			'bool-n' => [
 				'type' => 'bool',
-			),
+			],
 
-			'bool-off' => array(
+			'bool-off' => [
 				'type' => 'bool',
-			),
+			],
 
-			'bool-false' => array(
+			'bool-false' => [
 				'type' => 'bool',
-			),
+			],
 
-			'bool-string' => array(
+			'bool-string' => [
 				'type' => 'bool',
-			),
+			],
 
-			'integer' => array(
+			'integer' => [
 				'type' => 'int',
-			),
+			],
 
-			'float' => array(
+			'float' => [
 				'type' => 'float',
-			),
+			],
 
-			'string' => array(
+			'string' => [
 				'type' => 'string',
-			),
-		))
+			],
+		])
 		->setCallback(function ($console, $options, $arguments) {
-			Assert::same(array(
+			Assert::same([
 				'bool-flag' => TRUE,
 				'bool-yes' => TRUE,
 				'bool-y' => TRUE,
@@ -83,10 +83,10 @@ test(function () {
 				'integer' => 9854,
 				'float' => 9854.588,
 				'string' => '9854.588',
-			), $options);
+			], $options);
 		})
 	);
-	$application->run(array(
+	$application->run([
 		'programName',
 		'command',
 		'--bool-flag',
@@ -102,5 +102,5 @@ test(function () {
 		'--integer=9854.588',
 		'--float=9854.588',
 		'--string=9854.588',
-	));
+	]);
 });

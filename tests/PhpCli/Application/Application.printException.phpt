@@ -15,7 +15,7 @@ test(function () {
 	$e = new Exception('Exception message', 404);
 	$application->printException($e);
 
-	Assert::same(implode("\n", array(
+	Assert::same(implode("\n", [
 		'',
 		'ERROR: Exception message',
 		'',
@@ -25,5 +25,5 @@ test(function () {
 		' - file: ' . __FILE__,
 		' - line: 15',
 		'',
-	)), $output->getOutput());
+	]), $output->getOutput());
 });

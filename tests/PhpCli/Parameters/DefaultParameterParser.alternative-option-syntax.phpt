@@ -10,14 +10,14 @@ require __DIR__ . '/../bootstrap.php';
 test(function () {
 	$parser = new CzProject\PhpCli\Parameters\DefaultParameterParser;
 
-	Assert::same(array(
+	Assert::same([
 		'flag' => TRUE,
 		'option' => 'Lorem ipsum dolor = sit amet',
 		'argument',
 		'argument2',
 		'flag2' => TRUE,
 		'flag3' => 'flag-value',
-	), $parser->parse(array(
+	], $parser->parse([
 		'programName',
 		'--flag',
 		'--option=Lorem ipsum dolor = sit amet',
@@ -26,5 +26,5 @@ test(function () {
 		'--flag2',
 		'--flag3',
 		'flag-value',
-	)));
+	]));
 });

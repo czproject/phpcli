@@ -16,12 +16,12 @@ test(function () {
 	$application = new Application($console);
 	$application->setCommand('command', Tests\TestCommand::create()
 		->setCallback(function ($console, $options, $arguments) {
-			Assert::same(array(), $options);
-			Assert::same(array(), $arguments);
+			Assert::same([], $options);
+			Assert::same([], $arguments);
 		})
 	);
-	$application->run(array(
+	$application->run([
 		'programName',
 		'command',
-	));
+	]);
 });

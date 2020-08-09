@@ -10,19 +10,19 @@ require __DIR__ . '/../bootstrap.php';
 test(function () {
 	$parser = new CzProject\PhpCli\Parameters\DefaultParameterParser;
 
-	Assert::same(array(
+	Assert::same([
 		0,
 		0.0,
 		FALSE,
 		TRUE,
-	), $parser->parse(array(
+	], $parser->parse([
 		'programName',
 		'',
 		0,
 		0.0,
 		FALSE,
 		TRUE,
-	)));
+	]));
 });
 
 
@@ -33,10 +33,10 @@ test(function () {
 	Assert::exception(function () {
 
 		$parser = new CzProject\PhpCli\Parameters\DefaultParameterParser;
-		$parser->parse(array(
+		$parser->parse([
 			'programName',
 			new stdClass,
-		));
+		]);
 
 	}, 'CzProject\PhpCli\ParameterParserException', 'Parameter must be scalar or NULL, object given at index (0).');
 });

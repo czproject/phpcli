@@ -18,12 +18,12 @@ test(function () {
 	$application->setCommand('command', Tests\TestCommand::create());
 
 	Assert::exception(function () use ($application) {
-		$application->run(array(
+		$application->run([
 			'programName',
 			'command',
 			'argument',
 			'--flag',
 			'--flag2',
-		));
+		]);
 	}, 'CzProject\PhpCli\ApplicationException', "Unknow options 'flag', 'flag2'.");
 });

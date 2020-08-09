@@ -105,7 +105,7 @@
 
 				$command = $this->commands[$commandName];
 				$commandOptions = $command->getOptions();
-				$options = $this->processOptions($request->getOptions(), $commandOptions !== NULL ? $commandOptions : array());
+				$options = $this->processOptions($request->getOptions(), $commandOptions !== NULL ? $commandOptions : []);
 				$command->run($this->console, $options, $request->getArguments());
 			}
 		}
@@ -134,8 +134,8 @@
 		protected function createRequest(array $parameters)
 		{
 			$command = NULL;
-			$options = array();
-			$arguments = array();
+			$options = [];
+			$arguments = [];
 
 			foreach ($parameters as $parameterName => $parameterValue) {
 				if (is_string($parameterName)) { // option
@@ -168,8 +168,8 @@
 		 */
 		protected function processOptions(array $options, array $definitions)
 		{
-			$result = array();
-			$optionDefinitions = array();
+			$result = [];
+			$optionDefinitions = [];
 
 			foreach ($definitions as $name => $definition) {
 				if (is_string($definition) || isset($definition['alias'])) {
@@ -194,7 +194,7 @@
 				}
 			}
 
-			$unknowOptions = array();
+			$unknowOptions = [];
 
 			foreach ($options as $option => $value) {
 				if (!isset($optionDefinitions[$option])) {
@@ -206,7 +206,7 @@
 				throw new ApplicationException("Unknow options " . implode(', ', $unknowOptions) . '.');
 			}
 
-			$usedDefinitions = array();
+			$usedDefinitions = [];
 
 			foreach ($options as $option => $value) {
 				$optionDefinition = $optionDefinitions[$option];

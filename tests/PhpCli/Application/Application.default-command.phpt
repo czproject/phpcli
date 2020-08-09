@@ -17,12 +17,12 @@ test(function () {
 	$application = new Application($console);
 	$application->setDefaultCommand('default');
 	$application->setCommand('default', Tests\TestCommand::create()
-		->setOptions(array(
-			'run' => array(
+		->setOptions([
+			'run' => [
 				'type' => 'bool',
 				'defaultValue' => FALSE,
-			),
-		))
+			],
+		])
 		->setCallback(function () {
 			throw new \RuntimeException('COMMAND: default');
 		})
@@ -30,10 +30,10 @@ test(function () {
 
 	Assert::exception(function () use ($application) {
 
-		$application->run(array(
+		$application->run([
 			'programName',
 			'--run',
-		));
+		]);
 
 	}, 'RuntimeException', 'COMMAND: default');
 });
@@ -56,10 +56,10 @@ test(function () {
 
 	Assert::exception(function () use ($application) {
 
-		$application->run(array(
+		$application->run([
 			'programName',
 			'test',
-		));
+		]);
 
 	}, 'RuntimeException', 'COMMAND: test');
 });

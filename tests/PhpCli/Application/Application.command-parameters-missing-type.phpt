@@ -16,19 +16,19 @@ test(function () {
 
 	$application = new Application($console);
 	$application->setCommand('command', Tests\TestCommand::create()
-		->setOptions(array(
-			'required' => array(
+		->setOptions([
+			'required' => [
 				'required' => TRUE,
-			),
-		))
+			],
+		])
 	);
 
 	Assert::exception(function () use ($application) {
 
-		$application->run(array(
+		$application->run([
 			'programName',
 			'command',
-		));
+		]);
 
 	}, 'CzProject\PhpCli\ApplicationException', "Missing 'type' definition for option 'required'.");
 });

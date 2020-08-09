@@ -16,9 +16,9 @@ test(function () {
 	$application->setCommand('help', Tests\TestCommand::create()->setDescription('prints help'));
 	$application->setCommand('generate', Tests\TestCommand::create()->setDescription('generates output'));
 	$application->setCommand('test', Tests\TestCommand::create());
-	$application->run(array('programName'));
+	$application->run(['programName']);
 
-	Assert::same(implode("\n", array(
+	Assert::same(implode("\n", [
 		'',
 		'APP NAME',
 		'',
@@ -31,5 +31,5 @@ test(function () {
 		'  test',
 		'',
 		'',
-	)), $output->getOutput());
+	]), $output->getOutput());
 });

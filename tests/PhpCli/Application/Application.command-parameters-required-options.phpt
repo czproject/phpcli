@@ -15,28 +15,28 @@ test(function () {
 	$console = CzProject\PhpCli\ConsoleFactory::createConsole(new CzProject\PhpCli\Outputs\MemoryOutput);
 	$application = new Application($console);
 	$application->setCommand('command', Tests\TestCommand::create()
-		->setOptions(array(
-			'required' => array(
+		->setOptions([
+			'required' => [
 				'type' => 'string',
 				'required' => TRUE,
-			),
-			'flag' => array(
+			],
+			'flag' => [
 				'type' => 'bool',
-			),
-			'flag2' => array(
+			],
+			'flag2' => [
 				'type' => 'bool',
-			),
-		))
+			],
+		])
 	);
 
 	Assert::exception(function () use ($application) {
 
-		$application->run(array(
+		$application->run([
 			'programName',
 			'command',
 			'--flag',
 			'--flag2',
-		));
+		]);
 
 	}, 'CzProject\PhpCli\ApplicationException', "Missing value for required option 'required'.");
 });

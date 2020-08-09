@@ -7,13 +7,13 @@
 
 	class ColoredOutput extends BaseOutput
 	{
-		protected static $colors = array(
+		protected static $colors = [
 			'success' => '0;32',
 			'error' => '0;31',
 			'warning' => '0;33',
 			'info' => '0;34',
 			'muted' => '1;30',
-		);
+		];
 
 
 		/**

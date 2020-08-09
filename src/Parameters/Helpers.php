@@ -31,10 +31,10 @@
 			}
 
 			if (!is_array($parameters[$name])) { // string|scalar
-				$parameters[$name] = array(
+				$parameters[$name] = [
 					$parameters[$name],
 					$value,
-				);
+				];
 
 			} else {
 				$parameters[$name][] = $value;

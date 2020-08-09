@@ -15,25 +15,25 @@ test(function () {
 	$console = CzProject\PhpCli\ConsoleFactory::createConsole(new CzProject\PhpCli\Outputs\MemoryOutput);
 	$application = new Application($console);
 	$application->setCommand('command', Tests\TestCommand::create()
-		->setOptions(array(
-			'flag' => array(
+		->setOptions([
+			'flag' => [
 				'type' => 'bool',
-			),
-		))
+			],
+		])
 		->setCallback(function ($console, $options, $arguments) {
-			Assert::same(array(
+			Assert::same([
 				'flag' => TRUE,
-			), $options);
+			], $options);
 
-			Assert::same(array(
+			Assert::same([
 				0 => 'argument1',
 				1 => 'argument2',
 				2 => 'argument3',
-			), $arguments);
+			], $arguments);
 		})
 	);
 
-	$application->run(array(
+	$application->run([
 		'programName',
 		'command',
 		'argument1',
@@ -41,5 +41,5 @@ test(function () {
 		'--flag',
 		'--',
 		'argument3',
-	));
+	]);
 });

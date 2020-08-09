@@ -7,9 +7,9 @@
 
 	class NetteDIExtension extends Nette\DI\CompilerExtension
 	{
-		private $defaults = array(
+		private $defaults = [
 			'applicationName' => NULL,
-		);
+		];
 
 
 		public function loadConfiguration()
@@ -19,7 +19,7 @@
 			$builder = $this->getContainerBuilder();
 			$builder->addDefinition($this->prefix('application'))
 				->setFactory('CzProject\PhpCli\Application\Application')
-				->addSetup('setApplicationName', array($this->config['applicationName']));
+				->addSetup('setApplicationName', [$this->config['applicationName']]);
 		}
 
 
@@ -29,7 +29,7 @@
 			$application = $builder->getDefinition($this->prefix('application'));
 
 			foreach ($builder->findByType('CzProject\PhpCli\Application\ICommand') as $definition) {
-				$application->addSetup('addCommand', array($definition));
+				$application->addSetup('addCommand', [$definition]);
 			}
 		}
 	}

@@ -13,10 +13,10 @@ test(function () {
 
 	Assert::exception(function () use ($application) {
 
-		$application->run(array(
+		$application->run([
 			'programName',
 			'--flag',
-		));
+		]);
 
 	}, 'CzProject\PhpCli\ApplicationException', 'Missing command name.');
 });

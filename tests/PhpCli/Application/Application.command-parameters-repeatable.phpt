@@ -16,42 +16,42 @@ test(function () {
 
 	$application = new Application($console);
 	$application->setCommand('command', Tests\TestCommand::create()
-		->setOptions(array(
-			'flag' => array(
+		->setOptions([
+			'flag' => [
 				'type' => 'bool',
-			),
-			'flag2' => array(
+			],
+			'flag2' => [
 				'type' => 'string',
 				'repeatable' => TRUE,
-			),
-			'flag3' => array(
+			],
+			'flag3' => [
 				'type' => 'bool',
 				'repeatable' => TRUE,
-			),
-			'flag4' => array(
+			],
+			'flag4' => [
 				'type' => 'string',
 				'repeatable' => TRUE,
-			),
-		))
+			],
+		])
 		->setCallback(function ($console, $options, $arguments) {
-			Assert::same(array(
+			Assert::same([
 				'flag' => TRUE,
-				'flag2' => array(
+				'flag2' => [
 					0 => 'flag2-value',
 					1 => 'flag2-value2'
-				),
-				'flag3' => array(
+				],
+				'flag3' => [
 					0 => TRUE,
-				),
-				'flag4' => array(
+				],
+				'flag4' => [
 					0 => 'flag4-value',
-				),
-			), $options);
-			Assert::same(array(), $arguments);
+				],
+			], $options);
+			Assert::same([], $arguments);
 		})
 	);
 
-	$application->run(array(
+	$application->run([
 		'programName',
 		'command',
 		'--flag',
@@ -60,7 +60,7 @@ test(function () {
 		'--flag3',
 		'--flag4=flag4-value',
 		'--flag',
-	));
+	]);
 });
 
 
@@ -71,31 +71,31 @@ test(function () {
 	$console = CzProject\PhpCli\ConsoleFactory::createConsole(new CzProject\PhpCli\Outputs\MemoryOutput);
 	$application = new Application($console);
 	$application->setCommand('command', Tests\TestCommand::create()
-		->setOptions(array(
-			'flag' => array(
+		->setOptions([
+			'flag' => [
 				'type' => 'bool',
-			),
-			'flag2' => array(
+			],
+			'flag2' => [
 				'type' => 'string',
 				'repeatable' => TRUE,
-			),
-			'flag3' => array(
+			],
+			'flag3' => [
 				'type' => 'string',
 				'repeatable' => TRUE,
-			),
-			'flag4' => array(
+			],
+			'flag4' => [
 				'type' => 'string',
 				'repeatable' => TRUE,
-			),
-			'flag5' => array(
+			],
+			'flag5' => [
 				'type' => 'string',
-			),
-		))
+			],
+		])
 	);
 
 	Assert::exception(function () use ($application) {
 
-		$application->run(array(
+		$application->run([
 			'programName',
 			'command',
 			'--flag',
@@ -106,7 +106,7 @@ test(function () {
 			'--flag5=flag5-value',
 			'--flag4=flag4-value',
 			'--flag5=flag5-value2',
-		));
+		]);
 
 	}, 'CzProject\PhpCli\ApplicationException', "Multiple values for option 'flag5'.");
 });

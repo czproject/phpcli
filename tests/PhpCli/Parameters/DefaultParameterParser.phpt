@@ -6,17 +6,17 @@ require __DIR__ . '/../bootstrap.php';
 
 $parser = new CzProject\PhpCli\Parameters\DefaultParameterParser;
 
-Assert::same(array(
+Assert::same([
 	0 => 'file.txt',
 	'm' => 'message',
 	'b' => TRUE,
-	'p' => array('parameter1', 'parameter2', 'parameter3'),
+	'p' => ['parameter1', 'parameter2', 'parameter3'],
 	1 => 'newparam',
 	2 => 'text',
 	'flag' => TRUE,
 	'trim--' => TRUE,
 	3 => 'argument',
-), $parser->parse(array(
+], $parser->parse([
 	'programName',
 	'file.txt',
 	'-m', 'message',
@@ -29,4 +29,4 @@ Assert::same(array(
 	'--trim--',
 	'--',
 	'argument',
-)));
+]));

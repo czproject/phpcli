@@ -28,14 +28,14 @@
 		private $defaultValue;
 
 		/** @var string[] */
-		private static $types = array(
+		private static $types = [
 			'boolean',
 			'bool',
 			'integer',
 			'int',
 			'float',
 			'string',
-		);
+		];
 
 
 		public function __construct(
@@ -85,7 +85,7 @@
 			}
 
 			if ($this->repeatable && !is_array($value)) {
-				$value = array($value);
+				$value = [$value];
 			}
 
 			if (!$this->repeatable && is_array($value)) {
@@ -99,7 +99,7 @@
 			// set type
 			if ($value !== NULL) {
 				if (is_array($value)) {
-					$values = array();
+					$values = [];
 
 					foreach ($value as $val) {
 						$values[] = $this->convertType($optionName, $val, $this->type);

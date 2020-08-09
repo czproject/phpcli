@@ -15,67 +15,67 @@ test(function () {
 	$console = CzProject\PhpCli\ConsoleFactory::createConsole(new CzProject\PhpCli\Outputs\MemoryOutput);
 	$application = new Application($console);
 	$application->setCommand('command', Tests\TestCommand::create()
-		->setOptions(array(
-			'null-string' => array(
+		->setOptions([
+			'null-string' => [
 				'type' => 'string',
 				'repeatable' => FALSE,
 				'nullable' => TRUE,
-			),
+			],
 
-			'null-array' => array(
+			'null-array' => [
 				'type' => 'string',
 				'repeatable' => TRUE,
 				'nullable' => TRUE,
-			),
+			],
 
-			'null-array2' => array(
+			'null-array2' => [
 				'type' => 'string',
 				'repeatable' => TRUE,
 				'nullable' => TRUE,
-			),
+			],
 
-			'empty-string' => array(
+			'empty-string' => [
 				'type' => 'string',
 				'repeatable' => FALSE,
 				'nullable' => FALSE,
-			),
+			],
 
-			'empty-array' => array(
+			'empty-array' => [
 				'type' => 'string',
 				'repeatable' => TRUE,
 				'nullable' => TRUE,
-			),
+			],
 
-			'empty-array2' => array(
+			'empty-array2' => [
 				'type' => 'string',
 				'repeatable' => TRUE,
 				'nullable' => TRUE,
-			),
-		))
+			],
+		])
 		->setCallback(function ($console, $options, $arguments) {
-			Assert::same(array(
+			Assert::same([
 				'null-string' => NULL,
-				'null-array' => array(
+				'null-array' => [
 					'',
 					'',
-				),
-				'null-array2' => array(
+				],
+				'null-array2' => [
 					'',
-				),
+				],
 				'empty-string' => '',
-				'empty-array' => array(
+				'empty-array' => [
 					'',
 					'',
-				),
-				'empty-array2' => array(
+				],
+				'empty-array2' => [
 					'',
-				),
-			), $options);
-			Assert::same(array(), $arguments);
+				],
+			], $options);
+			Assert::same([], $arguments);
 		})
 	);
 
-	$application->run(array(
+	$application->run([
 		'programName',
 		'command',
 		'--null-string=',
@@ -86,5 +86,5 @@ test(function () {
 		'--empty-array=',
 		'--empty-array=',
 		'--empty-array2=',
-	));
+	]);
 });
