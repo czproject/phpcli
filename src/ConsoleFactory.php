@@ -34,13 +34,11 @@
 		 */
 		public static function createOutputProvider()
 		{
-			if(self::$useColoredOutput === NULL)
-			{
+			if (self::$useColoredOutput === NULL) {
 				self::$useColoredOutput = self::detectColoredOutput();
 			}
 
-			if(self::$useColoredOutput)
-			{
+			if (self::$useColoredOutput) {
 				return new Outputs\ColoredOutput;
 			}
 
@@ -62,13 +60,11 @@
 		 */
 		public static function createInputProvider()
 		{
-			if(self::$useReadlineProvider === NULL)
-			{
+			if (self::$useReadlineProvider === NULL) {
 				self::$useReadlineProvider = self::detectReadline();
 			}
 
-			if(self::$useReadlineProvider)
-			{
+			if (self::$useReadlineProvider) {
 				return new Inputs\ReadlineInputProvider;
 			}
 
@@ -111,8 +107,7 @@
 		 */
 		public static function detectReadline()
 		{
-			if(extension_loaded('readline'))
-			{
+			if (extension_loaded('readline')) {
 				return TRUE;
 			}
 
