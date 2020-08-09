@@ -1,20 +1,20 @@
 {
-    "name": "czproject/phpcli",
-    "description": "Helper class for PHP CLI apps.",
-    "license": "BSD-3-Clause",
-    "autoload": {
-        "classmap": ["src/"]
-    },
-    "authors": [
-        {
-            "name": "Jan Pecha",
-            "email": "janpecha@email.cz"
-        }
-    ],
-    "require": {
-        "php": ">=5.6.0"
-    },
-    "require-dev": {
-        "nette/tester": "^2.0"
-    }
+	"name": "czproject/phpcli",
+	"description": "Helper class for PHP CLI apps.",
+	"license": "BSD-3-Clause",
+	"autoload": {
+		"classmap": ["src/"]
+	},
+	"authors": [
+		{
+			"name": "Jan Pecha",
+			"email": "janpecha@email.cz"
+		}
+	],
+	"require": {
+		"php": ">=5.6.0"
+	},
+	"require-dev": {
+		"nette/tester": "^2.0"
+	}
 }
