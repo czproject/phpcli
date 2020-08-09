@@ -169,17 +169,9 @@
 		protected function processOptions(array $options, array $definitions)
 		{
 			$result = array();
+			$optionDefinitions = array();
 
 			foreach ($definitions as $name => $definition) {
-				$originalName = $name;
-				$originalValue = NULL;
-				$isAlias = FALSE;
-
-				if (isset($options[$name])) {
-					$originalValue = $options[$name];
-					unset($options[$name]);
-				}
-
 				if (is_string($definition) || isset($definition['alias'])) {
 					$aliasName = is_string($definition) ? $definition : $definition['alias'];
 
@@ -191,129 +183,69 @@
 						throw new ApplicationException("Unknow alias '$aliasName' in option '$name'.");
 					}
 
-					$definition = $definitions[$aliasName];
-					$name = $aliasName;
-					$isAlias = TRUE;
-				}
+					$optionDefinitions[$name] = OptionDefinition::fromArray($aliasName, $definitions[$aliasName]);
 
-				if ($isAlias && $originalValue === NULL) {
+				} else {
+					if (!is_array($definition)) {
+						throw new ApplicationException("Definition of option '$name' must be array, " . gettype($definition) . ' given.');
+					}
+
+					$optionDefinitions[$name] = OptionDefinition::fromArray($name, $definition);
+				}
+			}
+
+			$unknowOptions = array();
+
+			foreach ($options as $option => $value) {
+				if (!isset($optionDefinitions[$option])) {
+					$unknowOptions[] = '\'' . $option . '\'';
+				}
+			}
+
+			if (!empty($unknowOptions)) {
+				throw new ApplicationException("Unknow options " . implode(', ', $unknowOptions) . '.');
+			}
+
+			$usedDefinitions = array();
+
+			foreach ($options as $option => $value) {
+				$optionDefinition = $optionDefinitions[$option];
+				$name = $optionDefinition->getName();
+				$isAlias = $name !== $option;
+
+				if ($isAlias && $value === NULL) {
 					continue;
 				}
 
-				if (!is_array($definition)) {
-					throw new ApplicationException("Definition of option '$name' must be array, " . gettype($definition) . ' given.');
+				if (array_key_exists($name, $result)) { // because aliases
+					throw new ApplicationException("Value for option '$name' already exists. Remove option '$option' from parameters.");
+				}
+
+				$result[$name] = $optionDefinition->processValue($option, $value);
+				$usedDefinitions[$option] = TRUE;
+				$usedDefinitions[$name] = TRUE;
+			}
+
+			// find unused definitions
+			foreach ($optionDefinitions as $option => $optionDefinition) {
+				if (isset($usedDefinitions[$option])) {
+					continue;
+				}
+
+				$name = $optionDefinition->getName();
+
+				if ($name !== $option) { // alias
+					continue;
 				}
 
 				if (array_key_exists($name, $result)) { // because aliases
-					throw new ApplicationException("Value for option '$name' already exists. Remove option '$originalName' from parameters.");
+					throw new ApplicationException("Value for option '$name' already exists.");
 				}
 
-				$result[$name] = $this->processOption($name, $originalValue, $definition);
-			}
-
-			if (!empty($options)) {
-				$labels = array_map(function ($label) {
-					return '\'' . $label . '\'';
-				}, array_keys($options));
-
-				throw new ApplicationException("Unknow options " . implode(', ', $labels) . '.');
+				$result[$name] = $optionDefinition->processValue($option, NULL);
 			}
 
 			return $result;
-		}
-
-
-		protected function processOption($name, $value, array $definition)
-		{
-			static $types = array(
-				'boolean',
-				'bool',
-				'integer',
-				'int',
-				'float',
-				'string',
-			);
-
-			if (!isset($definition['type'])) {
-				throw new ApplicationException("Missing 'type' definition for option '$name'.");
-			}
-
-			if (!is_string($definition['type'])) {
-				throw new ApplicationException("Invalid 'type' definition for option '$name'. Type must be string, " . gettype($definition['type']) . ' given.');
-			}
-
-			$type = strtolower($definition['type']);
-			$required = isset($definition['required']) && $definition['required'];
-			$nullable = isset($definition['nullable']) && $definition['nullable'];
-			$repeatable = isset($definition['repeatable']) && $definition['repeatable'];
-			$defaultValue = isset($definition['defaultValue']) ? $definition['defaultValue'] : NULL;
-			$value = isset($value) ? $value : $defaultValue;
-
-			if (!in_array($type, $types, TRUE)) {
-				throw new ApplicationException("Unknow type '$type' in definition for option '$name'.");
-			}
-
-			if ($value === NULL && $required) {
-				throw new ApplicationException("Missing value for required option '$name'.");
-			}
-
-			if ($repeatable && !is_array($value)) {
-				$value = array($value);
-			}
-
-			if (!$repeatable && is_array($value)) {
-				throw new ApplicationException("Multiple values for option '$name'.");
-			}
-
-			if ($nullable && ((is_array($value) && empty($value)) || $value === '')) {
-				$value = NULL;
-			}
-
-			// set type
-			if ($value !== NULL) {
-				if (is_array($value)) {
-					$values = array();
-
-					foreach ($value as $val) {
-						$values[] = $this->convertType($name, $val, $type);
-					}
-
-					$value = $values;
-
-				} else {
-					$value = $this->convertType($name, $value, $type);
-				}
-			}
-
-			return $value;
-		}
-
-
-		protected function convertType($name, $value, $type)
-		{
-			if ($type === 'bool' || $type === 'boolean') {
-				if (is_string($value)) {
-					$lValue = strtolower($value);
-
-					if ($lValue === 'yes' || $lValue === 'y' || $lValue === 'on' || $lValue === 'true' || $lValue === '1') {
-						return TRUE;
-
-					} elseif ($lValue === 'no' || $lValue === 'n' || $lValue === 'off' || $lValue === 'false' || $lValue === '0') {
-						return FALSE;
-					}
-
-				} elseif (is_bool($value) || is_int($value) || is_float($value)) {
-					return (bool) $value;
-				}
-
-				throw new \CzProject\PhpCli\InvalidValueException("Invalid boolean value for option '$name'.");
-
-			} elseif ($type === 'string' || $type === 'int' || $type === 'integer' || $type === 'float') {
-				settype($value, $type);
-				return $value;
-			}
-
-			throw new \CzProject\PhpCli\InvalidArgumentException("Unknow type '$type'.");
 		}
 
 
