@@ -5,7 +5,7 @@
 	use CzProject\PhpCli\IOutputProvider;
 
 
-	class TextOutput implements IOutputProvider
+	class TextOutputProvider implements IOutputProvider
 	{
 		public function output($str, $color = NULL)
 		{

@@ -8,7 +8,7 @@ require __DIR__ . '/../bootstrap.php';
 
 
 test(function () {
-	$output = new CzProject\PhpCli\Outputs\MemoryOutput;
+	$output = new CzProject\PhpCli\Outputs\MemoryOutputProvider;
 	$console = new CzProject\PhpCli\Console(
 		$output,
 		new CzProject\PhpCli\Inputs\DefaultInputProvider,

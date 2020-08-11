@@ -5,7 +5,7 @@
 	use CzProject\PhpCli\IOutputProvider;
 
 
-	class MemoryOutput implements IOutputProvider
+	class MemoryOutputProvider implements IOutputProvider
 	{
 		/** @var string|NULL */
 		private $output;

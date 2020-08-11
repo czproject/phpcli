@@ -43,10 +43,10 @@
 			}
 
 			if (self::$useColoredOutput) {
-				return new Outputs\ColoredOutput;
+				return new Outputs\ColoredOutputProvider;
 			}
 
-			return new Outputs\TextOutput;
+			return new Outputs\TextOutputProvider;
 		}
 
 
@@ -55,7 +55,7 @@
 		 */
 		public static function createNullOutputProvider()
 		{
-			return new Outputs\NullOutput;
+			return new Outputs\NullOutputProvider;
 		}
 
 

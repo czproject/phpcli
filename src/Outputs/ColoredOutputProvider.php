@@ -6,7 +6,7 @@
 	use CzProject\PhpCli\OutputException;
 
 
-	class ColoredOutput implements IOutputProvider
+	class ColoredOutputProvider implements IOutputProvider
 	{
 		protected static $colors = [
 			'green' => '0;32',
