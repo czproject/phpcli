@@ -30,15 +30,15 @@ require __DIR__ . '/vendor/autoload.php';
 $console = ConsoleFactory::createConsole();
 
 // output
-$console->success('CzProject CLI Simple Console')
+$console->output('CzProject CLI Simple Console', 'green')
 	->nl() // new line
-	->warning('Hey!')
+	->output('Hey!', 'yellow')
 	->nl()
-	->info('Fred!')
+	->output('Fred!', 'blue')
 	->nl()
-	->error('Fred is dead!')
+	->output('Fred is dead!', 'red')
 	->nl()
-	->muted('nooooooo...!', ' ', 'But, no problem!')
+	->output(['nooooooo...!', ' ', 'But, no problem!'], 'gray')
 	->nl()
 	->output('The end.')
 	->nl();
@@ -46,13 +46,12 @@ $console->success('CzProject CLI Simple Console')
 // input
 $username = $console->input('Enter your name:');
 
-$console->info('Hello! ')
-	->success($username)
-	->warning(' [user]')
+$console->output('Hello! ', 'blue')
+	->output($username, 'green')
+	->output(' [user]', 'yellow')
 	->nl() // print new line
-	->info('Bye!')
+	->output('Bye!', 'blue')
 	->nl();
-
 ```
 
 --------------------------------------------------------------------------------

@@ -104,18 +104,18 @@
 		{
 			$console = $this->console;
 			$console->nl();
-			$console->error('ERROR: ' . $e->getMessage());
+			$console->output('ERROR: ' . $e->getMessage(), 'red');
 			$console->nl();
 			$console->nl();
-			$console->error('Details:');
+			$console->output('Details:', 'red');
 			$console->nl();
-			$console->error(' - type: ' . get_class($e));
+			$console->output(' - type: ' . get_class($e), 'red');
 			$console->nl();
-			$console->error(' - code: ' . $e->getCode());
+			$console->output(' - code: ' . $e->getCode(), 'red');
 			$console->nl();
-			$console->error(' - file: ' . $e->getFile());
+			$console->output(' - file: ' . $e->getFile(), 'red');
 			$console->nl();
-			$console->error(' - line: ' . $e->getLine());
+			$console->output(' - line: ' . $e->getLine(), 'red');
 			$console->nl();
 		}
 
@@ -237,13 +237,13 @@
 			}
 
 			$this->console->nl()
-				->warning('Usage:')
+				->output('Usage:', 'yellow')
 				->nl()
 				->output('  command [options] -- [arguments]')
 				->nl();
 
 			$this->console->nl()
-				->warning('Available commands:')
+				->output('Available commands:', 'yellow')
 				->nl();
 
 			$len = 0;
@@ -255,7 +255,7 @@
 			foreach ($this->commands as $commandName => $command) {
 				$commandDescription = $command->getDescription();
 				$this->console->output('  ')
-					->success($commandName);
+					->output($commandName, 'green');
 
 				if (isset($commandDescription)) {
 					$this->console->output(str_repeat(' ', $len - strlen($commandName)))

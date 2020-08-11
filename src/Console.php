@@ -17,6 +17,12 @@
 		/** @var  Parameters|NULL */
 		protected $parameters;
 
+		/** @var string */
+		protected $newLineCharacter;
+
+		/** @var string|NULL */
+		protected $color;
+
 
 		public function __construct(
 			IOutputProvider $outputProvider,
@@ -27,6 +33,8 @@
 			$this->outputProvider = $outputProvider;
 			$this->inputProvider = $inputProvider;
 			$this->parametersProvider = $parametersProvider;
+			// set default NL character, for WIN platform is used \r\n
+			$this->newLineCharacter = (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') ? "\r\n" : "\n";
 		}
 
 
@@ -121,86 +129,27 @@
 		}
 
 
-		/**
-		 * @param  string|string[]
-		 * @return static
-		 */
-		public function output($str)
+		public function color($color)
 		{
-			if (!is_array($str)) {
-				$str = func_get_args();
-			}
-			$this->outputProvider->output($str);
+			$this->color = $color;
 			return $this;
 		}
 
 
 		/**
 		 * @param  string|string[]
+		 * @param  string|NULL NULL means current
 		 * @return static
 		 */
-		public function success($str)
+		public function output($str, $color = NULL)
 		{
-			if (!is_array($str)) {
-				$str = func_get_args();
+			$color = $color !== NULL ? $color : $this->color;
+
+			if (is_array($str)) {
+				$str = implode('', $str);
 			}
-			$this->outputProvider->success($str);
-			return $this;
-		}
 
-
-		/**
-		 * @param  string|string[]
-		 * @return static
-		 */
-		public function error($str)
-		{
-			if (!is_array($str)) {
-				$str = func_get_args();
-			}
-			$this->outputProvider->error($str);
-			return $this;
-		}
-
-
-		/**
-		 * @param  string|string[]
-		 * @return static
-		 */
-		public function warning($str)
-		{
-			if (!is_array($str)) {
-				$str = func_get_args();
-			}
-			$this->outputProvider->warning($str);
-			return $this;
-		}
-
-
-		/**
-		 * @param  string|string[]
-		 * @return static
-		 */
-		public function info($str)
-		{
-			if (!is_array($str)) {
-				$str = func_get_args();
-			}
-			$this->outputProvider->info($str);
-			return $this;
-		}
-
-
-		/**
-		 * @param  string|string[]
-		 * @return static
-		 */
-		public function muted($str)
-		{
-			if (!is_array($str)) {
-				$str = func_get_args();
-			}
-			$this->outputProvider->muted($str);
+			$this->outputProvider->output($str, $color);
 			return $this;
 		}
 
@@ -210,7 +159,7 @@
 		 */
 		public function nl()
 		{
-			$this->outputProvider->nl();
+			$this->outputProvider->output($this->newLineCharacter, NULL);
 			return $this;
 		}
 

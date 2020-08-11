@@ -2,75 +2,13 @@
 
 	namespace CzProject\PhpCli\Outputs;
 
+	use CzProject\PhpCli\IOutputProvider;
 
-	class TextOutput extends BaseOutput
+
+	class TextOutput implements IOutputProvider
 	{
-		/**
-		 * @param  string|string[]
-		 * @return static
-		 */
-		public function success($str)
+		public function output($str, $color = NULL)
 		{
-			if (!is_array($str)) {
-				$str = func_get_args();
-			}
-
-			return $this->output($str);
-		}
-
-
-		/**
-		 * @param  string|string[]
-		 * @return static
-		 */
-		public function error($str)
-		{
-			if (!is_array($str)) {
-				$str = func_get_args();
-			}
-
-			return $this->output($str);
-		}
-
-
-		/**
-		 * @param  string|string[]
-		 * @return static
-		 */
-		public function warning($str)
-		{
-			if (!is_array($str)) {
-				$str = func_get_args();
-			}
-
-			return $this->output($str);
-		}
-
-
-		/**
-		 * @param  string|string[]
-		 * @return static
-		 */
-		public function info($str)
-		{
-			if (!is_array($str)) {
-				$str = func_get_args();
-			}
-
-			return $this->output($str);
-		}
-
-
-		/**
-		 * @param  string|string[]
-		 * @return static
-		 */
-		public function muted($str)
-		{
-			if (!is_array($str)) {
-				$str = func_get_args();
-			}
-
-			return $this->output($str);
+			echo $str;
 		}
 	}

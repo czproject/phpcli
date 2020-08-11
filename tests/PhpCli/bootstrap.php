@@ -10,19 +10,19 @@ Tester\Environment::setup();
 function printOutputStory($console)
 {
 	ob_start();
-	$console->success('CzProject', ' ', 'CLI Simple Console')
+	$console->output(['CzProject', ' ', 'CLI Simple Console'], 'green')
 		->nl()
-		->warning('Hey', '!')
+		->output(['Hey', '!'], 'yellow')
 		->nl()
-		->info('Fred', '!')
+		->output(['Fred', '!'], 'blue')
 		->nl()
-		->error('Fred is', ' ', 'dead!')
+		->output(['Fred is', ' ', 'dead!'], 'red')
 		->nl()
-		->muted('nooooo...', '!')
+		->output(['nooooo...', '!'], 'gray')
 		->nl()
-		->output('The', ' ', 'end.')
+		->output(['The', ' ', 'end.'])
 		->nl()
-		->output(':D')
+		->output([':D'])
 		->nl();
 	$content = ob_get_contents();
 	ob_end_clean();

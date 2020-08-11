@@ -2,110 +2,37 @@
 
 	namespace CzProject\PhpCli\Outputs;
 
+	use CzProject\PhpCli\IOutputProvider;
 	use CzProject\PhpCli\OutputException;
 
 
-	class ColoredOutput extends BaseOutput
+	class ColoredOutput implements IOutputProvider
 	{
 		protected static $colors = [
-			'success' => '0;32',
-			'error' => '0;31',
-			'warning' => '0;33',
-			'info' => '0;34',
-			'muted' => '1;30',
+			'green' => '0;32',
+			'red' => '0;31',
+			'yellow' => '0;33',
+			'blue' => '0;34',
+			'gray' => '1;30',
 		];
 
 
-		/**
-		 * @param  string|string[]
-		 * @return static
-		 */
-		public function success($str)
+		public function output($str, $color = NULL)
 		{
-			if (!is_array($str)) {
-				$str = func_get_args();
+			if ($color !== NULL) {
+				// set color
+				if (!isset(self::$colors[$color])) {
+					throw new OutputException("Unknow color: '$color'.");
+				}
+
+				echo "\033[", self::$colors[$color], 'm';
 			}
 
-			return $this->printString('success', $str);
-		}
+			echo $str;
 
-
-		/**
-		 * @param  string|string[]
-		 * @return static
-		 */
-		public function error($str)
-		{
-			if (!is_array($str)) {
-				$str = func_get_args();
+			if ($color !== NULL) {
+				// reset color
+				echo "\033[0m";
 			}
-
-			return $this->printString('error', $str);
-		}
-
-
-		/**
-		 * @param  string|string[]
-		 * @return static
-		 */
-		public function warning($str)
-		{
-			if (!is_array($str)) {
-				$str = func_get_args();
-			}
-
-			return $this->printString('warning', $str);
-		}
-
-
-		/**
-		 * @param  string|string[]
-		 * @return static
-		 */
-		public function info($str)
-		{
-			if (!is_array($str)) {
-				$str = func_get_args();
-			}
-
-			return $this->printString('info', $str);
-		}
-
-
-		/**
-		 * @param  string|string[]
-		 * @return static
-		 */
-		public function muted($str)
-		{
-			if (!is_array($str)) {
-				$str = func_get_args();
-			}
-
-			return $this->printString('muted', $str);
-		}
-
-
-		protected function setColor($colorId)
-		{
-			if (isset(self::$colors[$colorId = (string) $colorId])) {
-				return $this->output("\033[" . self::$colors[$colorId] . 'm');
-			}
-
-			throw new OutputException("Unknow color: $colorId");
-		}
-
-
-		protected function resetColor()
-		{
-			return $this->output("\033[0m");
-		}
-
-
-		protected function printString($colorId, $str = NULL)
-		{
-			return $this->setColor($colorId)
-				->output($str)
-				->resetColor();
 		}
 	}

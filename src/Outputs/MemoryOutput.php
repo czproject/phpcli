@@ -20,95 +20,9 @@
 		}
 
 
-		/**
-		 * @param  string|string[]
-		 * @return static
-		 */
-		public function output($str)
+		public function output($str, $color = NULL)
 		{
-			if (!is_array($str)) {
-				$str = func_get_args();
-			}
-
-			$this->output .= implode('', $str);
+			$this->output .= $str;
 			return $this;
-		}
-
-
-		public function nl()
-		{
-			$this->output .= "\n";
-			return $this;
-		}
-
-
-
-		/**
-		 * @param  string|string[]
-		 * @return static
-		 */
-		public function success($str)
-		{
-			if (!is_array($str)) {
-				$str = func_get_args();
-			}
-
-			return $this->output($str);
-		}
-
-
-		/**
-		 * @param  string|string[]
-		 * @return static
-		 */
-		public function error($str)
-		{
-			if (!is_array($str)) {
-				$str = func_get_args();
-			}
-
-			return $this->output($str);
-		}
-
-
-		/**
-		 * @param  string|string[]
-		 * @return static
-		 */
-		public function warning($str)
-		{
-			if (!is_array($str)) {
-				$str = func_get_args();
-			}
-
-			return $this->output($str);
-		}
-
-
-		/**
-		 * @param  string|string[]
-		 * @return static
-		 */
-		public function info($str)
-		{
-			if (!is_array($str)) {
-				$str = func_get_args();
-			}
-
-			return $this->output($str);
-		}
-
-
-		/**
-		 * @param  string|string[]
-		 * @return static
-		 */
-		public function muted($str)
-		{
-			if (!is_array($str)) {
-				$str = func_get_args();
-			}
-
-			return $this->output($str);
 		}
 	}
