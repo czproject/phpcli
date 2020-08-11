@@ -36,5 +36,5 @@ test(function () {
 
 		$application->run();
 
-	}, 'CzProject\PhpCli\ApplicationException', "Missing value for required option 'required'.");
+	}, CzProject\PhpCli\ApplicationException::class, "Missing value for required option 'required'.");
 });

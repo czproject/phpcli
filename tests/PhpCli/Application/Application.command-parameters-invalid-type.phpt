@@ -27,5 +27,5 @@ test(function () {
 
 		$application->run();
 
-	}, 'CzProject\PhpCli\ApplicationException', "Unknow type 'unexpected' in definition for option 'required'.");
+	}, CzProject\PhpCli\ApplicationException::class, "Unknow type 'unexpected' in definition for option 'required'.");
 });

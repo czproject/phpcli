@@ -39,5 +39,5 @@ test(function () {
 			new stdClass,
 		]);
 
-	}, 'CzProject\PhpCli\ParameterParserException', 'Parameter must be scalar or NULL, object given at index (0).');
+	}, CzProject\PhpCli\ParameterParserException::class, 'Parameter must be scalar or NULL, object given at index (0).');
 });

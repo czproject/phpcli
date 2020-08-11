@@ -29,7 +29,7 @@ test(function () {
 
 		$application->run();
 
-	}, 'RuntimeException', 'COMMAND: default');
+	}, RuntimeException::class, 'COMMAND: default');
 });
 
 
@@ -53,5 +53,5 @@ test(function () {
 
 		$application->run();
 
-	}, 'RuntimeException', 'COMMAND: test');
+	}, RuntimeException::class, 'COMMAND: test');
 });

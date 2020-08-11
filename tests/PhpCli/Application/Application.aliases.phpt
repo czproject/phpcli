@@ -66,7 +66,7 @@ test(function () use ($testCommand) {
 
 		$application->run();
 
-	}, 'CzProject\PhpCli\ApplicationException', "Value for option 'flag' already exists. Remove option 'alias' from parameters.");
+	}, CzProject\PhpCli\ApplicationException::class, "Value for option 'flag' already exists. Remove option 'alias' from parameters.");
 });
 
 
@@ -82,5 +82,5 @@ test(function () use ($testCommand) {
 
 		$application->run();
 
-	}, 'CzProject\PhpCli\ApplicationException', "Value for option 'flag' already exists. Remove option 'alias2' from parameters.");
+	}, CzProject\PhpCli\ApplicationException::class, "Value for option 'flag' already exists. Remove option 'alias2' from parameters.");
 });

@@ -17,5 +17,5 @@ test(function () {
 
 		$application->run();
 
-	}, 'CzProject\PhpCli\ApplicationException', 'Missing command name.');
+	}, CzProject\PhpCli\ApplicationException::class, 'Missing command name.');
 });

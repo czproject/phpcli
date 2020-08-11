@@ -103,5 +103,5 @@ test(function () {
 
 		$application->run();
 
-	}, 'CzProject\PhpCli\ApplicationException', "Multiple values for option 'flag5'.");
+	}, CzProject\PhpCli\ApplicationException::class, "Multiple values for option 'flag5'.");
 });

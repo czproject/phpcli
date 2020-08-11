@@ -27,5 +27,5 @@ test(function () {
 
 		$application->run();
 
-	}, 'CzProject\PhpCli\ApplicationException', "Missing 'type' definition for option 'required'.");
+	}, CzProject\PhpCli\ApplicationException::class, "Missing 'type' definition for option 'required'.");
 });

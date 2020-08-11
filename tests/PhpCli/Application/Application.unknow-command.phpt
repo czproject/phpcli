@@ -17,5 +17,5 @@ test(function () {
 
 		$application->run();
 
-	}, 'CzProject\PhpCli\ApplicationException', "Unknow command 'unknow'.");
+	}, CzProject\PhpCli\ApplicationException::class, "Unknow command 'unknow'.");
 });

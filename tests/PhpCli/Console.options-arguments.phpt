@@ -51,4 +51,4 @@ Assert::exception(function () use ($console) {
 	$console->getOption('unexists')
 		->setRequired()
 		->getValue();
-}, 'CzProject\PhpCli\MissingParameterException', 'Missing value for required option \'unexists\'.');
+}, CzProject\PhpCli\MissingParameterException::class, 'Missing value for required option \'unexists\'.');

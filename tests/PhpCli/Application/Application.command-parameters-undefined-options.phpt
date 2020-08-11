@@ -24,5 +24,5 @@ test(function () {
 
 		$application->run();
 
-	}, 'CzProject\PhpCli\ApplicationException', "Unknow options 'flag', 'flag2'.");
+	}, CzProject\PhpCli\ApplicationException::class, "Unknow options 'flag', 'flag2'.");
 });
