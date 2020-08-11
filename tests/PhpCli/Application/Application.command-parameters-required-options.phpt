@@ -12,8 +12,11 @@ require __DIR__ . '/../bootstrap.php';
  * Required option
  */
 test(function () {
-	$console = CzProject\PhpCli\ConsoleFactory::createConsole(new CzProject\PhpCli\Outputs\MemoryOutput);
-	$application = new Application($console);
+	$application = new Application(Tests\TestConsoleFactory::create([
+		'command',
+		'--flag',
+		'--flag2',
+	]));
 	$application->setCommand('command', Tests\TestCommand::create()
 		->setOptions([
 			'required' => [
@@ -31,12 +34,7 @@ test(function () {
 
 	Assert::exception(function () use ($application) {
 
-		$application->run([
-			'programName',
-			'command',
-			'--flag',
-			'--flag2',
-		]);
+		$application->run();
 
 	}, 'CzProject\PhpCli\ApplicationException', "Missing value for required option 'required'.");
 });

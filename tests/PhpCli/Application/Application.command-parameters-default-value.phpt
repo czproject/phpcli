@@ -12,8 +12,12 @@ require __DIR__ . '/../bootstrap.php';
  * Default value
  */
 test(function () {
-	$console = CzProject\PhpCli\ConsoleFactory::createConsole(new CzProject\PhpCli\Outputs\MemoryOutput);
-	$application = new Application($console);
+	$application = new Application(Tests\TestConsoleFactory::create([
+		'command',
+		'--flag-with-default',
+		'--flag-without-default',
+		'--flag-value',
+	]));
 	$application->setCommand('command', Tests\TestCommand::create()
 		->setOptions([
 			'flag-with-default' => [
@@ -44,11 +48,5 @@ test(function () {
 			Assert::same([], $arguments);
 		})
 	);
-	$application->run([
-		'programName',
-		'command',
-		'--flag-with-default',
-		'--flag-without-default',
-		'--flag-value',
-	]);
+	$application->run();
 });

@@ -7,14 +7,11 @@ use Tester\Assert;
 
 require __DIR__ . '/../bootstrap.php';
 
-$console = CzProject\PhpCli\ConsoleFactory::createConsole(new CzProject\PhpCli\Outputs\MemoryOutput);
-$application = new Application($console);
-$application->setDefaultCommand('default');
-
 
 test(function () {
-	$console = CzProject\PhpCli\ConsoleFactory::createConsole(new CzProject\PhpCli\Outputs\MemoryOutput);
-	$application = new Application($console);
+	$application = new Application(Tests\TestConsoleFactory::create([
+		'--run',
+	]));
 	$application->setDefaultCommand('default');
 	$application->setCommand('default', Tests\TestCommand::create()
 		->setOptions([
@@ -30,18 +27,16 @@ test(function () {
 
 	Assert::exception(function () use ($application) {
 
-		$application->run([
-			'programName',
-			'--run',
-		]);
+		$application->run();
 
 	}, 'RuntimeException', 'COMMAND: default');
 });
 
 
 test(function () {
-	$console = CzProject\PhpCli\ConsoleFactory::createConsole(new CzProject\PhpCli\Outputs\TextOutput);
-	$application = new Application($console);
+	$application = new Application(Tests\TestConsoleFactory::create([
+		'test',
+	]));
 	$application->setDefaultCommand('default');
 	$application->setCommand('default', Tests\TestCommand::create()
 		->setCallback(function () {
@@ -56,10 +51,7 @@ test(function () {
 
 	Assert::exception(function () use ($application) {
 
-		$application->run([
-			'programName',
-			'test',
-		]);
+		$application->run();
 
 	}, 'RuntimeException', 'COMMAND: test');
 });

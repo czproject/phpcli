@@ -3,10 +3,10 @@
 	namespace CzProject\PhpCli;
 
 
-	interface IParameterParser
+	interface IParametersProvider
 	{
 		/**
 		 * @return Parameters
 		 */
-		function parse(array $rawParameters);
+		function getParameters();
 	}

@@ -12,9 +12,9 @@ require __DIR__ . '/../bootstrap.php';
  * Missing type
  */
 test(function () {
-	$console = CzProject\PhpCli\ConsoleFactory::createConsole(new CzProject\PhpCli\Outputs\MemoryOutput);
-
-	$application = new Application($console);
+	$application = new Application(Tests\TestConsoleFactory::create([
+		'command',
+	]));
 	$application->setCommand('command', Tests\TestCommand::create()
 		->setOptions([
 			'required' => [
@@ -25,10 +25,7 @@ test(function () {
 
 	Assert::exception(function () use ($application) {
 
-		$application->run([
-			'programName',
-			'command',
-		]);
+		$application->run();
 
 	}, 'CzProject\PhpCli\ApplicationException', "Missing 'type' definition for option 'required'.");
 });

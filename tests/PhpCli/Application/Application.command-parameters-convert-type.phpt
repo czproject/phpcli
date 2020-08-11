@@ -12,8 +12,22 @@ require __DIR__ . '/../bootstrap.php';
  * Convert type
  */
 test(function () {
-	$console = CzProject\PhpCli\ConsoleFactory::createConsole(new CzProject\PhpCli\Outputs\MemoryOutput);
-	$application = new Application($console);
+	$application = new Application(Tests\TestConsoleFactory::create([
+		'command',
+		'--bool-flag',
+		'--bool-yes=YES',
+		'--bool-y=y',
+		'--bool-on=on',
+		'--bool-true=true',
+		'--bool-no=NO',
+		'--bool-n=n',
+		'--bool-off=off',
+		'--bool-false=false',
+		'--bool-string=1',
+		'--integer=9854.588',
+		'--float=9854.588',
+		'--string=9854.588',
+	]));
 	$application->setCommand('command', Tests\TestCommand::create()
 		->setOptions([
 			'bool-flag' => [
@@ -86,21 +100,5 @@ test(function () {
 			], $options);
 		})
 	);
-	$application->run([
-		'programName',
-		'command',
-		'--bool-flag',
-		'--bool-yes=YES',
-		'--bool-y=y',
-		'--bool-on=on',
-		'--bool-true=true',
-		'--bool-no=NO',
-		'--bool-n=n',
-		'--bool-off=off',
-		'--bool-false=false',
-		'--bool-string=1',
-		'--integer=9854.588',
-		'--float=9854.588',
-		'--string=9854.588',
-	]);
+	$application->run();
 });

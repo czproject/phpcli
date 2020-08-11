@@ -12,8 +12,17 @@ require __DIR__ . '/../bootstrap.php';
  * Nullable
  */
 test(function () {
-	$console = CzProject\PhpCli\ConsoleFactory::createConsole(new CzProject\PhpCli\Outputs\MemoryOutput);
-	$application = new Application($console);
+	$application = new Application(Tests\TestConsoleFactory::create([
+		'command',
+		'--null-string=',
+		'--null-array=',
+		'--null-array=',
+		'--null-array2=',
+		'--empty-string=',
+		'--empty-array=',
+		'--empty-array=',
+		'--empty-array2=',
+	]));
 	$application->setCommand('command', Tests\TestCommand::create()
 		->setOptions([
 			'null-string' => [
@@ -75,16 +84,5 @@ test(function () {
 		})
 	);
 
-	$application->run([
-		'programName',
-		'command',
-		'--null-string=',
-		'--null-array=',
-		'--null-array=',
-		'--null-array2=',
-		'--empty-string=',
-		'--empty-array=',
-		'--empty-array=',
-		'--empty-array2=',
-	]);
+	$application->run();
 });

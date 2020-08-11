@@ -2,6 +2,7 @@
 
 require __DIR__ . '/../../vendor/autoload.php';
 require __DIR__ . '/includes/TestCommand.php';
+require __DIR__ . '/includes/TestConsoleFactory.php';
 
 Tester\Environment::setup();
 

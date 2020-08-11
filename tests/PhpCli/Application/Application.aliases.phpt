@@ -6,9 +6,7 @@ use Tester\Assert;
 
 require __DIR__ . '/../bootstrap.php';
 
-$console = CzProject\PhpCli\ConsoleFactory::createConsole(new CzProject\PhpCli\Outputs\MemoryOutput);
-$application = new Application($console);
-$application->setCommand('command', Tests\TestCommand::create()
+$testCommand = Tests\TestCommand::create()
 	->setOptions([
 		'flag' => [
 			'type' => 'bool',
@@ -23,60 +21,66 @@ $application->setCommand('command', Tests\TestCommand::create()
 		Assert::same([
 			'flag' => TRUE,
 		], $options);
-	})
-);
+	});
 
 
-test(function () use ($application) {
-	$application->run([
-		'programName',
+test(function () use ($testCommand) {
+	$application = new Application(Tests\TestConsoleFactory::create([
 		'command',
 		'--flag=yes',
-	]);
+	]));
+	$application->setCommand('command', $testCommand);
+	$application->run();
 });
 
 
-test(function () use ($application) {
-	$application->run([
-		'programName',
+test(function () use ($testCommand) {
+	$application = new Application(Tests\TestConsoleFactory::create([
 		'command',
 		'--alias=yes',
-	]);
+	]));
+	$application->setCommand('command', $testCommand);
+	$application->run();
 });
 
 
-test(function () use ($application) {
-	$application->run([
-		'programName',
+test(function () use ($testCommand) {
+	$application = new Application(Tests\TestConsoleFactory::create([
 		'command',
 		'--alias2=yes',
-	]);
+	]));
+	$application->setCommand('command', $testCommand);
+	$application->run();
 });
 
 
-test(function () use ($application) {
+test(function () use ($testCommand) {
+	$application = new Application(Tests\TestConsoleFactory::create([
+		'command',
+		'--flag=yes',
+		'--alias=yes',
+	]));
+	$application->setCommand('command', $testCommand);
+
 	Assert::exception(function () use ($application) {
 
-		$application->run([
-			'programName',
-			'command',
-			'--flag=yes',
-			'--alias=yes',
-		]);
+		$application->run();
 
 	}, 'CzProject\PhpCli\ApplicationException', "Value for option 'flag' already exists. Remove option 'alias' from parameters.");
 });
 
 
-test(function () use ($application) {
+test(function () use ($testCommand) {
+	$application = new Application(Tests\TestConsoleFactory::create([
+		'command',
+		'--alias=yes',
+		'--alias2=yes',
+	]));
+	$application->setCommand('command', $testCommand);
+
 	Assert::exception(function () use ($application) {
 
-		$application->run([
-			'programName',
-			'command',
-			'--alias=yes',
-			'--alias2=yes',
-		]);
+		$application->run();
 
 	}, 'CzProject\PhpCli\ApplicationException', "Value for option 'flag' already exists. Remove option 'alias2' from parameters.");
 });

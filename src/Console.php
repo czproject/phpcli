@@ -11,18 +11,22 @@
 		/** @var  IInputProvider */
 		protected $inputProvider;
 
-		/** @var  IParameterParser */
-		protected $parameterParser;
+		/** @var  IParametersProvider */
+		protected $parametersProvider;
 
-		/** @var  array|NULL */
+		/** @var  Parameters|NULL */
 		protected $parameters;
 
 
-		public function __construct(IOutputProvider $outputProvider, IInputProvider $inputProvider, IParameterParser $parameterParser)
+		public function __construct(
+			IOutputProvider $outputProvider,
+			IInputProvider $inputProvider,
+			IParametersProvider $parametersProvider
+		)
 		{
 			$this->outputProvider = $outputProvider;
 			$this->inputProvider = $inputProvider;
-			$this->parameterParser = $parameterParser;
+			$this->parametersProvider = $parametersProvider;
 		}
 
 
@@ -61,62 +65,50 @@
 
 
 		/**
-		 * @return static
-		 */
-		public function addRawParameters(array $rawParameters = NULL)
-		{
-			$parameters = $this->processRawParameters($rawParameters);
-			$this->addParameters($parameters);
-			return $this;
-		}
-
-
-		/**
-		 * @return static
-		 */
-		public function processRawParameters(array $rawParameters = NULL)
-		{
-			return $this->parameterParser->parse($rawParameters);
-		}
-
-
-		/**
-		 * @param  array|NULL
-		 * @return static
-		 */
-		public function addParameters(array $parameters = NULL)
-		{
-			$this->parameters = Parameters\Helpers::merge($parameters, $this->parameters);
-			return $this;
-		}
-
-
-		/**
-		 * @return array|NULL
+		 * @return Parameters
 		 */
 		public function getParameters()
 		{
+			if ($this->parameters === NULL) {
+				$this->parameters = $this->parametersProvider->getParameters();
+			}
+
 			return $this->parameters;
 		}
 
 
 		/**
-		 * @param  string
-		 * @param  mixed
-		 * @param  bool
-		 * @return mixed
+		 * @return bool
 		 */
-		public function getParameter($name, $defaultValue = NULL, $required = FALSE)
+		public function hasParameters()
 		{
-			if (!isset($this->parameters[$name])) {
-				if ($required) {
-					throw new MissingParameterException("Required parameter '$name' not found.");
-				}
+			return $this->getParameters()->hasParameters();
+		}
 
-				return $defaultValue;
-			}
 
-			return $this->parameters[$name];
+		/**
+		 * @param  string
+		 * @param  string
+		 * @return Parameters\Option
+		 */
+		public function getOption($name, $type = 'string')
+		{
+			$parameters = $this->getParameters();
+			$value = $parameters->hasOption($name) ? $parameters->getOption($name) : NULL;
+			return new Parameters\Option($name, $value, $type);
+		}
+
+
+		/**
+		 * @param  int
+		 * @param  string
+		 * @return Parameters\Argument
+		 */
+		public function getArgument($index, $type = 'string')
+		{
+			$parameters = $this->getParameters();
+			$value = $parameters->hasArgument($index) ? $parameters->getArgument($index) : NULL;
+			return new Parameters\Argument($index, $value, $type);
 		}
 
 

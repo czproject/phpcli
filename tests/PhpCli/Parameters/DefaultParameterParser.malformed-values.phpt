@@ -9,20 +9,22 @@ require __DIR__ . '/../bootstrap.php';
  */
 test(function () {
 	$parser = new CzProject\PhpCli\Parameters\DefaultParameterParser;
+	$parameters = $parser->parse([
+		'',
+		0,
+		0.0,
+		FALSE,
+		TRUE,
+	]);
 
 	Assert::same([
 		0,
 		0.0,
 		FALSE,
 		TRUE,
-	], $parser->parse([
-		'programName',
-		'',
-		0,
-		0.0,
-		FALSE,
-		TRUE,
-	]));
+	], $parameters->getArguments());
+
+	Assert::same([], $parameters->getOptions());
 });
 
 
@@ -34,7 +36,6 @@ test(function () {
 
 		$parser = new CzProject\PhpCli\Parameters\DefaultParameterParser;
 		$parser->parse([
-			'programName',
 			new stdClass,
 		]);
 

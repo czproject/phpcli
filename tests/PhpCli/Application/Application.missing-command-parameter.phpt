@@ -3,20 +3,19 @@
 use CzProject\PhpCli\Application\Application;
 use CzProject\PhpCli\Application\ICommand;
 use CzProject\PhpCli\Console;
+use CzProject\PhpCli\Tests;
 use Tester\Assert;
 
 require __DIR__ . '/../bootstrap.php';
 
 test(function () {
-	$console = CzProject\PhpCli\ConsoleFactory::createConsole(new CzProject\PhpCli\Outputs\MemoryOutput);
-	$application = new Application($console);
+	$application = new Application(Tests\TestConsoleFactory::create([
+		'--flag',
+	]));
 
 	Assert::exception(function () use ($application) {
 
-		$application->run([
-			'programName',
-			'--flag',
-		]);
+		$application->run();
 
 	}, 'CzProject\PhpCli\ApplicationException', 'Missing command name.');
 });

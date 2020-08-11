@@ -3,66 +3,72 @@
 	namespace CzProject\PhpCli\Parameters;
 
 	use CzProject\PhpCli\IParameterParser;
+	use CzProject\PhpCli\Parameters;
 
 
 	class DefaultParameterParser implements IParameterParser
 	{
 		/**
-		 * {@inheritDoc}
+		 * @param  array  parameters without programName
+		 * @return Parameters
 		 */
-		public function parse(array $raw = NULL)
+		public function parse(array $rawParameters)
 		{
-			$parameters = NULL;
+			$parametersFactory = new ParametersFactory;
 
 			// parsing
 			$lastName = NULL;
+			$pending = FALSE;
 
-			if (isset($raw[1])) { // count($raw) > 1
-				// remove argv[0]
-				array_shift($raw);
+			foreach ($rawParameters as $index => $value) {
+				if (!is_scalar($value) && !is_null($value)) {
+					throw new \CzProject\PhpCli\ParameterParserException('Parameter must be scalar or NULL, ' . gettype($value) . " given at index ($index).");
+				}
 
-				// parsing
-				$overwrite = FALSE;
+				if ($value === '') {
+					continue;
+				}
 
-				foreach ($raw as $index => $argument) {
-					if (!is_scalar($argument) && !is_null($argument)) {
-						throw new \CzProject\PhpCli\ParameterParserException('Parameter must be scalar or NULL, ' . gettype($argument) . " given at index ($index).");
-					}
+				if (is_string($value) && $value[0] === '-') {
+					$pending = FALSE;
+					$name = ltrim($value, '-');
+					$lastName = $name;
 
-					if ($argument === '') {
+					if ($name === '') { // --
+						$lastName = NULL;
 						continue;
 					}
 
-					if (is_string($argument) && $argument[0] === '-') {
-						$overwrite = FALSE;
-						$name = ltrim($argument, '-');
-						$lastName = $name;
+					if (strpos($name, '=')) { // --option=value
+						$parts = explode('=', $name, 2);
+						$lastName = NULL;
+						$parametersFactory->addOption($parts[0], $parts[1]);
+						continue;
+					}
 
-						if ($name === '') { // --
-							$lastName = NULL;
-							continue;
-						}
+					if (!$parametersFactory->hasOption($name)) { // flag
+						$parametersFactory->setOption($name, TRUE);
+						$pending = TRUE;
+					}
 
-						if (strpos($name, '=')) { // --option=value
-							$parts = explode('=', $name, 2);
-							$lastName = NULL;
-							Helpers::assignParameter($parameters, $parts[0], $parts[1], FALSE);
-							continue;
-						}
-
-						if (!isset($parameters[$name])) {
-							Helpers::assignParameter($parameters, $name, TRUE, FALSE);
-							$overwrite = TRUE;
-						}
+				} else {
+					if ($lastName === NULL) {
+						$parametersFactory->addArgument($value);
 
 					} else {
-						Helpers::assignParameter($parameters, $lastName, $argument, $overwrite);
-						$overwrite = FALSE;
-						$lastName = NULL;
+						if ($pending) {
+							$parametersFactory->setOption($lastName, $value);
+
+						} else {
+							$parametersFactory->addOption($lastName, $value);
+						}
 					}
+
+					$pending = FALSE;
+					$lastName = NULL;
 				}
 			}
 
-			return $parameters;
+			return $parametersFactory->createParameters();
 		}
 	}

@@ -12,9 +12,15 @@ require __DIR__ . '/../bootstrap.php';
  * Repeatable
  */
 test(function () {
-	$console = CzProject\PhpCli\ConsoleFactory::createConsole(new CzProject\PhpCli\Outputs\MemoryOutput);
-
-	$application = new Application($console);
+	$application = new Application(Tests\TestConsoleFactory::create([
+		'command',
+		'--flag',
+		'--flag2=flag2-value',
+		'--flag2=flag2-value2',
+		'--flag3',
+		'--flag4=flag4-value',
+		'--flag',
+	]));
 	$application->setCommand('command', Tests\TestCommand::create()
 		->setOptions([
 			'flag' => [
@@ -51,16 +57,7 @@ test(function () {
 		})
 	);
 
-	$application->run([
-		'programName',
-		'command',
-		'--flag',
-		'--flag2=flag2-value',
-		'--flag2=flag2-value2',
-		'--flag3',
-		'--flag4=flag4-value',
-		'--flag',
-	]);
+	$application->run();
 });
 
 
@@ -68,8 +65,17 @@ test(function () {
  * Repeatable missing value
  */
 test(function () {
-	$console = CzProject\PhpCli\ConsoleFactory::createConsole(new CzProject\PhpCli\Outputs\MemoryOutput);
-	$application = new Application($console);
+	$application = new Application(Tests\TestConsoleFactory::create([
+		'command',
+		'--flag',
+		'--flag',
+		'--flag2=flag2-value',
+		'--flag2=flag2-value2',
+		'--flag3',
+		'--flag5=flag5-value',
+		'--flag4=flag4-value',
+		'--flag5=flag5-value2',
+	]));
 	$application->setCommand('command', Tests\TestCommand::create()
 		->setOptions([
 			'flag' => [
@@ -95,18 +101,7 @@ test(function () {
 
 	Assert::exception(function () use ($application) {
 
-		$application->run([
-			'programName',
-			'command',
-			'--flag',
-			'--flag',
-			'--flag2=flag2-value',
-			'--flag2=flag2-value2',
-			'--flag3',
-			'--flag5=flag5-value',
-			'--flag4=flag4-value',
-			'--flag5=flag5-value2',
-		]);
+		$application->run();
 
 	}, 'CzProject\PhpCli\ApplicationException', "Multiple values for option 'flag5'.");
 });

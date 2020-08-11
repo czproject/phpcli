@@ -9,16 +9,7 @@ require __DIR__ . '/../bootstrap.php';
  */
 test(function () {
 	$parser = new CzProject\PhpCli\Parameters\DefaultParameterParser;
-
-	Assert::same([
-		'flag' => TRUE,
-		'option' => 'Lorem ipsum dolor = sit amet',
-		'argument',
-		'argument2',
-		'flag2' => TRUE,
-		'flag3' => 'flag-value',
-	], $parser->parse([
-		'programName',
+	$parameters = $parser->parse([
 		'--flag',
 		'--option=Lorem ipsum dolor = sit amet',
 		'argument',
@@ -26,5 +17,17 @@ test(function () {
 		'--flag2',
 		'--flag3',
 		'flag-value',
-	]));
+	]);
+
+	Assert::same([
+		'argument',
+		'argument2',
+	], $parameters->getArguments());
+
+	Assert::same([
+		'flag' => TRUE,
+		'option' => 'Lorem ipsum dolor = sit amet',
+		'flag2' => TRUE,
+		'flag3' => 'flag-value',
+	], $parameters->getOptions());
 });

@@ -9,7 +9,11 @@ require __DIR__ . '/../bootstrap.php';
 
 test(function () {
 	$output = new CzProject\PhpCli\Outputs\MemoryOutput;
-	$console = CzProject\PhpCli\ConsoleFactory::createConsole($output);
+	$console = new CzProject\PhpCli\Console(
+		$output,
+		new CzProject\PhpCli\Inputs\DefaultInputProvider,
+		new CzProject\PhpCli\Parameters\MemoryParametersProvider([])
+	);
 
 	$application = new Application($console);
 	$application->setApplicationName('APP NAME');

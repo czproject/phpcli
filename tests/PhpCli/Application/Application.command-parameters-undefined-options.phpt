@@ -12,18 +12,17 @@ require __DIR__ . '/../bootstrap.php';
  * Undefined options
  */
 test(function () {
-	$console = CzProject\PhpCli\ConsoleFactory::createConsole(new CzProject\PhpCli\Outputs\MemoryOutput);
-
-	$application = new Application($console);
+	$application = new Application(Tests\TestConsoleFactory::create([
+		'command',
+		'argument',
+		'--flag',
+		'--flag2',
+	]));
 	$application->setCommand('command', Tests\TestCommand::create());
 
 	Assert::exception(function () use ($application) {
-		$application->run([
-			'programName',
-			'command',
-			'argument',
-			'--flag',
-			'--flag2',
-		]);
+
+		$application->run();
+
 	}, 'CzProject\PhpCli\ApplicationException', "Unknow options 'flag', 'flag2'.");
 });

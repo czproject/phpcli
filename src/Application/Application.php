@@ -5,6 +5,7 @@
 	use CzProject\PhpCli\ApplicationException;
 	use CzProject\PhpCli\Console;
 	use CzProject\PhpCli\ConsoleFactory;
+	use CzProject\PhpCli\Parameters;
 
 
 	class Application
@@ -73,25 +74,13 @@
 		}
 
 
-		public function run(array $rawParameters = NULL)
+		public function run()
 		{
-			$parameters = $this->console->getParameters();
-
-			if ($parameters === NULL && $rawParameters === NULL) {
-				if (isset($_SERVER['argv']) && is_array($_SERVER['argv'])) {
-					$rawParameters = $_SERVER['argv'];
-				}
-			}
-
-			if ($rawParameters !== NULL) {
-				$parameters = $this->console->processRawParameters($rawParameters);
-			}
-
-			if (empty($parameters)) {
+			if (!$this->console->hasParameters()) {
 				$this->printHelp();
 
 			} else {
-				$request = $this->createRequest($parameters);
+				$request = $this->createRequest($this->console->getParameters());
 
 				if (!$request) {
 					throw new ApplicationException('Missing command name.');
@@ -131,24 +120,14 @@
 		}
 
 
-		protected function createRequest(array $parameters)
+		protected function createRequest(Parameters $parameters)
 		{
 			$command = NULL;
-			$options = [];
-			$arguments = [];
+			$options = $parameters->getOptions();
+			$arguments = $parameters->getArguments();
 
-			foreach ($parameters as $parameterName => $parameterValue) {
-				if (is_string($parameterName)) { // option
-					$options[$parameterName] = $parameterValue;
-
-				} else { // command name or argument
-					if ($command === NULL) {
-						$command = $parameterValue;
-
-					} else {
-						$arguments[] = $parameterValue;
-					}
-				}
+			if (!empty($arguments)) {
+				$command = array_shift($arguments);
 			}
 
 			if ($command === NULL) {

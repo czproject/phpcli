@@ -12,8 +12,14 @@ require __DIR__ . '/../bootstrap.php';
  * Arguments
  */
 test(function () {
-	$console = CzProject\PhpCli\ConsoleFactory::createConsole(new CzProject\PhpCli\Outputs\MemoryOutput);
-	$application = new Application($console);
+	$application = new Application(Tests\TestConsoleFactory::create([
+		'command',
+		'argument1',
+		'argument2',
+		'--flag',
+		'--',
+		'argument3',
+	]));
 	$application->setCommand('command', Tests\TestCommand::create()
 		->setOptions([
 			'flag' => [
@@ -33,13 +39,5 @@ test(function () {
 		})
 	);
 
-	$application->run([
-		'programName',
-		'command',
-		'argument1',
-		'argument2',
-		'--flag',
-		'--',
-		'argument3',
-	]);
+	$application->run();
 });

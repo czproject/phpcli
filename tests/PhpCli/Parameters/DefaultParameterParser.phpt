@@ -5,19 +5,7 @@ use Tester\Assert;
 require __DIR__ . '/../bootstrap.php';
 
 $parser = new CzProject\PhpCli\Parameters\DefaultParameterParser;
-
-Assert::same([
-	0 => 'file.txt',
-	'm' => 'message',
-	'b' => TRUE,
-	'p' => ['parameter1', 'parameter2', 'parameter3'],
-	1 => 'newparam',
-	2 => 'text',
-	'flag' => TRUE,
-	'trim--' => TRUE,
-	3 => 'argument',
-], $parser->parse([
-	'programName',
+$parameters = $parser->parse([
 	'file.txt',
 	'-m', 'message',
 	'-b',
@@ -29,4 +17,19 @@ Assert::same([
 	'--trim--',
 	'--',
 	'argument',
-]));
+]);
+
+Assert::same([
+	0 => 'file.txt',
+	1 => 'newparam',
+	2 => 'text',
+	3 => 'argument',
+], $parameters->getArguments());
+
+Assert::same([
+	'm' => 'message',
+	'b' => TRUE,
+	'p' => ['parameter1', 'parameter2', 'parameter3'],
+	'flag' => TRUE,
+	'trim--' => TRUE,
+], $parameters->getOptions());
