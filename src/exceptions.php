@@ -53,7 +53,7 @@
 	}
 
 
-	class ParameterParserException extends Exception
+	class ParametersParserException extends Exception
 	{
 	}
 

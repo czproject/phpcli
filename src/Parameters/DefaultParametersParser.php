@@ -2,11 +2,11 @@
 
 	namespace CzProject\PhpCli\Parameters;
 
-	use CzProject\PhpCli\IParameterParser;
+	use CzProject\PhpCli\IParametersParser;
 	use CzProject\PhpCli\Parameters;
 
 
-	class DefaultParameterParser implements IParameterParser
+	class DefaultParametersParser implements IParametersParser
 	{
 		/**
 		 * @param  array  parameters without programName
@@ -22,7 +22,7 @@
 
 			foreach ($rawParameters as $index => $value) {
 				if (!is_scalar($value) && !is_null($value)) {
-					throw new \CzProject\PhpCli\ParameterParserException('Parameter must be scalar or NULL, ' . gettype($value) . " given at index ($index).");
+					throw new \CzProject\PhpCli\ParametersParserException('Parameter must be scalar or NULL, ' . gettype($value) . " given at index ($index).");
 				}
 
 				if ($value === '') {

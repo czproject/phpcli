@@ -4,7 +4,7 @@ use Tester\Assert;
 
 require __DIR__ . '/../bootstrap.php';
 
-$parser = new CzProject\PhpCli\Parameters\DefaultParameterParser;
+$parser = new CzProject\PhpCli\Parameters\DefaultParametersParser;
 $parameters = $parser->parse([
 	'file.txt',
 	'-m', 'message',

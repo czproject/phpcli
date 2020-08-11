@@ -2,7 +2,7 @@
 
 	namespace CzProject\PhpCli\Parameters;
 
-	use CzProject\PhpCli\IParameterParser;
+	use CzProject\PhpCli\IParametersParser;
 	use CzProject\PhpCli\IParametersProvider;
 
 
@@ -11,17 +11,17 @@
 		/** @var mixed[] */
 		private $parameters;
 
-		/** @var IParameterParser */
+		/** @var IParametersParser */
 		private $parametersParser;
 
 
 		/**
 		 * @param  mixed[]  parameters without programName
 		 */
-		public function __construct(array $parameters, IParameterParser $parametersParser = NULL)
+		public function __construct(array $parameters, IParametersParser $parametersParser = NULL)
 		{
 			$this->parameters = $parameters;
-			$this->parametersParser = $parametersParser !== NULL ? $parametersParser : new DefaultParameterParser;
+			$this->parametersParser = $parametersParser !== NULL ? $parametersParser : new DefaultParametersParser;
 		}
 
 

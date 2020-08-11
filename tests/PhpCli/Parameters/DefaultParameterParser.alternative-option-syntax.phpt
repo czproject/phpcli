@@ -8,7 +8,7 @@ require __DIR__ . '/../bootstrap.php';
  * Empty values
  */
 test(function () {
-	$parser = new CzProject\PhpCli\Parameters\DefaultParameterParser;
+	$parser = new CzProject\PhpCli\Parameters\DefaultParametersParser;
 	$parameters = $parser->parse([
 		'--flag',
 		'--option=Lorem ipsum dolor = sit amet',

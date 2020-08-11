@@ -2,19 +2,19 @@
 
 	namespace CzProject\PhpCli\Parameters;
 
-	use CzProject\PhpCli\IParameterParser;
+	use CzProject\PhpCli\IParametersParser;
 	use CzProject\PhpCli\IParametersProvider;
 
 
 	class DefaultParametersProvider implements IParametersProvider
 	{
-		/** @var IParameterParser */
+		/** @var IParametersParser */
 		private $parametersParser;
 
 
-		public function __construct(IParameterParser $parametersParser = NULL)
+		public function __construct(IParametersParser $parametersParser = NULL)
 		{
-			$this->parametersParser = $parametersParser !== NULL ? $parametersParser : new DefaultParameterParser;
+			$this->parametersParser = $parametersParser !== NULL ? $parametersParser : new DefaultParametersParser;
 		}
 
 

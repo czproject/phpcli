@@ -3,7 +3,7 @@
 	namespace CzProject\PhpCli;
 
 
-	interface IParameterParser
+	interface IParametersParser
 	{
 		/**
 		 * @return Parameters

@@ -8,7 +8,7 @@ require __DIR__ . '/../bootstrap.php';
  * Empty values
  */
 test(function () {
-	$parser = new CzProject\PhpCli\Parameters\DefaultParameterParser;
+	$parser = new CzProject\PhpCli\Parameters\DefaultParametersParser;
 	$parameters = $parser->parse([
 		'',
 		0,
@@ -34,10 +34,10 @@ test(function () {
 test(function () {
 	Assert::exception(function () {
 
-		$parser = new CzProject\PhpCli\Parameters\DefaultParameterParser;
+		$parser = new CzProject\PhpCli\Parameters\DefaultParametersParser;
 		$parser->parse([
 			new stdClass,
 		]);
 
-	}, CzProject\PhpCli\ParameterParserException::class, 'Parameter must be scalar or NULL, object given at index (0).');
+	}, CzProject\PhpCli\ParametersParserException::class, 'Parameter must be scalar or NULL, object given at index (0).');
 });
