@@ -7,16 +7,13 @@ use Tester\Assert;
 require __DIR__ . '/../bootstrap.php';
 
 $testCommand = Tests\TestCommand::create()
-	->setOptions([
-		'flag' => [
-			'type' => 'bool',
-			'required' => TRUE,
-		],
-		'alias' => [
-			'alias' => 'flag',
-		],
-		'alias2' => 'flag',
-	])
+	->setParameters(function ($parameters) {
+		$parameters->addOption('flag', 'bool')
+			->setRequired();
+
+		$parameters->addAlias('alias', 'flag');
+		$parameters->addAlias('alias2', 'flag');
+	})
 	->setCallback(function ($console, $options, $arguments) {
 		Assert::same([
 			'flag' => TRUE,

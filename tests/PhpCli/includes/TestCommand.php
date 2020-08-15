@@ -3,13 +3,14 @@
 namespace CzProject\PhpCli\Tests;
 
 use CzProject\PhpCli\Application\ICommand;
+use CzProject\PhpCli\Application\CommandParameters;
 use CzProject\PhpCli\Console;
 
 
 class TestCommand implements ICommand
 {
 	private $description;
-	private $options;
+	private $parameters;
 	private $callback;
 
 
@@ -33,15 +34,17 @@ class TestCommand implements ICommand
 	}
 
 
-	public function getOptions()
+	public function getParameters()
 	{
-		return $this->options;
+		return $this->parameters;
 	}
 
 
-	public function setOptions($options)
+	public function setParameters(callable $parametersFactory)
 	{
-		$this->options = $options;
+		$parameters = new CommandParameters;
+		$parametersFactory($parameters);
+		$this->parameters = $parameters;
 		return $this;
 	}
 

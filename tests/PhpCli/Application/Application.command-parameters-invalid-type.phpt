@@ -15,17 +15,13 @@ test(function () {
 	$application = new Application(Tests\TestConsoleFactory::create([
 		'command',
 	]));
-	$application->setCommand('command', Tests\TestCommand::create()
-		->setOptions([
-			'required' => [
-				'type' => 'unexpected',
-			],
-		])
-	);
 
 	Assert::exception(function () use ($application) {
+		$application->setCommand('command', Tests\TestCommand::create()
+			->setParameters(function ($parameters) {
+				$parameters->addOption('required', 'unexpected');
+			})
+		);
 
-		$application->run();
-
-	}, CzProject\PhpCli\ApplicationException::class, "Unknow type 'unexpected' in definition for option 'required'.");
+	}, CzProject\PhpCli\ApplicationException::class, "Option 'required': Unknow type 'unexpected'.");
 });

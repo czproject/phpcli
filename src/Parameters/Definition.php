@@ -2,6 +2,7 @@
 
 	namespace CzProject\PhpCli\Parameters;
 
+	use CzProject\PhpCli\InvalidArgumentException;
 	use CzProject\PhpCli\InvalidStateException;
 	use CzProject\PhpCli\MissingParameterException;
 
@@ -37,7 +38,7 @@
 		public function __construct($type)
 		{
 			if (!in_array($type, self::$types, TRUE)) {
-				throw new ApplicationException("Unknow type '$type' in definition for option '$name'.");
+				throw new InvalidArgumentException("Unknow type '$type'.");
 			}
 
 			$this->type = $type;
@@ -143,28 +144,5 @@
 			}
 
 			throw new \CzProject\PhpCli\InvalidArgumentException("Unknow type '$type'.");
-		}
-
-
-		/**
-		 * @param  string
-		 * @return self
-		 */
-		public static function fromArray(array $definition)
-		{
-			if (!isset($definition['type'])) {
-				throw new MissingException("Missing 'type' definition.");
-			}
-
-			if (!is_string($definition['type'])) {
-				throw new InvalidArgumentException("Invalid 'type' definition. Type must be string, " . gettype($definition['type']) . ' given.');
-			}
-
-			$def = new self(strtolower($definition['type']));
-			$def->setRequired(isset($definition['required']) && $definition['required']);
-			$def->setNullable(isset($definition['nullable']) && $definition['nullable']);
-			$def->setRepeatable(isset($definition['repeatable']) && $definition['repeatable']);
-			$def->setDefaultValue(isset($definition['defaultValue']) ? $definition['defaultValue'] : NULL);
-			return $def;
 		}
 	}

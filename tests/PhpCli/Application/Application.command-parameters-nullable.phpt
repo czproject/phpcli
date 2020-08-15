@@ -24,43 +24,31 @@ test(function () {
 		'--empty-array2=',
 	]));
 	$application->setCommand('command', Tests\TestCommand::create()
-		->setOptions([
-			'null-string' => [
-				'type' => 'string',
-				'repeatable' => FALSE,
-				'nullable' => TRUE,
-			],
+		->setParameters(function ($parameters) {
+			$parameters->addOption('null-string', 'string')
+				->setRepeatable(FALSE)
+				->setNullable();
 
-			'null-array' => [
-				'type' => 'string',
-				'repeatable' => TRUE,
-				'nullable' => TRUE,
-			],
+			$parameters->addOption('null-array', 'string')
+				->setRepeatable()
+				->setNullable();
 
-			'null-array2' => [
-				'type' => 'string',
-				'repeatable' => TRUE,
-				'nullable' => TRUE,
-			],
+			$parameters->addOption('null-array2', 'string')
+				->setRepeatable()
+				->setNullable();
 
-			'empty-string' => [
-				'type' => 'string',
-				'repeatable' => FALSE,
-				'nullable' => FALSE,
-			],
+			$parameters->addOption('empty-string', 'string')
+				->setRepeatable(FALSE)
+				->setNullable(FALSE);
 
-			'empty-array' => [
-				'type' => 'string',
-				'repeatable' => TRUE,
-				'nullable' => TRUE,
-			],
+			$parameters->addOption('empty-array', 'string')
+				->setRepeatable()
+				->setNullable();
 
-			'empty-array2' => [
-				'type' => 'string',
-				'repeatable' => TRUE,
-				'nullable' => TRUE,
-			],
-		])
+			$parameters->addOption('empty-array2', 'string')
+				->setRepeatable()
+				->setNullable();
+		})
 		->setCallback(function ($console, $options, $arguments) {
 			Assert::same([
 				'null-string' => NULL,

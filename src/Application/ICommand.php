@@ -8,9 +8,9 @@
 	interface ICommand
 	{
 		/**
-		 * @return array
+		 * @return CommandParameters|NULL
 		 */
-		function getOptions();
+		function getParameters();
 
 		/**
 		 * @return string

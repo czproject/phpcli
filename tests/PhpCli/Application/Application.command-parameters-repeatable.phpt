@@ -22,23 +22,18 @@ test(function () {
 		'--flag',
 	]));
 	$application->setCommand('command', Tests\TestCommand::create()
-		->setOptions([
-			'flag' => [
-				'type' => 'bool',
-			],
-			'flag2' => [
-				'type' => 'string',
-				'repeatable' => TRUE,
-			],
-			'flag3' => [
-				'type' => 'bool',
-				'repeatable' => TRUE,
-			],
-			'flag4' => [
-				'type' => 'string',
-				'repeatable' => TRUE,
-			],
-		])
+		->setParameters(function ($parameters) {
+			$parameters->addOption('flag', 'bool');
+
+			$parameters->addOption('flag2', 'string')
+				->setRepeatable();
+
+			$parameters->addOption('flag3', 'bool')
+				->setRepeatable();
+
+			$parameters->addOption('flag4', 'string')
+				->setRepeatable();
+		})
 		->setCallback(function ($console, $options, $arguments) {
 			Assert::same([
 				'flag' => TRUE,
@@ -77,31 +72,25 @@ test(function () {
 		'--flag5=flag5-value2',
 	]));
 	$application->setCommand('command', Tests\TestCommand::create()
-		->setOptions([
-			'flag' => [
-				'type' => 'bool',
-			],
-			'flag2' => [
-				'type' => 'string',
-				'repeatable' => TRUE,
-			],
-			'flag3' => [
-				'type' => 'string',
-				'repeatable' => TRUE,
-			],
-			'flag4' => [
-				'type' => 'string',
-				'repeatable' => TRUE,
-			],
-			'flag5' => [
-				'type' => 'string',
-			],
-		])
+		->setParameters(function ($parameters) {
+			$parameters->addOption('flag', 'bool');
+
+			$parameters->addOption('flag2', 'string')
+				->setRepeatable();
+
+			$parameters->addOption('flag3', 'string')
+				->setRepeatable();
+
+			$parameters->addOption('flag4', 'string')
+				->setRepeatable();
+
+			$parameters->addOption('flag5', 'string');
+		})
 	);
 
 	Assert::exception(function () use ($application) {
 
 		$application->run();
 
-	}, CzProject\PhpCli\ApplicationException::class, "Multiple values for option 'flag5'.");
+	}, CzProject\PhpCli\InvalidStateException::class, "Multiple values for option 'flag5'.");
 });

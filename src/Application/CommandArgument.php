@@ -1,29 +1,32 @@
 <?php
 
-	namespace CzProject\PhpCli\Parameters;
+	namespace CzProject\PhpCli\Application;
 
 	use CzProject\PhpCli\ApplicationException;
 	use CzProject\PhpCli\Console;
 	use CzProject\PhpCli\ConsoleFactory;
+	use CzProject\PhpCli\Parameters\Definition;
 
 
-	class Argument
+	class CommandArgument
 	{
-		/** @var int */
-		private $index;
-
-		/** @var mixed */
-		private $value;
+		/** @var string */
+		private $name;
 
 		/** @var Definition */
 		private $definition;
 
 
-		public function __construct($index, $value, $type)
+		public function __construct($name, $type)
 		{
-			$this->index = $index;
-			$this->value = $value;
+			$this->name = $name;
 			$this->definition = new Definition($type);
+		}
+
+
+		public function getName()
+		{
+			return $this->name;
 		}
 
 
@@ -41,8 +44,8 @@
 		}
 
 
-		public function getValue()
+		public function processValue($index, $value)
 		{
-			return $this->definition->processValue($this->value, "argument #{$this->index}");
+			return $this->definition->processValue($value, "argument '{$this->name}' (at position #{$index})");
 		}
 	}

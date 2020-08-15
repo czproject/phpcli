@@ -19,23 +19,16 @@ test(function () {
 		'--flag-value',
 	]));
 	$application->setCommand('command', Tests\TestCommand::create()
-		->setOptions([
-			'flag-with-default' => [
-				'type' => 'string',
-				'defaultValue' => FALSE,
-			],
-			'flag-without-default' => [
-				'type' => 'string',
-			],
-			'flag-value' => [
-				'type' => 'string',
-			],
-			'flag-default' => [
-				'type' => 'int',
-				'defaultValue' => '9876.87',
-				'repeatable' => TRUE,
-			],
-		])
+		->setParameters(function ($parameters) {
+			$parameters->addOption('flag-with-default', 'string')
+				->setDefaultValue(FALSE);
+
+			$parameters->addOption('flag-without-default', 'string');
+			$parameters->addOption('flag-value', 'string');
+			$parameters->addOption('flag-default', 'int')
+				->setDefaultValue('9876.87')
+				->setRepeatable();
+		})
 		->setCallback(function ($console, $options, $arguments) {
 			Assert::same([
 				'flag-with-default' => '1',

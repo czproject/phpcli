@@ -29,59 +29,21 @@ test(function () {
 		'--string=9854.588',
 	]));
 	$application->setCommand('command', Tests\TestCommand::create()
-		->setOptions([
-			'bool-flag' => [
-				'type' => 'bool',
-			],
-
-			'bool-yes' => [
-				'type' => 'bool',
-			],
-
-			'bool-y' => [
-				'type' => 'bool',
-			],
-
-			'bool-on' => [
-				'type' => 'bool',
-			],
-
-			'bool-true' => [
-				'type' => 'bool',
-			],
-
-			'bool-no' => [
-				'type' => 'bool',
-			],
-
-			'bool-n' => [
-				'type' => 'bool',
-			],
-
-			'bool-off' => [
-				'type' => 'bool',
-			],
-
-			'bool-false' => [
-				'type' => 'bool',
-			],
-
-			'bool-string' => [
-				'type' => 'bool',
-			],
-
-			'integer' => [
-				'type' => 'int',
-			],
-
-			'float' => [
-				'type' => 'float',
-			],
-
-			'string' => [
-				'type' => 'string',
-			],
-		])
+		->setParameters(function ($parameters) {
+			$parameters->addOption('bool-flag', 'bool');
+			$parameters->addOption('bool-yes', 'bool');
+			$parameters->addOption('bool-y', 'bool');
+			$parameters->addOption('bool-on', 'bool');
+			$parameters->addOption('bool-true', 'bool');
+			$parameters->addOption('bool-no', 'bool');
+			$parameters->addOption('bool-n', 'bool');
+			$parameters->addOption('bool-off', 'bool');
+			$parameters->addOption('bool-false', 'bool');
+			$parameters->addOption('bool-string', 'bool');
+			$parameters->addOption('integer', 'int');
+			$parameters->addOption('float', 'float');
+			$parameters->addOption('string', 'string');
+		})
 		->setCallback(function ($console, $options, $arguments) {
 			Assert::same([
 				'bool-flag' => TRUE,

@@ -93,9 +93,10 @@
 				}
 
 				$command = $this->commands[$commandName];
-				$commandOptions = $command->getOptions();
-				$options = $this->processOptions($request->getOptions(), $commandOptions !== NULL ? $commandOptions : []);
-				$command->run($this->console, $options, $request->getArguments());
+				$commandParameters = $command->getParameters();
+				$options = $this->processOptions($request->getOptions(), $commandParameters);
+				$arguments = $this->processArguments($request->getArguments(), $commandParameters);
+				$command->run($this->console, $options, $arguments);
 			}
 		}
 
@@ -145,34 +146,10 @@
 		/**
 		 * @return array
 		 */
-		protected function processOptions(array $options, array $definitions)
+		protected function processOptions(array $options, CommandParameters $parameters = NULL)
 		{
 			$result = [];
-			$optionDefinitions = [];
-
-			foreach ($definitions as $name => $definition) {
-				if (is_string($definition) || isset($definition['alias'])) {
-					$aliasName = is_string($definition) ? $definition : $definition['alias'];
-
-					if (!is_string($aliasName)) {
-						throw new ApplicationException("Alias in option '$optionName' must be string, " . gettype($aliasName) . ' given.');
-					}
-
-					if (!isset($definitions[$aliasName])) {
-						throw new ApplicationException("Unknow alias '$aliasName' in option '$name'.");
-					}
-
-					$optionDefinitions[$name] = OptionDefinition::fromArray($aliasName, $definitions[$aliasName]);
-
-				} else {
-					if (!is_array($definition)) {
-						throw new ApplicationException("Definition of option '$name' must be array, " . gettype($definition) . ' given.');
-					}
-
-					$optionDefinitions[$name] = OptionDefinition::fromArray($name, $definition);
-				}
-			}
-
+			$optionDefinitions = $parameters !== NULL ? $parameters->getOptions() : [];
 			$unknowOptions = [];
 
 			foreach ($options as $option => $value) {
@@ -222,6 +199,51 @@
 				}
 
 				$result[$name] = $optionDefinition->processValue($option, NULL);
+			}
+
+			return $result;
+		}
+
+
+		/**
+		 * @return array
+		 */
+		protected function processArguments(array $arguments, CommandParameters $parameters = NULL)
+		{
+			$result = [];
+			$argumentDefinitions = $parameters !== NULL ? $parameters->getArguments() : [];
+
+			if (empty($argumentDefinitions)) {
+				return $arguments;
+			}
+
+			$unknowArguments = [];
+
+			foreach ($arguments as $argument => $value) {
+				if (!isset($argumentDefinitions[$argument])) {
+					$unknowArguments[] = '\'' . $argument . '\'';
+				}
+			}
+
+			if (!empty($unknowArguments)) {
+				throw new ApplicationException("Unknow arguments " . implode(', ', $unknowArguments) . '.');
+			}
+
+			$usedDefinitions = [];
+
+			foreach ($arguments as $argument => $value) {
+				$argumentDefinition = $argumentDefinitions[$argument];
+				$result[$argument] = $argumentDefinition->processValue($argument, $value);
+				$usedDefinitions[$argument] = TRUE;
+			}
+
+			// find unused definitions
+			foreach ($argumentDefinitions as $argument => $argumentDefinition) {
+				if (isset($usedDefinitions[$argument])) {
+					continue;
+				}
+
+				$result[$argument] = $argumentDefinition->processValue($argument, NULL);
 			}
 
 			return $result;

@@ -14,12 +14,10 @@ test(function () {
 	]));
 	$application->setDefaultCommand('default');
 	$application->setCommand('default', Tests\TestCommand::create()
-		->setOptions([
-			'run' => [
-				'type' => 'bool',
-				'defaultValue' => FALSE,
-			],
-		])
+		->setParameters(function ($parameters) {
+			$parameters->addOption('run', 'bool')
+				->setDefaultValue(FALSE);
+		})
 		->setCallback(function () {
 			throw new \RuntimeException('COMMAND: default');
 		})
