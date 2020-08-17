@@ -2,29 +2,20 @@
 
 	namespace CzProject\PhpCli\Inputs;
 
+	use CzProject\PhpCli\Helpers;
 	use CzProject\PhpCli\IInputProvider;
 
 
 	class ReadlineInputProvider implements IInputProvider
 	{
-		public function readInput($prompt = NULL)
+		public function readInput()
 		{
-			$input = '';
+			$input = Helpers::normalizeInput(readline());
 
-			if ($prompt === NULL) {
-				$input = readline();
-
-			} else {
-				$input = readline("$prompt ");
+			if ($input !== '') {
+				readline_add_history($input);
 			}
 
-			readline_add_history($input);
-			return trim($input);
-		}
-
-
-		public function isPrintingPrompt()
-		{
-			return TRUE;
+			return $input;
 		}
 	}

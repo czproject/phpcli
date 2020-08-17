@@ -145,6 +145,10 @@
 		{
 			$color = $color !== NULL ? $color : $this->color;
 
+			if ($color === 'nocolor') {
+				$color = NULL;
+			}
+
 			if (is_array($str)) {
 				$str = implode('', $str);
 			}
@@ -165,27 +169,129 @@
 
 
 		/**
-		 * @param  string|NULL  optional
+		 * @param  string
+		 * @param  string|NULL
 		 * @return string
 		 */
-		public function input($msg = NULL)
+		public function input($msg, $defaultValue = NULL)
 		{
-			return $this->readInput($msg);
+			$defaultValue = $defaultValue !== NULL ? ((string) $defaultValue) : NULL;
+
+			do {
+				$val = $this->readInput($msg, $defaultValue);
+
+				if ($val === '') {
+					if ($defaultValue === NULL) {
+						continue;
+					}
+
+					return $defaultValue;
+				}
+
+				return $val;
+
+			} while (TRUE);
 		}
 
 
 		/**
-		 * @param  string|NULL  optional
+		 * @param  string
+		 * @param  string|bool|NULL
+		 * @return bool
+		 */
+		public function confirm($msg, $defaultValue = NULL)
+		{
+			$defaultValue = $defaultValue !== NULL ? Helpers::convertToBool($defaultValue) : NULL;
+
+			do {
+				$val = $this->readInput($msg, $defaultValue !== NULL ? ($defaultValue ? 'yes' : 'no') : NULL, '[yes/no]');
+
+				if ($val === '') {
+					if ($defaultValue === NULL) {
+						continue;
+					}
+
+					return $defaultValue;
+				}
+
+				try {
+					return Helpers::convertToBool($val);
+
+				} catch (InvalidValueException $e) {
+					$this->output($e->getMessage(), 'red')->nl();
+				}
+
+			} while (TRUE);
+		}
+
+
+		/**
+		 * @param  string
+		 * @param  array<string|int, mixed>
+		 * @param  string|NULL
 		 * @return string
 		 */
-		public function readInput($msg = NULL)
+		public function select($msg, array $options, $defaultValue = NULL)
 		{
-			$msg = $msg !== NULL ? (string) $msg : $msg;
-
-			if (!$this->inputProvider->isPrintingPrompt()) {
-				$this->outputProvider->output($msg) // print message
-					->output($msg !== '' ? ' ' : ''); // print one space for not empty message
+			if ($defaultValue !== NULL && !isset($options[$defaultValue])) {
+				throw new InvalidArgumentException("Default value is not in options.");
 			}
+
+			$this->output($msg, 'nocolor')->nl();
+			$list = [];
+			$i = 0;
+			$promptDefaultValue = NULL;
+
+			foreach ($options as $option => $label) {
+				$i++;
+				$list[$i] = $option;
+				$this->output(' > ', 'nocolor')
+					->output($i . ') ', 'yellow')
+					->output($label, 'nocolor')
+					->nl();
+
+				if ($defaultValue !== NULL && $option === $defaultValue) {
+					$promptDefaultValue = $i .  ') ' . $label;
+				}
+			}
+
+			$prompt = 'Your choose';
+
+			do {
+				$val = $this->readInput($prompt, $promptDefaultValue);
+
+				if ($val === '' && $defaultValue !== NULL) {
+					return $defaultValue;
+				}
+
+				if (isset($list[$val])) {
+					return $list[$val];
+				}
+
+			} while (TRUE);
+		}
+
+
+		/**
+		 * @param  string
+		 * @param  string|NULL
+		 * @return string
+		 */
+		private function readInput($msg, $defaultValue, $help = NULL)
+		{
+			$this->outputProvider->output(rtrim($msg, ':'), 'nocolor');
+
+			if ($defaultValue !== NULL) {
+				$this->outputProvider->output(' (default ', 'gray');
+				$this->outputProvider->output($defaultValue, 'yellow');
+				$this->outputProvider->output(')', 'gray');
+			}
+
+			if ($help !== NULL) {
+				$this->outputProvider->output(' ' . $help, 'gray');
+			}
+
+			$this->outputProvider->output(': ', 'nocolor');
 
 			return $this->inputProvider->readInput($msg);
 		}

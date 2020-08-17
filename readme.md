@@ -44,7 +44,7 @@ $console->output('CzProject CLI Simple Console', 'green')
 	->nl();
 
 // input
-$username = $console->input('Enter your name:');
+$username = $console->input('Enter your name');
 
 $console->output('Hello! ', 'blue')
 	->output($username, 'green')

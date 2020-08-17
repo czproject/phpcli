@@ -9,10 +9,4 @@
 		 * @return string
 		 */
 		function readInput();
-
-
-		/**
-		 * @return bool
-		 */
-		function isPrintingPrompt();
 	}

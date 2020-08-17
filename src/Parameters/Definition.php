@@ -4,6 +4,7 @@
 
 	use CzProject\PhpCli\InvalidArgumentException;
 	use CzProject\PhpCli\InvalidStateException;
+	use CzProject\PhpCli\Helpers;
 	use CzProject\PhpCli\MissingParameterException;
 
 
@@ -121,26 +122,19 @@
 
 		private function convertType($value, $type, $errorSuffix)
 		{
-			if ($type === 'bool' || $type === 'boolean') {
-				if (is_string($value)) {
-					$lValue = strtolower($value);
+			try {
+				if ($type === 'bool' || $type === 'boolean') {
+					return Helpers::convertToBool($value);
 
-					if ($lValue === 'yes' || $lValue === 'y' || $lValue === 'on' || $lValue === 'true' || $lValue === '1') {
-						return TRUE;
+					throw new \CzProject\PhpCli\InvalidValueException("Invalid boolean value for $errorSuffix.");
 
-					} elseif ($lValue === 'no' || $lValue === 'n' || $lValue === 'off' || $lValue === 'false' || $lValue === '0') {
-						return FALSE;
-					}
-
-				} elseif (is_bool($value) || is_int($value) || is_float($value)) {
-					return (bool) $value;
+				} elseif ($type === 'string' || $type === 'int' || $type === 'integer' || $type === 'float') {
+					settype($value, $type);
+					return $value;
 				}
 
-				throw new \CzProject\PhpCli\InvalidValueException("Invalid boolean value for $errorSuffix.");
-
-			} elseif ($type === 'string' || $type === 'int' || $type === 'integer' || $type === 'float') {
-				settype($value, $type);
-				return $value;
+			} catch (\CzProject\PhpCli\InvalidValueException $e) {
+				throw new \CzProject\PhpCli\InvalidValueException("Invalid value for $errorSuffix.", NULL, $e);
 			}
 
 			throw new \CzProject\PhpCli\InvalidArgumentException("Unknow type '$type'.");

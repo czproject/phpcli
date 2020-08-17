@@ -2,6 +2,7 @@
 
 	namespace CzProject\PhpCli\Inputs;
 
+	use CzProject\PhpCli\Helpers;
 	use CzProject\PhpCli\IInputProvider;
 
 
@@ -11,12 +12,6 @@
 		{
 			// see http://www.php-trivandrum.org/code-snippets/user-input-in-php-command-line/
 			// see http://wiki.uniformserver.com/index.php/PHP_CLI:_User_Input#fgets.28.29_-_Problem
-			return trim(fgets(STDIN));
-		}
-
-
-		public function isPrintingPrompt()
-		{
-			return FALSE;
+			return Helpers::normalizeInput(fgets(STDIN));
 		}
 	}
