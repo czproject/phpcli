@@ -10,10 +10,10 @@
 	class ConsoleFactory
 	{
 		/** @var  bool|NULL */
-		protected static $useColoredOutput;
+		private static $useColoredOutput;
 
 		/** @var  bool|NULL */
-		protected static $useReadlineProvider;
+		private static $useReadlineProvider;
 
 
 		/**

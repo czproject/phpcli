@@ -6,22 +6,22 @@
 	class Console
 	{
 		/** @var  IOutputProvider */
-		protected $outputProvider;
+		private $outputProvider;
 
 		/** @var  IInputProvider */
-		protected $inputProvider;
+		private $inputProvider;
 
 		/** @var  IParametersProvider */
-		protected $parametersProvider;
+		private $parametersProvider;
 
 		/** @var  Parameters|NULL */
-		protected $parameters;
+		private $parameters;
 
 		/** @var string */
-		protected $newLineCharacter;
+		private $newLineCharacter;
 
 		/** @var string|NULL */
-		protected $color;
+		private $color;
 
 
 		public function __construct(
