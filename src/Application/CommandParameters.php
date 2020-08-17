@@ -2,6 +2,8 @@
 
 	namespace CzProject\PhpCli\Application;
 
+	use CzProject\PhpCli\Types;
+
 
 	class CommandParameters
 	{
@@ -48,7 +50,7 @@
 		 * @param  string
 		 * @return CommandOption
 		 */
-		public function addOption($name, $type = 'string')
+		public function addOption($name, $type = Types::STRING)
 		{
 			if (isset($this->options[$name])) {
 				throw new \CzProject\PhpCli\InvalidStateException("Option '$name' is already defined.");
@@ -79,7 +81,7 @@
 		 * @param  string
 		 * @return CommandArgument
 		 */
-		public function addArgument($name, $type = 'string')
+		public function addArgument($name, $type = Types::STRING)
 		{
 			return $this->arguments[] = new CommandArgument($name, $type);
 		}

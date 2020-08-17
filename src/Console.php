@@ -99,7 +99,7 @@
 		 * @param  string
 		 * @return Parameters\Option
 		 */
-		public function getOption($name, $type = 'string')
+		public function getOption($name, $type = Types::STRING)
 		{
 			$parameters = $this->getParameters();
 			$value = $parameters->hasOption($name) ? $parameters->getOption($name) : NULL;
@@ -112,7 +112,7 @@
 		 * @param  string
 		 * @return Parameters\Argument
 		 */
-		public function getArgument($index, $type = 'string')
+		public function getArgument($index, $type = Types::STRING)
 		{
 			$parameters = $this->getParameters();
 			$value = $parameters->hasArgument($index) ? $parameters->getArgument($index) : NULL;

@@ -6,6 +6,7 @@
 	use CzProject\PhpCli\InvalidStateException;
 	use CzProject\PhpCli\Helpers;
 	use CzProject\PhpCli\MissingParameterException;
+	use CzProject\PhpCli\Types;
 
 
 	class Definition
@@ -30,12 +31,12 @@
 
 		/** @var string[] */
 		private static $types = [
-			'boolean',
-			'bool',
-			'integer',
-			'int',
-			'float',
-			'string',
+			Types::BOOLEAN,
+			Types::BOOL,
+			Types::INTEGER,
+			Types::INT,
+			Types::FLOAT,
+			Types::STRING,
 		];
 
 
@@ -135,12 +136,12 @@
 		private function convertType($value, $type, $errorSuffix)
 		{
 			try {
-				if ($type === 'bool' || $type === 'boolean') {
+				if ($type === Types::BOOL || $type === Types::BOOLEAN) {
 					return Helpers::convertToBool($value);
 
 					throw new \CzProject\PhpCli\InvalidValueException("Invalid boolean value for $errorSuffix.");
 
-				} elseif ($type === 'string' || $type === 'int' || $type === 'integer' || $type === 'float') {
+				} elseif ($type === Types::STRING || $type === Types::INT || $type === Types::INTEGER || $type === Types::FLOAT) {
 					settype($value, $type);
 					return $value;
 				}
