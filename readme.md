@@ -52,7 +52,82 @@ $console->output('Hello! ', 'blue')
 	->nl() // print new line
 	->output('Bye!', 'blue')
 	->nl();
+
+// input with default value
+$username = $console->input('Enter your name', 'John');
+
+// confirm
+$agree = $console->confirm('Do you want to continue?');
+
+// confirm with default value
+$canQuit = $console->confirm('Really?', TRUE);
+
+// select
+$value = $console->select('Select color:', [
+	'value' => 'label',
+	'#ff0000' => 'Red',
+	'#00ff00' => 'Green',
+	'#0000ff' => 'Blue',
+]);
+
+// select with default value
+$value = $console->select('Select color:', [
+	'value' => 'label',
+	'#ff0000' => 'Red',
+	'#00ff00' => 'Green',
+	'#0000ff' => 'Blue',
+], '#ff0000');
 ```
+
+
+## Parameters
+
+**Arguments**
+
+```php
+$name = $console->getArgument(0)->getValue(); // string|NULL
+
+$size = $console->getArgument(1, 'int')
+	->setRequired()
+	->addRule(function ($value) {
+		return $value > 0;
+	})
+	->getValue();
+
+$price = $console->getArgument(2, 'float') // float
+	->setDefaultValue(100.0)
+	->getValue();
+```
+
+
+**Options**
+
+```php
+$name = $console->getOption('name')->getValue(); // string|NULL
+
+$size = $console->getOption('size', 'int')
+	->setRequired()
+	->addRule(function ($value) {
+		return $value > 0;
+	})
+	->getValue();
+
+$price = $console->getOption('price', 'float') // float
+	->setDefaultValue(100.0)
+	->getValue();
+
+$words = $console->getOption('word')
+	->setRepeatable()
+	->getValue();
+```
+
+
+**Supported types**
+
+* `string`
+* `int` and `integer`
+* `float`
+* `bool` and `boolean`
 
 --------------------------------------------------------------------------------
 
