@@ -145,7 +145,7 @@
 		{
 			$color = $color !== NULL ? $color : $this->color;
 
-			if ($color === 'nocolor') {
+			if ($color === Colors::NO_COLOR) {
 				$color = NULL;
 			}
 
@@ -218,7 +218,7 @@
 					return Helpers::convertToBool($val);
 
 				} catch (InvalidValueException $e) {
-					$this->output($e->getMessage(), 'red')->nl();
+					$this->output($e->getMessage(), Colors::RED)->nl();
 				}
 
 			} while (TRUE);
@@ -237,7 +237,7 @@
 				throw new InvalidArgumentException("Default value is not in options.");
 			}
 
-			$this->output($msg, 'nocolor')->nl();
+			$this->output($msg, Colors::NO_COLOR)->nl();
 			$list = [];
 			$i = 0;
 			$promptDefaultValue = NULL;
@@ -245,9 +245,9 @@
 			foreach ($options as $option => $label) {
 				$i++;
 				$list[$i] = $option;
-				$this->output(' > ', 'nocolor')
-					->output($i . ') ', 'yellow')
-					->output($label, 'nocolor')
+				$this->output(' > ', Colors::NO_COLOR)
+					->output($i . ') ', Colors::YELLOW)
+					->output($label, Colors::NO_COLOR)
 					->nl();
 
 				if ($defaultValue !== NULL && $option === $defaultValue) {
@@ -279,19 +279,19 @@
 		 */
 		private function readInput($msg, $defaultValue, $help = NULL)
 		{
-			$this->outputProvider->output(rtrim($msg, ':'), 'nocolor');
+			$this->outputProvider->output(rtrim($msg, ':'), Colors::NO_COLOR);
 
 			if ($defaultValue !== NULL) {
-				$this->outputProvider->output(' (default ', 'gray');
-				$this->outputProvider->output($defaultValue, 'yellow');
-				$this->outputProvider->output(')', 'gray');
+				$this->outputProvider->output(' (default ', Colors::GRAY);
+				$this->outputProvider->output($defaultValue, Colors::YELLOW);
+				$this->outputProvider->output(')', Colors::GRAY);
 			}
 
 			if ($help !== NULL) {
-				$this->outputProvider->output(' ' . $help, 'gray');
+				$this->outputProvider->output(' ' . $help, Colors::GRAY);
 			}
 
-			$this->outputProvider->output(': ', 'nocolor');
+			$this->outputProvider->output(': ', Colors::NO_COLOR);
 
 			return $this->inputProvider->readInput($msg);
 		}

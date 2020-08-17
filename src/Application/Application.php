@@ -3,6 +3,7 @@
 	namespace CzProject\PhpCli\Application;
 
 	use CzProject\PhpCli\ApplicationException;
+	use CzProject\PhpCli\Colors;
 	use CzProject\PhpCli\Console;
 	use CzProject\PhpCli\ConsoleFactory;
 	use CzProject\PhpCli\Parameters;
@@ -105,18 +106,18 @@
 		{
 			$console = $this->console;
 			$console->nl();
-			$console->output('ERROR: ' . $e->getMessage(), 'red');
+			$console->output('ERROR: ' . $e->getMessage(), Colors::RED);
 			$console->nl();
 			$console->nl();
-			$console->output('Details:', 'red');
+			$console->output('Details:', Colors::RED);
 			$console->nl();
-			$console->output(' - type: ' . get_class($e), 'red');
+			$console->output(' - type: ' . get_class($e), Colors::RED);
 			$console->nl();
-			$console->output(' - code: ' . $e->getCode(), 'red');
+			$console->output(' - code: ' . $e->getCode(), Colors::RED);
 			$console->nl();
-			$console->output(' - file: ' . $e->getFile(), 'red');
+			$console->output(' - file: ' . $e->getFile(), Colors::RED);
 			$console->nl();
-			$console->output(' - line: ' . $e->getLine(), 'red');
+			$console->output(' - line: ' . $e->getLine(), Colors::RED);
 			$console->nl();
 		}
 
@@ -259,13 +260,13 @@
 			}
 
 			$this->console->nl()
-				->output('Usage:', 'yellow')
+				->output('Usage:', Colors::YELLOW)
 				->nl()
 				->output('  command [options] -- [arguments]')
 				->nl();
 
 			$this->console->nl()
-				->output('Available commands:', 'yellow')
+				->output('Available commands:', Colors::YELLOW)
 				->nl();
 
 			$len = 0;
@@ -277,7 +278,7 @@
 			foreach ($this->commands as $commandName => $command) {
 				$commandDescription = $command->getDescription();
 				$this->console->output('  ')
-					->output($commandName, 'green');
+					->output($commandName, Colors::GREEN);
 
 				if (isset($commandDescription)) {
 					$this->console->output(str_repeat(' ', $len - strlen($commandName)))

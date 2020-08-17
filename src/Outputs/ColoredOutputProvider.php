@@ -2,6 +2,7 @@
 
 	namespace CzProject\PhpCli\Outputs;
 
+	use CzProject\PhpCli\Colors;
 	use CzProject\PhpCli\IOutputProvider;
 	use CzProject\PhpCli\OutputException;
 
@@ -9,11 +10,11 @@
 	class ColoredOutputProvider implements IOutputProvider
 	{
 		protected static $colors = [
-			'green' => '0;32',
-			'red' => '0;31',
-			'yellow' => '0;33',
-			'blue' => '0;34',
-			'gray' => '1;30',
+			Colors::GREEN => '0;32',
+			Colors::RED => '0;31',
+			Colors::YELLOW => '0;33',
+			Colors::BLUE => '0;34',
+			Colors::GRAY => '1;30',
 		];
 
 
