@@ -279,19 +279,19 @@
 		 */
 		private function readInput($msg, $defaultValue, $help = NULL)
 		{
-			$this->outputProvider->output(rtrim($msg, ':'), Colors::NO_COLOR);
+			$this->output(rtrim($msg, ':'), Colors::NO_COLOR);
 
 			if ($defaultValue !== NULL) {
-				$this->outputProvider->output(' (default ', Colors::GRAY);
-				$this->outputProvider->output($defaultValue, Colors::YELLOW);
-				$this->outputProvider->output(')', Colors::GRAY);
+				$this->output(' (default ', Colors::GRAY);
+				$this->output($defaultValue, Colors::YELLOW);
+				$this->output(')', Colors::GRAY);
 			}
 
 			if ($help !== NULL) {
-				$this->outputProvider->output(' ' . $help, Colors::GRAY);
+				$this->output(' ' . $help, Colors::GRAY);
 			}
 
-			$this->outputProvider->output(': ', Colors::NO_COLOR);
+			$this->output(': ', Colors::NO_COLOR);
 
 			return $this->inputProvider->readInput($msg);
 		}

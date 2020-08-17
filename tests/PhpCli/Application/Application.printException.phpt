@@ -8,7 +8,7 @@ require __DIR__ . '/../bootstrap.php';
 
 
 test(function () {
-	$output = new CzProject\PhpCli\Outputs\MemoryOutputProvider;
+	$output = new CzProject\PhpCli\Outputs\MemoryColoredOutputProvider;
 	$console = new CzProject\PhpCli\Console(
 		$output,
 		new CzProject\PhpCli\Inputs\DefaultInputProvider,
@@ -21,13 +21,13 @@ test(function () {
 
 	Assert::same(implode("\n", [
 		'',
-		'ERROR: Exception message',
+		'<red>ERROR: Exception message</red>',
 		'',
-		'Details:',
-		' - type: CzProject\PhpCli\Exception',
-		' - code: 404',
-		' - file: ' . __FILE__,
-		' - line: 19',
+		'<red>Details:</red>',
+		'<red> - type: CzProject\PhpCli\Exception</red>',
+		'<red> - code: 404</red>',
+		'<red> - file: ' . __FILE__ . '</red>',
+		'<red> - line: 19</red>',
 		'',
 	]), $output->getOutput());
 });

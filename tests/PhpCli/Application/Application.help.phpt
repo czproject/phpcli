@@ -8,7 +8,7 @@ require __DIR__ . '/../bootstrap.php';
 
 
 test(function () {
-	$output = new CzProject\PhpCli\Outputs\MemoryOutputProvider;
+	$output = new CzProject\PhpCli\Outputs\MemoryColoredOutputProvider;
 	$console = new CzProject\PhpCli\Console(
 		$output,
 		new CzProject\PhpCli\Inputs\DefaultInputProvider,
@@ -26,13 +26,13 @@ test(function () {
 		'',
 		'APP NAME',
 		'',
-		'Usage:',
+		'<yellow>Usage:</yellow>',
 		'  command [options] -- [arguments]',
 		'',
-		'Available commands:',
-		'  help      prints help',
-		'  generate  generates output',
-		'  test',
+		'<yellow>Available commands:</yellow>',
+		'  <green>help</green>      prints help',
+		'  <green>generate</green>  generates output',
+		'  <green>test</green>',
 		'',
 		'',
 	]), $output->getOutput());

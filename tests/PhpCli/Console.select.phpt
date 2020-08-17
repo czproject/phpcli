@@ -8,7 +8,7 @@ require __DIR__ . '/bootstrap.php';
 // Text input (required)
 test(function () {
 	$console = CzProject\PhpCli\ConsoleFactory::createConsole(
-		$outputProvider = new CzProject\PhpCli\Outputs\MemoryOutputProvider,
+		$outputProvider = new CzProject\PhpCli\Outputs\MemoryColoredOutputProvider,
 		$inputProvider = new CzProject\PhpCli\Inputs\MemoryInputProvider
 	);
 
@@ -23,9 +23,9 @@ test(function () {
 	]));
 	Assert::same(implode('', [
 		"Select color:\n",
-		" > 1) Red\n",
-		" > 2) Green\n",
-		" > 3) Blue\n",
+		" > <yellow>1) </yellow>Red\n",
+		" > <yellow>2) </yellow>Green\n",
+		" > <yellow>3) </yellow>Blue\n",
 		'Your choose: ',
 	]), $outputProvider->getOutput());
 });
@@ -34,7 +34,7 @@ test(function () {
 // Input with default value
 test(function () {
 	$console = CzProject\PhpCli\ConsoleFactory::createConsole(
-		$outputProvider = new CzProject\PhpCli\Outputs\MemoryOutputProvider,
+		$outputProvider = new CzProject\PhpCli\Outputs\MemoryColoredOutputProvider,
 		$inputProvider = new CzProject\PhpCli\Inputs\MemoryInputProvider
 	);
 
@@ -49,10 +49,10 @@ test(function () {
 	], '#0000ff'));
 	Assert::same(implode('', [
 		"Select color:\n",
-		" > 1) Red\n",
-		" > 2) Green\n",
-		" > 3) Blue\n",
-		'Your choose (default 3) Blue): ',
+		" > <yellow>1) </yellow>Red\n",
+		" > <yellow>2) </yellow>Green\n",
+		" > <yellow>3) </yellow>Blue\n",
+		'Your choose<gray> (default </gray><yellow>3) Blue</yellow><gray>)</gray>: ',
 	]), $outputProvider->getOutput());
 });
 
@@ -60,7 +60,7 @@ test(function () {
 // Input with default value and invalid value
 test(function () {
 	$console = CzProject\PhpCli\ConsoleFactory::createConsole(
-		$outputProvider = new CzProject\PhpCli\Outputs\MemoryOutputProvider,
+		$outputProvider = new CzProject\PhpCli\Outputs\MemoryColoredOutputProvider,
 		$inputProvider = new CzProject\PhpCli\Inputs\MemoryInputProvider
 	);
 
@@ -76,11 +76,11 @@ test(function () {
 	], '#0000ff'));
 	Assert::same(implode('', [
 		"Select color:\n",
-		" > 1) Red\n",
-		" > 2) Green\n",
-		" > 3) Blue\n",
-		'Your choose (default 3) Blue): ',
-		'Your choose (default 3) Blue): ',
+		" > <yellow>1) </yellow>Red\n",
+		" > <yellow>2) </yellow>Green\n",
+		" > <yellow>3) </yellow>Blue\n",
+		'Your choose<gray> (default </gray><yellow>3) Blue</yellow><gray>)</gray>: ',
+		'Your choose<gray> (default </gray><yellow>3) Blue</yellow><gray>)</gray>: ',
 	]), $outputProvider->getOutput());
 });
 
@@ -88,7 +88,7 @@ test(function () {
 // Required input and invalid value
 test(function () {
 	$console = CzProject\PhpCli\ConsoleFactory::createConsole(
-		$outputProvider = new CzProject\PhpCli\Outputs\MemoryOutputProvider,
+		$outputProvider = new CzProject\PhpCli\Outputs\MemoryColoredOutputProvider,
 		$inputProvider = new CzProject\PhpCli\Inputs\MemoryInputProvider
 	);
 
@@ -107,9 +107,9 @@ test(function () {
 	]));
 	Assert::same(implode('', [
 		"Select color:\n",
-		" > 1) Red\n",
-		" > 2) Green\n",
-		" > 3) Blue\n",
+		" > <yellow>1) </yellow>Red\n",
+		" > <yellow>2) </yellow>Green\n",
+		" > <yellow>3) </yellow>Blue\n",
 		'Your choose: ',
 		'Your choose: ',
 		'Your choose: ',

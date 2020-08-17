@@ -8,7 +8,7 @@ require __DIR__ . '/bootstrap.php';
 // Text input
 test(function () {
 	$console = CzProject\PhpCli\ConsoleFactory::createConsole(
-		$outputProvider = new CzProject\PhpCli\Outputs\MemoryOutputProvider,
+		$outputProvider = new CzProject\PhpCli\Outputs\MemoryColoredOutputProvider,
 		$inputProvider = new CzProject\PhpCli\Inputs\MemoryInputProvider
 	);
 
@@ -24,7 +24,7 @@ test(function () {
 // Input with default value
 test(function () {
 	$console = CzProject\PhpCli\ConsoleFactory::createConsole(
-		$outputProvider = new CzProject\PhpCli\Outputs\MemoryOutputProvider,
+		$outputProvider = new CzProject\PhpCli\Outputs\MemoryColoredOutputProvider,
 		$inputProvider = new CzProject\PhpCli\Inputs\MemoryInputProvider
 	);
 
@@ -33,14 +33,14 @@ test(function () {
 	]);
 
 	Assert::same('1000', $console->input('Your name:', 1000));
-	Assert::same('Your name (default 1000): ', $outputProvider->getOutput());
+	Assert::same('Your name<gray> (default </gray><yellow>1000</yellow><gray>)</gray>: ', $outputProvider->getOutput());
 });
 
 
 // Required input
 test(function () {
 	$console = CzProject\PhpCli\ConsoleFactory::createConsole(
-		$outputProvider = new CzProject\PhpCli\Outputs\MemoryOutputProvider,
+		$outputProvider = new CzProject\PhpCli\Outputs\MemoryColoredOutputProvider,
 		$inputProvider = new CzProject\PhpCli\Inputs\MemoryInputProvider
 	);
 
