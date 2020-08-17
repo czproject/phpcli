@@ -64,6 +64,13 @@
 		}
 
 
+		public function addRule(callable $rule, $errorMessage = NULL)
+		{
+			$this->definition->addRule($rule, $errorMessage);
+			return $this;
+		}
+
+
 		public function processValue($optionName, $value)
 		{
 			return $this->definition->processValue($value, "option '{$optionName}'");

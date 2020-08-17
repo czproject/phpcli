@@ -44,6 +44,13 @@
 		}
 
 
+		public function addRule(callable $rule, $errorMessage = NULL)
+		{
+			$this->definition->addRule($rule, $errorMessage);
+			return $this;
+		}
+
+
 		public function processValue($index, $value)
 		{
 			return $this->definition->processValue($value, "argument '{$this->name}' (at position #{$index})");

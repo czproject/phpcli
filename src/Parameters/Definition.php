@@ -25,6 +25,9 @@
 		/** @var mixed */
 		private $defaultValue = NULL;
 
+		/** @var Rules */
+		private $rules;
+
 		/** @var string[] */
 		private static $types = [
 			'boolean',
@@ -43,6 +46,7 @@
 			}
 
 			$this->type = $type;
+			$this->rules = new Rules;
 		}
 
 
@@ -70,6 +74,13 @@
 		public function setDefaultValue($defaultValue)
 		{
 			$this->defaultValue = $defaultValue;
+			return $this;
+		}
+
+
+		public function addRule(callable $rule, $errorMessage = NULL)
+		{
+			$this->rules->addRule($rule, $errorMessage);
 			return $this;
 		}
 
@@ -116,6 +127,7 @@
 				}
 			}
 
+			$this->rules->validate($value, $errorSuffix);
 			return $value;
 		}
 
