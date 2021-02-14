@@ -16,10 +16,6 @@
 	},
 	"require-dev": {
 		"nette/tester": "^2.0",
-		"phpstan/phpstan": "^0.12",
 		"nette/di": "^2.4"
-	},
-	"scripts": {
-		"phpstan": "phpstan analyse --configuration tests/phpstan.neon"
 	}
 }

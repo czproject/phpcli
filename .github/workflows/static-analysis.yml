@@ -13,5 +13,6 @@ jobs:
                   php-version: 7.4
                   coverage: none
 
-            - run: composer install --no-interaction
-            - run: composer phpstan -- --no-progress
+            - run: composer install --no-interaction --prefer-dist
+            - run: composer create-project phpstan/phpstan temp/phpstan ^0.12 --no-progress
+            - run: temp/phpstan/phpstan analyse --configuration tests/phpstan.neon
