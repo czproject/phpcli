@@ -10,7 +10,7 @@
 	{
 		public function readInput()
 		{
-			$input = Helpers::normalizeInput(readline());
+			$input = Helpers::normalizeInput((string) readline());
 
 			if ($input !== '') {
 				readline_add_history($input);
