@@ -7,9 +7,6 @@
 
 	class CommandParameters
 	{
-		/** @var string */
-		private $name;
-
 		/** @var array<string, string|CommandOption> */
 		private $options = [];
 

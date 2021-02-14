@@ -2,7 +2,6 @@
 
 	namespace CzProject\PhpCli\Parameters;
 
-	use CzProject\PhpCli\IParametersParser;
 	use CzProject\PhpCli\Parameters;
 
 

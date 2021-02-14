@@ -2,10 +2,6 @@
 
 	namespace CzProject\PhpCli\Parameters;
 
-	use CzProject\PhpCli\ApplicationException;
-	use CzProject\PhpCli\Console;
-	use CzProject\PhpCli\ConsoleFactory;
-
 
 	class Argument
 	{

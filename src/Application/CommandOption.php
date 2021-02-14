@@ -3,8 +3,6 @@
 	namespace CzProject\PhpCli\Application;
 
 	use CzProject\PhpCli\ApplicationException;
-	use CzProject\PhpCli\Console;
-	use CzProject\PhpCli\ConsoleFactory;
 	use CzProject\PhpCli\Parameters\Definition;
 
 
