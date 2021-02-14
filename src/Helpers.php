@@ -11,6 +11,10 @@
 		}
 
 
+		/**
+		 * @param  string $input
+		 * @return string
+		 */
 		public static function normalizeInput($input)
 		{
 			return rtrim($input, "\r\n");

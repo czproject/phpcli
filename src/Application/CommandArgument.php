@@ -14,6 +14,10 @@
 		private $definition;
 
 
+		/**
+		 * @param string $name
+		 * @param string $type
+		 */
 		public function __construct($name, $type)
 		{
 			$this->name = $name;
@@ -21,12 +25,19 @@
 		}
 
 
+		/**
+		 * @return string
+		 */
 		public function getName()
 		{
 			return $this->name;
 		}
 
 
+		/**
+		 * @param  bool $required
+		 * @return self
+		 */
 		public function setRequired($required = TRUE)
 		{
 			$this->definition->setRequired($required);
@@ -34,6 +45,10 @@
 		}
 
 
+		/**
+		 * @param  mixed $defaultValue
+		 * @return self
+		 */
 		public function setDefaultValue($defaultValue)
 		{
 			$this->definition->setDefaultValue($defaultValue);
@@ -41,6 +56,10 @@
 		}
 
 
+		/**
+		 * @param  string|NULL $errorMessage
+		 * @return self
+		 */
 		public function addRule(callable $rule, $errorMessage = NULL)
 		{
 			$this->definition->addRule($rule, $errorMessage);
@@ -48,6 +67,11 @@
 		}
 
 
+		/**
+		 * @param  int $index
+		 * @param  mixed $value
+		 * @return mixed
+		 */
 		public function processValue($index, $value)
 		{
 			return $this->definition->processValue($value, "argument '{$this->name}' (at position #{$index})");

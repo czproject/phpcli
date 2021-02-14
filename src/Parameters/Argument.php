@@ -15,6 +15,11 @@
 		private $definition;
 
 
+		/**
+		 * @param int $index
+		 * @param mixed $value
+		 * @param string $type
+		 */
 		public function __construct($index, $value, $type)
 		{
 			$this->index = $index;
@@ -23,6 +28,10 @@
 		}
 
 
+		/**
+		 * @param  bool $required
+		 * @return self
+		 */
 		public function setRequired($required = TRUE)
 		{
 			$this->definition->setRequired($required);
@@ -30,6 +39,10 @@
 		}
 
 
+		/**
+		 * @param  mixed $defaultValue
+		 * @return self
+		 */
 		public function setDefaultValue($defaultValue)
 		{
 			$this->definition->setDefaultValue($defaultValue);
@@ -37,6 +50,10 @@
 		}
 
 
+		/**
+		 * @param  string|NULL $errorMessage
+		 * @return self
+		 */
 		public function addRule(callable $rule, $errorMessage = NULL)
 		{
 			$this->definition->addRule($rule, $errorMessage);
@@ -44,6 +61,9 @@
 		}
 
 
+		/**
+		 * @return mixed
+		 */
 		public function getValue()
 		{
 			return $this->definition->processValue($this->value, "argument #{$this->index}");

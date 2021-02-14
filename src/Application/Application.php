@@ -14,7 +14,7 @@
 		/** @var Console */
 		protected $console;
 
-		/** @var array */
+		/** @var array<string, ICommand> */
 		protected $commands;
 
 		/** @var string|NULL */
@@ -73,6 +73,9 @@
 		}
 
 
+		/**
+		 * @return void
+		 */
 		public function run()
 		{
 			if (!$this->console->hasParameters()) {
@@ -100,6 +103,9 @@
 		}
 
 
+		/**
+		 * @return void
+		 */
 		public function printException(\Exception $e)
 		{
 			$console = $this->console;
@@ -120,6 +126,9 @@
 		}
 
 
+		/**
+		 * @return ApplicationRequest|NULL
+		 */
 		protected function createRequest(Parameters $parameters)
 		{
 			$command = NULL;
@@ -143,7 +152,8 @@
 
 
 		/**
-		 * @return array
+		 * @param array<string, mixed> $options
+		 * @return array<string, mixed>
 		 */
 		protected function processOptions(array $options, CommandParameters $parameters = NULL)
 		{
@@ -205,7 +215,8 @@
 
 
 		/**
-		 * @return array
+		 * @param  array<int, mixed> $arguments
+		 * @return array<int, mixed>
 		 */
 		protected function processArguments(array $arguments, CommandParameters $parameters = NULL)
 		{
@@ -249,6 +260,9 @@
 		}
 
 
+		/**
+		 * @return void
+		 */
 		protected function printHelp()
 		{
 			if (isset($this->applicationName)) {

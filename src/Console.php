@@ -129,6 +129,10 @@
 		}
 
 
+		/**
+		 * @param  string|NULL $color
+		 * @return self
+		 */
 		public function color($color)
 		{
 			$this->color = $color;

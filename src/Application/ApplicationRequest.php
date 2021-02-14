@@ -8,15 +8,17 @@
 		/** @var string */
 		private $commandName;
 
-		/** @var array */
+		/** @var array<string, mixed> */
 		private $options;
 
-		/** @var array */
+		/** @var array<int, mixed> */
 		private $arguments;
 
 
 		/**
 		 * @param string $commandName
+		 * @param array<string, mixed> $options
+		 * @param array<int, mixed> $arguments
 		 */
 		public function __construct($commandName, array $options, array $arguments)
 		{
@@ -36,7 +38,7 @@
 
 
 		/**
-		 * @return array
+		 * @return array<string, mixed>
 		 */
 		public function getOptions()
 		{
@@ -45,7 +47,7 @@
 
 
 		/**
-		 * @return array
+		 * @return array<int, mixed>
 		 */
 		public function getArguments()
 		{

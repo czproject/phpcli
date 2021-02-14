@@ -9,6 +9,7 @@
 
 	class ColoredOutputProvider implements IOutputProvider
 	{
+		/** @var array<string, string> */
 		protected static $colors = [
 			Colors::GREEN => '0;32',
 			Colors::RED => '0;31',

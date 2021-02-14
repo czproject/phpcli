@@ -5,13 +5,17 @@
 
 	class Parameters
 	{
-		/** @var array */
+		/** @var array<string, mixed> */
 		private $options;
 
-		/** @var array */
+		/** @var array<int, mixed> */
 		private $arguments;
 
 
+		/**
+		 * @param array<string, mixed> $options
+		 * @param array<int, mixed> $arguments
+		 */
 		public function __construct(array $options, array $arguments)
 		{
 			$this->options = $options;
@@ -19,18 +23,27 @@
 		}
 
 
+		/**
+		 * @return bool
+		 */
 		public function hasParameters()
 		{
 			return !empty($this->options) || !empty($this->arguments);
 		}
 
 
+		/**
+		 * @return array<string, mixed>
+		 */
 		public function getOptions()
 		{
 			return $this->options;
 		}
 
 
+		/**
+		 * @return array<int, mixed>
+		 */
 		public function getArguments()
 		{
 			return $this->arguments;

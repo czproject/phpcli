@@ -40,6 +40,9 @@
 		];
 
 
+		/**
+		 * @param string $type
+		 */
 		public function __construct($type)
 		{
 			if (!in_array($type, self::$types, TRUE)) {
@@ -51,6 +54,10 @@
 		}
 
 
+		/**
+		 * @param  bool $required
+		 * @return self
+		 */
 		public function setRequired($required = TRUE)
 		{
 			$this->required = $required;
@@ -58,6 +65,10 @@
 		}
 
 
+		/**
+		 * @param  bool $nullable
+		 * @return self
+		 */
 		public function setNullable($nullable = TRUE)
 		{
 			$this->nullable = $nullable;
@@ -65,6 +76,10 @@
 		}
 
 
+		/**
+		 * @param  bool $repeatable
+		 * @return self
+		 */
 		public function setRepeatable($repeatable = TRUE)
 		{
 			$this->repeatable = $repeatable;
@@ -72,6 +87,10 @@
 		}
 
 
+		/**
+		 * @param  mixed $defaultValue
+		 * @return self
+		 */
 		public function setDefaultValue($defaultValue)
 		{
 			$this->defaultValue = $defaultValue;
@@ -79,6 +98,10 @@
 		}
 
 
+		/**
+		 * @param  string|NULL $errorMessage
+		 * @return self
+		 */
 		public function addRule(callable $rule, $errorMessage = NULL)
 		{
 			$this->rules->addRule($rule, $errorMessage);
@@ -87,6 +110,8 @@
 
 
 		/**
+		 * @param  mixed $value
+		 * @param  string|NULL $errorSuffix
 		 * @return mixed
 		 */
 		public function processValue($value, $errorSuffix)
@@ -132,6 +157,12 @@
 		}
 
 
+		/**
+		 * @param  mixed $value
+		 * @param  string $type
+		 * @param  string|NULL $errorSuffix
+		 * @return mixed
+		 */
 		private function convertType($value, $type, $errorSuffix)
 		{
 			try {

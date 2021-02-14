@@ -18,11 +18,13 @@
 		function getParameters();
 
 		/**
-		 * @return string
+		 * @return string|NULL
 		 */
 		function getDescription();
 
 		/**
+		 * @param  array<string, mixed> $options
+		 * @param  array<int, mixed> $arguments
 		 * @return void
 		 */
 		function run(Console $console, array $options, array $arguments);

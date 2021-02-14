@@ -12,6 +12,10 @@
 		private $inputs = [];
 
 
+		/**
+		 * @param  string[] $inputs
+		 * @return void
+		 */
 		public function setInputs(array $inputs)
 		{
 			$this->inputs = $inputs;

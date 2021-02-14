@@ -9,12 +9,21 @@
 		private $rules = [];
 
 
+		/**
+		 * @param  string|NULL $errorMessage
+		 * @return void
+		 */
 		public function addRule(callable $rule, $errorMessage = NULL)
 		{
 			$this->rules[] = [$rule, $errorMessage];
 		}
 
 
+		/**
+		 * @param  mixed $value
+		 * @param  string|NULL $errorSuffix
+		 * @return void
+		 */
 		public function validate($value, $errorSuffix = NULL)
 		{
 			foreach ($this->rules as $rule) {

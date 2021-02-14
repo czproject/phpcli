@@ -7,6 +7,7 @@
 
 	class NetteDIExtension extends Nette\DI\CompilerExtension
 	{
+		/** @var array<string, mixed> */
 		private $defaults = [
 			'applicationName' => NULL,
 		];
