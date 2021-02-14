@@ -23,7 +23,7 @@
 				$this->definition = new Definition($type);
 
 			} catch (\CzProject\PhpCli\InvalidArgumentException $e) {
-				throw new ApplicationException("Option '$name': " . $e->getMessage(), NULL, $e);
+				throw new ApplicationException("Option '$name': " . $e->getMessage(), 0, $e);
 			}
 		}
 

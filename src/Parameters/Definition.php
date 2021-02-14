@@ -144,7 +144,7 @@
 				}
 
 			} catch (\CzProject\PhpCli\InvalidValueException $e) {
-				throw new \CzProject\PhpCli\InvalidValueException("Invalid value for $errorSuffix.", NULL, $e);
+				throw new \CzProject\PhpCli\InvalidValueException("Invalid value for $errorSuffix.", 0, $e);
 			}
 
 			throw new \CzProject\PhpCli\InvalidArgumentException("Unknow type '$type'.");
