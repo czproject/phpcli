@@ -18,7 +18,7 @@
 
 
 		/**
-		 * @param  string|int|float|bool $value
+		 * @param  string|int|float|bool|mixed $value
 		 * @return bool
 		 */
 		public static function convertToBool($value)

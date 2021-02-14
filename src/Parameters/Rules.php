@@ -5,7 +5,7 @@
 
 	class Rules
 	{
-		/** @var array<array{0: callable, 1: string}> */
+		/** @var array<array{0: callable, 1: string|NULL}> */
 		private $rules = [];
 
 

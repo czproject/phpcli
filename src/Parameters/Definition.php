@@ -138,8 +138,6 @@
 				if ($type === Types::BOOL || $type === Types::BOOLEAN) {
 					return Helpers::convertToBool($value);
 
-					throw new \CzProject\PhpCli\InvalidValueException("Invalid boolean value for $errorSuffix.");
-
 				} elseif ($type === Types::STRING || $type === Types::INT || $type === Types::INTEGER || $type === Types::FLOAT) {
 					settype($value, $type);
 					return $value;
