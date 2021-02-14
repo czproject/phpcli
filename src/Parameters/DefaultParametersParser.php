@@ -9,7 +9,7 @@
 	class DefaultParametersParser implements IParametersParser
 	{
 		/**
-		 * @param  array  parameters without programName
+		 * @param  array $rawParameters  parameters without programName
 		 * @return Parameters
 		 */
 		public function parse(array $rawParameters)

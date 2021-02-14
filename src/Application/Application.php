@@ -31,7 +31,7 @@
 
 
 		/**
-		 * @param  string|NULL
+		 * @param  string|NULL $defaultCommand
 		 * @return static
 		 */
 		public function setDefaultCommand($defaultCommand)
@@ -42,7 +42,6 @@
 
 
 		/**
-		 * @param  ICommand
 		 * @return static
 		 */
 		public function addCommand(ICommand $command)
@@ -53,8 +52,7 @@
 
 
 		/**
-		 * @param  string
-		 * @param  ICommand
+		 * @param  string $name
 		 * @return static
 		 */
 		public function setCommand($name, ICommand $command)
@@ -65,7 +63,7 @@
 
 
 		/**
-		 * @param  string|NULL
+		 * @param  string|NULL $applicationName
 		 * @return static
 		 */
 		public function setApplicationName($applicationName)

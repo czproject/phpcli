@@ -14,6 +14,12 @@ class TestCommand implements ICommand
 	private $callback;
 
 
+	public function getName()
+	{
+		return 'TEST';
+	}
+
+
 	public function setCallback($callback)
 	{
 		$this->callback = $callback;

@@ -46,8 +46,8 @@
 
 
 		/**
-		 * @param  string
-		 * @param  string
+		 * @param  string $name
+		 * @param  string $type
 		 * @return CommandOption
 		 */
 		public function addOption($name, $type = Types::STRING)
@@ -61,8 +61,8 @@
 
 
 		/**
-		 * @param  string
-		 * @param  string
+		 * @param  string $aliasName
+		 * @param  string $optionName
 		 * @return static
 		 */
 		public function addAlias($aliasName, $optionName)
@@ -77,8 +77,8 @@
 
 
 		/**
-		 * @param  string
-		 * @param  string
+		 * @param  string $name
+		 * @param  string $type
 		 * @return CommandArgument
 		 */
 		public function addArgument($name, $type = Types::STRING)

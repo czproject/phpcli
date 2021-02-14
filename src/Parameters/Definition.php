@@ -87,7 +87,6 @@
 
 
 		/**
-		 * @param  mixed
 		 * @return mixed
 		 */
 		public function processValue($value, $errorSuffix)

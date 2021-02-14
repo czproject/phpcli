@@ -8,6 +8,11 @@
 	interface ICommand
 	{
 		/**
+		 * @return string
+		 */
+		function getName();
+
+		/**
 		 * @return CommandParameters|NULL
 		 */
 		function getParameters();

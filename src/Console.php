@@ -55,7 +55,7 @@
 
 
 		/**
-		 * @param  string
+		 * @param  string $directory
 		 * @return static
 		 */
 		public function setCurrentDirectory($directory)
@@ -95,8 +95,8 @@
 
 
 		/**
-		 * @param  string
-		 * @param  string
+		 * @param  string $name
+		 * @param  string $type
 		 * @return Parameters\Option
 		 */
 		public function getOption($name, $type = Types::STRING)
@@ -108,8 +108,8 @@
 
 
 		/**
-		 * @param  int
-		 * @param  string
+		 * @param  int $index
+		 * @param  string $type
 		 * @return Parameters\Argument
 		 */
 		public function getArgument($index, $type = Types::STRING)
@@ -137,8 +137,8 @@
 
 
 		/**
-		 * @param  string|string[]
-		 * @param  string|NULL NULL means current
+		 * @param  string|string[] $str
+		 * @param  string|NULL $color NULL means current
 		 * @return static
 		 */
 		public function output($str, $color = NULL)
@@ -169,8 +169,8 @@
 
 
 		/**
-		 * @param  string
-		 * @param  string|NULL
+		 * @param  string $msg
+		 * @param  string|NULL $defaultValue
 		 * @return string
 		 */
 		public function input($msg, $defaultValue = NULL)
@@ -195,8 +195,8 @@
 
 
 		/**
-		 * @param  string
-		 * @param  string|bool|NULL
+		 * @param  string $msg
+		 * @param  string|bool|NULL $defaultValue
 		 * @return bool
 		 */
 		public function confirm($msg, $defaultValue = NULL)
@@ -226,9 +226,9 @@
 
 
 		/**
-		 * @param  string
-		 * @param  array<string|int, mixed>
-		 * @param  string|NULL
+		 * @param  string $msg
+		 * @param  array<string|int, mixed> $options
+		 * @param  string|NULL $defaultValue
 		 * @return string
 		 */
 		public function select($msg, array $options, $defaultValue = NULL)
@@ -273,8 +273,9 @@
 
 
 		/**
-		 * @param  string
-		 * @param  string|NULL
+		 * @param  string $msg
+		 * @param  string|NULL $defaultValue
+		 * @param  string|NULL $help
 		 * @return string
 		 */
 		private function readInput($msg, $defaultValue, $help = NULL)
@@ -293,6 +294,6 @@
 
 			$this->output(': ', Colors::NO_COLOR);
 
-			return $this->inputProvider->readInput($msg);
+			return $this->inputProvider->readInput();
 		}
 	}

@@ -4,6 +4,7 @@
 
 	use CzProject\PhpCli\IParametersParser;
 	use CzProject\PhpCli\IParametersProvider;
+	use CzProject\PhpCli\Parameters;
 
 
 	class DefaultParametersProvider implements IParametersProvider

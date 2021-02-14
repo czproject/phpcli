@@ -38,7 +38,7 @@
 
 
 		/**
-		 * @param  string
+		 * @param  string $name
 		 * @return bool
 		 */
 		public function hasOption($name)
@@ -52,7 +52,7 @@
 
 
 		/**
-		 * @param  string
+		 * @param  string $name
 		 * @return mixed
 		 */
 		public function getOption($name)
@@ -66,7 +66,7 @@
 
 
 		/**
-		 * @param  int
+		 * @param  int $position
 		 * @return bool
 		 */
 		public function hasArgument($position)
@@ -80,7 +80,7 @@
 
 
 		/**
-		 * @param  int
+		 * @param  int $position
 		 * @return mixed
 		 */
 		public function getArgument($position)

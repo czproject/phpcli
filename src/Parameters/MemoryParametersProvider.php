@@ -4,6 +4,7 @@
 
 	use CzProject\PhpCli\IParametersParser;
 	use CzProject\PhpCli\IParametersProvider;
+	use CzProject\PhpCli\Parameters;
 
 
 	class MemoryParametersProvider implements IParametersProvider
@@ -16,7 +17,7 @@
 
 
 		/**
-		 * @param  mixed[]  parameters without programName
+		 * @param  mixed[] $parameters parameters without programName
 		 */
 		public function __construct(array $parameters, IParametersParser $parametersParser = NULL)
 		{

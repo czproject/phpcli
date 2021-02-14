@@ -16,7 +16,7 @@
 
 
 		/**
-		 * @param string
+		 * @param string $commandName
 		 */
 		public function __construct($commandName, array $options, array $arguments)
 		{

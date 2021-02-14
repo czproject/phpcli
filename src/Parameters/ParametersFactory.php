@@ -16,8 +16,7 @@
 
 
 		/**
-		 * @param  string
-		 * @param  mixed
+		 * @param  string $name
 		 */
 		public function addOption($name, $value)
 		{
@@ -43,8 +42,7 @@
 
 		/**
 		 * Overwrites option value
-		 * @param  string
-		 * @param  mixed
+		 * @param  string $name
 		 */
 		public function setOption($name, $value)
 		{
@@ -54,7 +52,7 @@
 
 
 		/**
-		 * @param  string
+		 * @param  string $name
 		 * @return bool
 		 */
 		public function hasOption($name)
@@ -64,9 +62,6 @@
 		}
 
 
-		/**
-		 * @param  mixed
-		 */
 		public function addArgument($value)
 		{
 			$this->arguments[] = $this->processValue($value);
@@ -83,7 +78,7 @@
 
 
 		/**
-		 * @param  mixed
+		 * @param  mixed $optionName
 		 * @return string
 		 */
 		private function processOptionName($optionName)
@@ -103,7 +98,6 @@
 
 
 		/**
-		 * @param  mixed
 		 * @return mixed
 		 */
 		private function processValue($value)
