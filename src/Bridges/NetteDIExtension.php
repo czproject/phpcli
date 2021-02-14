@@ -18,7 +18,7 @@
 
 			$builder = $this->getContainerBuilder();
 			$builder->addDefinition($this->prefix('application'))
-				->setFactory(CzProject\PhpCli\Application\Application::class)
+				->setFactory(\CzProject\PhpCli\Application\Application::class)
 				->addSetup('setApplicationName', [$this->config['applicationName']]);
 		}
 
@@ -28,7 +28,7 @@
 			$builder = $this->getContainerBuilder();
 			$application = $builder->getDefinition($this->prefix('application'));
 
-			foreach ($builder->findByType(CzProject\PhpCli\Application\ICommand::class) as $definition) {
+			foreach ($builder->findByType(\CzProject\PhpCli\Application\ICommand::class) as $definition) {
 				$application->addSetup('addCommand', [$definition]);
 			}
 		}
