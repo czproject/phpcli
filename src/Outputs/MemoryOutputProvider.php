@@ -23,6 +23,5 @@
 		public function output($str, $color = NULL)
 		{
 			$this->output .= $str;
-			return $this;
 		}
 	}

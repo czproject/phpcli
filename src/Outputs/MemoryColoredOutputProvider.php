@@ -23,6 +23,5 @@
 		public function output($str, $color = NULL)
 		{
 			$this->output .= ($color !== NULL ? "<$color>" : '') . $str . ($color !== NULL ? "</$color>" : '');
-			return $this;
 		}
 	}

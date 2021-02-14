@@ -9,7 +9,7 @@
 
 	class Rules
 	{
-		/** @var array{0: callable, 1: string} */
+		/** @var array<array{0: callable, 1: string}> */
 		private $rules = [];
 
 

@@ -27,7 +27,7 @@
 
 
 		/**
-		 * @return array
+		 * @return string
 		 */
 		public function getCommandName()
 		{
