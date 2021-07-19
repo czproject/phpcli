@@ -46,7 +46,13 @@
 		 */
 		public function addCommand(ICommand $command)
 		{
-			$this->setCommand($command->getName(), $command);
+			$name = $command->getName();
+
+			if (isset($this->commands[$name])) {
+				throw new \CzProject\PhpCli\InvalidArgumentException("Command '$name' already exists.");
+			}
+
+			$this->setCommand($name, $command);
 			return $this;
 		}
 
