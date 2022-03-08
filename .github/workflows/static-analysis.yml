@@ -14,5 +14,5 @@ jobs:
                   coverage: none
 
             - run: composer install --no-interaction --prefer-dist
-            - run: composer create-project phpstan/phpstan temp/phpstan ^0.12 --no-progress
+            - run: composer create-project phpstan/phpstan temp/phpstan ^1.0 --no-progress
             - run: temp/phpstan/phpstan analyse --configuration tests/phpstan.neon

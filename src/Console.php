@@ -233,7 +233,7 @@
 		 * @param  string $msg
 		 * @param  array<string|int, mixed> $options
 		 * @param  string|NULL $defaultValue
-		 * @return string
+		 * @return string|int
 		 */
 		public function select($msg, array $options, $defaultValue = NULL)
 		{
@@ -268,7 +268,7 @@
 					return $defaultValue;
 				}
 
-				if (isset($list[$val])) {
+				if (is_numeric($val) && isset($list[$val])) {
 					return $list[$val];
 				}
 
