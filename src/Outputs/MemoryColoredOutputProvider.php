@@ -20,6 +20,15 @@
 		}
 
 
+		/**
+		 * @return void
+		 */
+		public function resetOutput()
+		{
+			$this->output = NULL;
+		}
+
+
 		public function output($str, $color = NULL)
 		{
 			$this->output .= ($color !== NULL ? "<$color>" : '') . $str . ($color !== NULL ? "</$color>" : '');
