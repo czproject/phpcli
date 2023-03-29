@@ -1,7 +1,10 @@
 PHP CLI Console
 ===============
 
-[![Tests Status](https://github.com/czproject/phpcli/workflows/Tests/badge.svg)](https://github.com/czproject/phpcli/actions)
+[![Build Status](https://github.com/czproject/phpcli/workflows/Build/badge.svg)](https://github.com/czproject/phpcli/actions)
+[![Downloads this Month](https://img.shields.io/packagist/dm/czproject/phpcli.svg)](https://packagist.org/packages/czproject/phpcli)
+[![Latest Stable Version](https://poser.pugx.org/czproject/phpcli/v/stable)](https://github.com/czproject/phpcli/releases)
+[![License](https://img.shields.io/badge/license-New%20BSD-blue.svg)](https://github.com/czproject/phpcli/blob/master/license.md)
 
 <a href="https://www.janpecha.cz/donate/"><img src="https://buymecoffee.intm.org/img/donate-banner.v1.svg" alt="Donate" height="100"></a>
 
