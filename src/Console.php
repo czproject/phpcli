@@ -231,7 +231,7 @@
 
 		/**
 		 * @param  string $msg
-		 * @param  array<string|int, mixed> $options
+		 * @param  array<string|int, string> $options
 		 * @param  string|NULL $defaultValue
 		 * @return string|int
 		 */

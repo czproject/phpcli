@@ -143,6 +143,10 @@
 
 			if (!empty($arguments)) {
 				$command = array_shift($arguments);
+
+				if (!is_string($command)) {
+					throw new \CzProject\PhpCli\ApplicationException('Command name in first argument must be string, ' . gettype($command) . ' given.');
+				}
 			}
 
 			if ($command === NULL) {
