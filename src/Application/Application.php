@@ -24,9 +24,22 @@
 		protected $defaultCommand;
 
 
-		public function __construct(Console $console = NULL)
+		/**
+		 * @param string|NULL $applicationName
+		 * @param string|NULL $defaultCommand
+		 * @param ICommand[] $commands
+		 */
+		public function __construct(
+			Console $console = NULL,
+			$applicationName = NULL,
+			$defaultCommand = NULL,
+			array $commands = []
+		)
 		{
 			$this->console = $console ? $console : ConsoleFactory::createConsole();
+			$this->applicationName = $applicationName;
+			$this->defaultCommand = $defaultCommand;
+			$this->commands = $commands;
 		}
 
 
