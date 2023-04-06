@@ -17,6 +17,24 @@
 
 
 		/**
+		 * Alias for createConsole()
+		 * @return Console
+		 */
+		public static function create(
+			IOutputProvider $outputProvider = NULL,
+			IInputProvider $inputProvider = NULL,
+			IParametersProvider $parametersProvider = NULL
+		)
+		{
+			return self::createConsole(
+				$outputProvider,
+				$inputProvider,
+				$parametersProvider
+			);
+		}
+
+
+		/**
 		 * @return Console
 		 */
 		public static function createConsole(
