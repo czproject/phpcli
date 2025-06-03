@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use CzProject\PhpCli\Application\Application;
 use CzProject\PhpCli\Tests;
 use Tester\Assert;
