@@ -12,7 +12,7 @@
 		/** @var array<string, string|CommandOption> */
 		private $options = [];
 
-		/** @var array<CommandArgument> */
+		/** @var array<int, CommandArgument> */
 		private $arguments = [];
 
 
@@ -87,7 +87,7 @@
 
 
 		/**
-		 * @return CommandArgument[]
+		 * @return array<int, CommandArgument>
 		 */
 		public function getArguments()
 		{

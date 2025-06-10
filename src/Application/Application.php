@@ -17,7 +17,7 @@
 		protected $console;
 
 		/** @var array<string, ICommand> */
-		protected $commands;
+		protected $commands = [];
 
 		/** @var string|NULL */
 		protected $applicationName;
@@ -29,7 +29,7 @@
 		/**
 		 * @param string|NULL $applicationName
 		 * @param string|NULL $defaultCommand
-		 * @param ICommand[] $commands
+		 * @param array<string, ICommand> $commands
 		 */
 		public function __construct(
 			?Console $console = NULL,

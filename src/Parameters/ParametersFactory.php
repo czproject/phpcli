@@ -12,7 +12,7 @@
 		/** @var array<string, mixed> */
 		private $options = [];
 
-		/** @var mixed[] */
+		/** @var array<int, mixed> */
 		private $arguments = [];
 
 
