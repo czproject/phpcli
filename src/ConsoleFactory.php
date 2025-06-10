@@ -23,9 +23,9 @@
 		 * @return Console
 		 */
 		public static function create(
-			IOutputProvider $outputProvider = NULL,
-			IInputProvider $inputProvider = NULL,
-			IParametersProvider $parametersProvider = NULL
+			?IOutputProvider $outputProvider = NULL,
+			?IInputProvider $inputProvider = NULL,
+			?IParametersProvider $parametersProvider = NULL
 		)
 		{
 			return self::createConsole(
@@ -40,9 +40,9 @@
 		 * @return Console
 		 */
 		public static function createConsole(
-			IOutputProvider $outputProvider = NULL,
-			IInputProvider $inputProvider = NULL,
-			IParametersProvider $parametersProvider = NULL
+			?IOutputProvider $outputProvider = NULL,
+			?IInputProvider $inputProvider = NULL,
+			?IParametersProvider $parametersProvider = NULL
 		)
 		{
 			$outputProvider = $outputProvider === NULL ? self::createOutputProvider() : $outputProvider;

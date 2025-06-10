@@ -21,7 +21,7 @@
 		/**
 		 * @param  mixed[] $parameters parameters without programName
 		 */
-		public function __construct(array $parameters, IParametersParser $parametersParser = NULL)
+		public function __construct(array $parameters, ?IParametersParser $parametersParser = NULL)
 		{
 			$this->parameters = $parameters;
 			$this->parametersParser = $parametersParser !== NULL ? $parametersParser : new DefaultParametersParser;

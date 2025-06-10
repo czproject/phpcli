@@ -15,7 +15,7 @@
 		private $parametersParser;
 
 
-		public function __construct(IParametersParser $parametersParser = NULL)
+		public function __construct(?IParametersParser $parametersParser = NULL)
 		{
 			$this->parametersParser = $parametersParser !== NULL ? $parametersParser : new DefaultParametersParser;
 		}

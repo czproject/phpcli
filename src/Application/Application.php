@@ -32,7 +32,7 @@
 		 * @param ICommand[] $commands
 		 */
 		public function __construct(
-			Console $console = NULL,
+			?Console $console = NULL,
 			$applicationName = NULL,
 			$defaultCommand = NULL,
 			array $commands = []
@@ -180,7 +180,7 @@
 		 * @param array<string, mixed> $options
 		 * @return array<string, mixed>
 		 */
-		protected function processOptions(array $options, CommandParameters $parameters = NULL)
+		protected function processOptions(array $options, ?CommandParameters $parameters = NULL)
 		{
 			$result = [];
 			$optionDefinitions = $parameters !== NULL ? $parameters->getOptions() : [];
@@ -243,7 +243,7 @@
 		 * @param  array<int, mixed> $arguments
 		 * @return array<int, mixed>
 		 */
-		protected function processArguments(array $arguments, CommandParameters $parameters = NULL)
+		protected function processArguments(array $arguments, ?CommandParameters $parameters = NULL): array
 		{
 			$result = [];
 			$argumentDefinitions = $parameters !== NULL ? $parameters->getArguments() : [];
