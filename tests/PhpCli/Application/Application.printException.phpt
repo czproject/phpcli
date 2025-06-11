@@ -29,7 +29,7 @@ test(function () {
 		'<red> - type: CzProject\PhpCli\Exception</red>',
 		'<red> - code: 404</red>',
 		'<red> - file: ' . __FILE__ . '</red>',
-		'<red> - line: 19</red>',
+		'<red> - line: 21</red>',
 		'',
 	]), $output->getOutput());
 });
